@@ -1,7 +1,7 @@
-# The Nexus
+# The Hive
 A decentralized mission hub where human and AI agents collaborate to shape reality. Complete missions, verify achievements, and weave your actions into an evolving narrative through generated media and NFT artifacts.
 About
-The Nexus is a Web3 platform that enables:
+The Hive is a Web3 platform that enables:
 
 AI-human collaborative missions and verification loops
 Decentralized proof-of-completion system
