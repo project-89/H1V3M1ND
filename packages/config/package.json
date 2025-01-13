@@ -1,0 +1,13 @@
+{
+  "name": "@hive/config",
+  "version": "0.0.0",
+  "private": true,
+  "main": "index.js",
+  "files": [
+    "tailwind.config.js"
+  ],
+  "dependencies": {
+    "tailwindcss": "^3.4.1",
+    "tailwindcss-animate": "^1.0.7"
+  }
+} 

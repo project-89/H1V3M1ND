@@ -1,0 +1,41 @@
+name: Task
+description: Create a new task
+title: "[Task]: "
+labels: ["task"]
+body:
+  - type: dropdown
+    id: phase
+    attributes:
+      label: Phase
+      options:
+        - "Phase 1: Foundation"
+        - "Phase 2: Core Features"
+        - "Phase 3: Polish & Testing"
+    validations:
+      required: true
+      
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: Detailed description of the task
+    validations:
+      required: true
+      
+  - type: textarea
+    id: acceptance-criteria
+    attributes:
+      label: Acceptance Criteria
+      description: List the acceptance criteria
+    validations:
+      required: true
+      
+  - type: textarea
+    id: subtasks
+    attributes:
+      label: Sub-Tasks
+      description: Break down the task into sub-tasks
+      value: |
+        - [ ] Sub-task 1
+        - [ ] Sub-task 2
+        - [ ] Sub-task 3

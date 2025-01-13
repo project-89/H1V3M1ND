@@ -1,0 +1,250 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+ 
+@layer base {
+  :root {
+    --background: 230 25% 5%;
+    --foreground: 180 90% 90%;
+
+    --card: 230 30% 10%;
+    --card-foreground: 180 90% 90%;
+ 
+    --popover: 230 25% 8%;
+    --popover-foreground: 180 90% 90%;
+ 
+    /* Neon cyan primary */
+    --primary: 180 100% 50%;
+    --primary-foreground: 230 25% 5%;
+ 
+    /* Deep purple secondary */
+    --secondary: 270 90% 30%;
+    --secondary-foreground: 180 90% 90%;
+ 
+    /* Darker muted tones */
+    --muted: 230 25% 15%;
+    --muted-foreground: 180 30% 70%;
+ 
+    /* Neon purple accent */
+    --accent: 290 100% 50%;
+    --accent-foreground: 230 25% 5%;
+ 
+    /* Warning red with neon glow */
+    --destructive: 0 100% 60%;
+    --destructive-foreground: 180 90% 90%;
+
+    --border: 230 35% 20%;
+    --input: 230 35% 20%;
+    --ring: 180 100% 50%;
+ 
+    --radius: 0.25rem;
+
+    /* Custom theme colors */
+    --neon-cyan: 180 100% 50%;
+    --neon-purple: 290 100% 50%;
+    --neon-pink: 320 100% 50%;
+    --matrix-green: 135 100% 50%;
+    --cyber-yellow: 60 100% 50%;
+  }
+}
+ 
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  html {
+    @apply antialiased;
+    background: linear-gradient(to bottom, hsl(230 25% 5%), hsl(230 25% 2%));
+    min-height: 100vh;
+  }
+
+  body {
+    @apply bg-transparent text-foreground;
+    text-shadow: 0 0 5px rgba(150, 255, 255, 0.3);
+  }
+
+  /* Terminal-style text selection */
+  ::selection {
+    @apply bg-primary/30 text-foreground;
+  }
+}
+
+@layer components {
+  /* Card with cyber borders */
+  .cyber-card {
+    @apply relative overflow-hidden rounded-sm border border-primary/20 bg-card p-4;
+    box-shadow: 
+      inset 0 0 10px rgba(var(--primary), 0.2),
+      0 0 10px rgba(var(--primary), 0.1);
+  }
+
+  /* Glowing text effect */
+  .neon-text {
+    @apply relative;
+    text-shadow: 
+      0 0 5px theme('colors.primary.DEFAULT'),
+      0 0 10px theme('colors.primary.DEFAULT'),
+      0 0 20px theme('colors.primary.DEFAULT');
+  }
+
+  /* Matrix-style scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-background;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-primary/50 rounded-full;
+    border: 2px solid transparent;
+    background-clip: padding-box;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-primary/70;
+  }
+}
+
+@layer utilities {
+  /* Glitch effect utilities */
+  .glitch-effect {
+    position: relative;
+  }
+
+  .glitch-effect::before,
+  .glitch-effect::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    clip: rect(0, 0, 0, 0);
+  }
+
+  .glitch-effect::before {
+    left: -2px;
+    text-shadow: 2px 0 theme('colors.accent.DEFAULT');
+    animation: glitch-anim-1 2s infinite linear alternate-reverse;
+  }
+
+  .glitch-effect::after {
+    left: 2px;
+    text-shadow: -2px 0 theme('colors.primary.DEFAULT');
+    animation: glitch-anim-2 3s infinite linear alternate-reverse;
+  }
+
+  /* Cyber gradient text */
+  .cyber-gradient {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(
+      90deg,
+      theme('colors.primary.DEFAULT'),
+      theme('colors.accent.DEFAULT'),
+      theme('colors.primary.DEFAULT')
+    );
+    background-size: 200% auto;
+    animation: cyber-gradient 3s linear infinite;
+  }
+
+  /* Terminal typing effect */
+  .terminal-cursor::after {
+    content: '|';
+    animation: terminal-blink 1.2s step-end infinite;
+  }
+}
+
+@keyframes glitch-anim-1 {
+  0% {
+    clip: rect(20px, 9999px, 21px, 0);
+  }
+  10% {
+    clip: rect(42px, 9999px, 44px, 0);
+  }
+  20% {
+    clip: rect(15px, 9999px, 18px, 0);
+  }
+  30% {
+    clip: rect(34px, 9999px, 37px, 0);
+  }
+  40% {
+    clip: rect(26px, 9999px, 28px, 0);
+  }
+  50% {
+    clip: rect(5px, 9999px, 7px, 0);
+  }
+  60% {
+    clip: rect(48px, 9999px, 50px, 0);
+  }
+  70% {
+    clip: rect(11px, 9999px, 13px, 0);
+  }
+  80% {
+    clip: rect(38px, 9999px, 41px, 0);
+  }
+  90% {
+    clip: rect(23px, 9999px, 25px, 0);
+  }
+  100% {
+    clip: rect(9px, 9999px, 11px, 0);
+  }
+}
+
+@keyframes glitch-anim-2 {
+  0% {
+    clip: rect(25px, 9999px, 28px, 0);
+  }
+  10% {
+    clip: rect(48px, 9999px, 50px, 0);
+  }
+  20% {
+    clip: rect(12px, 9999px, 14px, 0);
+  }
+  30% {
+    clip: rect(37px, 9999px, 40px, 0);
+  }
+  40% {
+    clip: rect(21px, 9999px, 24px, 0);
+  }
+  50% {
+    clip: rect(8px, 9999px, 10px, 0);
+  }
+  60% {
+    clip: rect(45px, 9999px, 47px, 0);
+  }
+  70% {
+    clip: rect(16px, 9999px, 18px, 0);
+  }
+  80% {
+    clip: rect(33px, 9999px, 36px, 0);
+  }
+  90% {
+    clip: rect(28px, 9999px, 30px, 0);
+  }
+  100% {
+    clip: rect(4px, 9999px, 6px, 0);
+  }
+}
+
+@keyframes cyber-gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 200% 50%;
+  }
+}
+
+@keyframes terminal-blink {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+ 

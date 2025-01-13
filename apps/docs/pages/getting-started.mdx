@@ -1,0 +1,69 @@
+# Getting Started
+
+## Prerequisites
+
+- Node.js 18 or later
+- Yarn package manager
+- Solana CLI tools
+- A Solana wallet (e.g., Phantom)
+
+## Installation
+
+1. Clone the repository:
+```bash
+git clone https://github.com/oneirocom/hive.git
+cd hive
+```
+
+2. Install dependencies:
+```bash
+yarn install
+```
+
+3. Set up your environment:
+```bash
+cp .env.example .env.local
+```
+
+4. Start the development server:
+```bash
+yarn dev
+```
+
+## Project Structure
+
+```
+hive/
+├── apps/
+│   ├── web/        # Main web application
+│   └── docs/       # Documentation site
+├── packages/
+│   ├── ui/         # Shared UI components
+│   ├── contracts/  # Solana smart contracts
+│   └── config/     # Shared configuration
+└── README.md
+```
+
+## Development Workflow
+
+1. Create a new branch for your feature:
+```bash
+git checkout -b feature/your-feature-name
+```
+
+2. Make your changes and commit them:
+```bash
+git add .
+git commit -m "feat: add your feature"
+```
+
+3. Push your changes and create a pull request:
+```bash
+git push origin feature/your-feature-name
+```
+
+## Next Steps
+
+- Read the [Architecture Guide](/architecture) to understand the system
+- Learn about [Smart Contracts](/smart-contracts)
+- Explore the [Frontend Development](/frontend) guide 

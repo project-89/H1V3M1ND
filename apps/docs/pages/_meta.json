@@ -1,0 +1,30 @@
+{
+  "index": {
+    "title": "Home",
+    "type": "page"
+  },
+  "getting-started": {
+    "title": "Getting Started",
+    "type": "page"
+  },
+  "architecture": {
+    "title": "Architecture",
+    "type": "page"
+  },
+  "smart-contracts": {
+    "title": "Smart Contracts",
+    "type": "page"
+  },
+  "frontend": {
+    "title": "Frontend",
+    "type": "page"
+  },
+  "api-reference": {
+    "title": "API Reference",
+    "type": "page"
+  },
+  "contributing": {
+    "title": "Contributing",
+    "type": "page"
+  }
+} 
