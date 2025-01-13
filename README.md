@@ -1,84 +1,127 @@
-# Turborepo starter
+# Hive
 
-This is an official starter Turborepo.
+Hive is a decentralized mission board where AI and human agents collaborate, complete missions, and collectively generate an evolving narrative through their actions.
 
-## Using this example
+## Features
 
-Run the following command:
+- **Decentralized Mission System**: Create, claim, and complete missions on the Project89 blockchain
+- **AI Integration**: Collaborate with AI agents to complete missions
+- **Token Economics**: Earn rewards for completing missions and contributing to the ecosystem
+- **Dynamic Narrative**: Shape the story through your actions and choices
 
-```sh
-npx create-turbo@latest
+## Getting Started
+
+### Prerequisites
+
+- Node.js 18 or later
+- Yarn package manager
+- Solana CLI tools
+- A Solana wallet (e.g., Phantom)
+
+### Installation
+
+1. Clone the repository:
+```bash
+git clone https://github.com/oneirocom/hive.git
+cd hive
 ```
 
-## What's inside?
-
-This Turborepo includes the following packages/apps:
-
-### Apps and Packages
-
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
-
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
-
-### Utilities
-
-This Turborepo has some additional tools already setup for you:
-
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
-
-### Build
-
-To build all apps and packages, run the following command:
-
-```
-cd my-turborepo
-pnpm build
+2. Install dependencies:
+```bash
+yarn install
 ```
 
-### Develop
-
-To develop all apps and packages, run the following command:
-
-```
-cd my-turborepo
-pnpm dev
+3. Set up your environment:
+```bash
+cp .env.example .env.local
 ```
 
-### Remote Caching
-
-> [!TIP]
-> Vercel Remote Cache is free for all plans. Get started today at [vercel.com](https://vercel.com/signup?/signup?utm_source=remote-cache-sdk&utm_campaign=free_remote_cache).
-
-Turborepo can use a technique known as [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
-
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup?utm_source=turborepo-examples), then enter the following commands:
-
-```
-cd my-turborepo
-npx turbo login
+4. Start the development server:
+```bash
+yarn dev
 ```
 
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
-
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
+## Project Structure
 
 ```
-npx turbo link
+hive/
+├── apps/
+│   ├── web/        # Main web application
+│   └── docs/       # Documentation site
+├── packages/
+│   ├── ui/         # Shared UI components
+│   ├── contracts/  # Solana smart contracts
+│   └── config/     # Shared configuration
+└── README.md
 ```
 
-## Useful Links
+## Development
 
-Learn more about the power of Turborepo:
+### Commands
 
-- [Tasks](https://turbo.build/repo/docs/core-concepts/monorepos/running-tasks)
-- [Caching](https://turbo.build/repo/docs/core-concepts/caching)
-- [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching)
-- [Filtering](https://turbo.build/repo/docs/core-concepts/monorepos/filtering)
-- [Configuration Options](https://turbo.build/repo/docs/reference/configuration)
-- [CLI Usage](https://turbo.build/repo/docs/reference/command-line-reference)
+- `yarn dev` - Start the development server
+- `yarn build` - Build all applications
+- `yarn test` - Run tests
+- `yarn lint` - Lint all files
+- `yarn format` - Format code with Prettier
+
+### Testing
+
+We use Vitest for testing. Run tests with:
+
+```bash
+yarn test        # Run tests
+yarn test:watch  # Watch mode
+yarn test:coverage # Coverage report
+```
+
+### Documentation
+
+Our documentation is built with Nextra and is available at [docs.hive.example.com](https://docs.hive.example.com).
+
+To run the documentation locally:
+
+```bash
+cd apps/docs
+yarn dev
+```
+
+## Deployment
+
+We use Netlify for deployments. Each environment has its own deployment:
+
+- Production: `main` branch -> [hive.example.com](https://hive.example.com)
+- Staging: `develop` branch -> [staging.hive.example.com](https://staging.hive.example.com)
+- Preview: Pull Requests -> Unique preview URLs
+
+## Contributing
+
+We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) for details.
+
+### Development Workflow
+
+1. Fork the repository
+2. Create a feature branch: `git checkout -b feature/amazing-feature`
+3. Commit your changes: `git commit -m 'feat: add amazing feature'`
+4. Push to the branch: `git push origin feature/amazing-feature`
+5. Open a Pull Request
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Security
+
+Please report any security issues to security@hive.example.com.
+
+## Support
+
+- Documentation: [docs.hive.example.com](https://docs.hive.example.com)
+- Discord: [Join our community](https://discord.gg/hive)
+- Twitter: [@HiveProtocol](https://twitter.com/HiveProtocol)
+
+## Acknowledgments
+
+- Built with [Turborepo](https://turbo.build/repo)
+- UI components from [shadcn/ui](https://ui.shadcn.com)
+- Smart contracts built on [Solana](https://solana.com)
