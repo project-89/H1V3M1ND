@@ -1,0 +1,191 @@
+import { Callout } from 'nextra/components'
+
+# Webhooks API
+
+<Callout type="info">
+  Webhooks for real-time event notifications and integrations.
+</Callout>
+
+## Mission Complete Webhook
+
+```http
+POST /api/webhooks/mission-complete
+```
+
+Triggered when a mission is successfully completed and verified.
+
+### Request Body
+
+```typescript
+{
+  missionId: string;
+  userId: string;
+  completionTime: string;
+  rewards: {
+    tokenAmount: number;     // Project89 tokens awarded
+    experience: number;      // Experience points earned
+  };
+  verification: {
+    verifiers: string[];    // IDs of verifying nodes
+    timestamp: string;
+  };
+}
+```
+
+### Response
+
+```typescript
+{
+  received: true;
+  processedAt: string;
+}
+```
+
+## Fingerprint Match Webhook
+
+```http
+POST /api/webhooks/fingerprint-match
+```
+
+Triggered when a fingerprint match is detected.
+
+### Request Body
+
+```typescript
+{
+  fingerprintId: string;
+  userId: string;
+  matchTime: string;
+  metadata?: Record<string, any>;
+  missionId?: string;
+}
+```
+
+### Response
+
+```typescript
+{
+  received: true;
+  processedAt: string;
+}
+```
+
+## Token Transfer Webhook
+
+```http
+POST /api/webhooks/token-transfer
+```
+
+Triggered when Project89 tokens are transferred (rewards, stakes, burns).
+
+### Request Body
+
+```typescript
+{
+  type: 'reward' | 'stake' | 'unstake' | 'burn';
+  amount: number;
+  fromAddress: string;
+  toAddress: string;
+  missionId?: string;
+  timestamp: string;
+  transaction: {
+    signature: string;
+    slot: number;
+  };
+}
+```
+
+### Response
+
+```typescript
+{
+  received: true;
+  processedAt: string;
+}
+```
+
+## Webhook Security
+
+<Callout type="warning">
+  All webhooks must be authenticated using your webhook secret key.
+</Callout>
+
+### Authentication Header
+
+```typescript
+headers: {
+  'X-Webhook-Secret': '${webhookSecret}'
+}
+```
+
+### Verifying Webhook Signatures
+
+```typescript
+import crypto from 'crypto';
+
+function verifyWebhookSignature(
+  payload: string,
+  signature: string,
+  secret: string
+): boolean {
+  const hmac = crypto
+    .createHmac('sha256', secret)
+    .update(payload)
+    .digest('hex');
+  
+  return crypto.timingSafeEqual(
+    Buffer.from(hmac),
+    Buffer.from(signature)
+  );
+}
+```
+
+## Retry Policy
+
+<Callout type="info">
+  Failed webhook deliveries are retried with exponential backoff.
+</Callout>
+
+- Initial retry after 5 seconds
+- Subsequent retries: 15s, 30s, 1m, 2m, 5m, 10m
+- Maximum 7 retry attempts
+- Webhooks are considered failed after all retries are exhausted
+
+## Webhook Logs
+
+```http
+GET /api/webhooks/logs
+```
+
+Retrieve webhook delivery logs.
+
+### Query Parameters
+
+| Parameter | Type | Description |
+| --- | --- | --- |
+| `status` | string | Filter by status: 'success', 'failed', 'pending' |
+| `type` | string | Filter by webhook type |
+| `page` | number | Page number for pagination |
+| `limit` | number | Number of logs per page |
+
+### Response
+
+```typescript
+{
+  logs: Array<{
+    id: string;
+    type: string;
+    status: string;
+    payload: any;
+    attempts: number;
+    lastAttempt: string;
+    error?: string;
+    createdAt: string;
+  }>;
+  pagination: {
+    total: number;
+    page: number;
+    limit: number;
+  };
+}
+``` 

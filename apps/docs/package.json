@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@hive/ui": "*",
+    "@H1V3M1ND/ui": "*",
     "next": "^14.0.4",
     "nextra": "^2.13.2",
     "nextra-theme-docs": "^2.13.2",
@@ -17,8 +17,8 @@
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "@hive/eslint-config": "*",
-    "@hive/types": "*",
+    "@H1V3M1ND/eslint-config": "*",
+    "@H1V3M1ND/types": "*",
     "@types/node": "^20",
     "@types/react": "^18.2.0",
     "@types/react-dom": "^18.2.0",

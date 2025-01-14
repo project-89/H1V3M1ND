@@ -1,0 +1,275 @@
+import { Callout } from 'nextra/components'
+
+# Contributing to H1V3M1ND
+
+<Callout type="info">
+  We welcome contributions to the H1V3M1ND platform! This guide will help you understand our development process and how you can contribute effectively.
+</Callout>
+
+## Getting Started
+
+### Prerequisites
+- Node.js 18 or later
+- Yarn package manager
+- Solana CLI tools
+- A Solana wallet (Phantom recommended)
+- Git
+
+### Development Setup
+1. Fork the repository
+2. Clone your fork:
+   ```bash
+   git clone https://github.com/your-username/H1V3M1ND.git
+   cd H1V3M1ND
+   ```
+3. Install dependencies:
+   ```bash
+   yarn install
+   ```
+4. Set up environment variables:
+   ```bash
+   cp .env.example .env.development.local
+   ```
+5. Start the development server:
+   ```bash
+   yarn dev
+   ```
+
+## Project Structure
+
+```
+H1V3M1ND/
+├── apps/
+│   ├── web/              # Main web application
+│   └── docs/             # Documentation site
+├── packages/
+│   ├── ui/              # Shared UI components
+│   └── config/          # Shared configuration
+├── docs/               # Development documentation
+└── tests/             # End-to-end tests
+```
+
+## Development Workflow
+
+### 1. Create a Branch
+```bash
+git checkout -b feature/your-feature-name
+# or
+git checkout -b fix/your-fix-name
+```
+
+### 2. Make Changes
+- Write clean, maintainable code
+- Follow the existing code style
+- Add tests for new features
+- Update documentation as needed
+
+### 3. Commit Changes
+```bash
+# Stage changes
+git add .
+
+# Commit with a descriptive message
+git commit -m "feat: add new mission verification system"
+```
+
+Follow our commit message convention:
+- `feat:` New features
+- `fix:` Bug fixes
+- `docs:` Documentation changes
+- `style:` Code style changes
+- `refactor:` Code refactoring
+- `test:` Test updates
+- `chore:` Maintenance tasks
+
+### 4. Submit a Pull Request
+1. Push your changes:
+   ```bash
+   git push origin feature/your-feature-name
+   ```
+2. Create a Pull Request on GitHub
+3. Fill out the PR template
+4. Wait for review
+
+## Code Standards
+
+### TypeScript Guidelines
+```typescript
+// Use explicit types
+interface MissionProps {
+  id: string;
+  title: string;
+  reward: number;
+}
+
+// Use functional components
+export function MissionCard({ 
+  id, 
+  title, 
+  reward 
+}: MissionProps) {
+  return (
+    <div>
+      <h2>{title}</h2>
+      <p>Reward: {reward} Project89</p>
+    </div>
+  )
+}
+```
+
+### Testing Requirements
+- Unit tests for new components
+- Integration tests for features
+- E2E tests for critical flows
+- Maintain 80% coverage
+
+### Documentation
+- Update relevant documentation
+- Add JSDoc comments to functions
+- Include usage examples
+- Document breaking changes
+
+## Review Process
+
+### Pull Request Guidelines
+1. **Title**: Clear and descriptive
+2. **Description**: 
+   - What changes were made
+   - Why they were necessary
+   - How to test them
+3. **Checklist**:
+   - [ ] Tests added/updated
+   - [ ] Documentation updated
+   - [ ] Linting passes
+   - [ ] Types are correct
+
+### Review Criteria
+- Code quality and style
+- Test coverage
+- Performance impact
+- Security considerations
+- Documentation quality
+
+## Local Development
+
+### Running Tests
+```bash
+# Unit tests
+yarn test
+
+# E2E tests
+yarn test:e2e
+
+# Coverage report
+yarn test:coverage
+```
+
+### Linting & Formatting
+```bash
+# Run ESLint
+yarn lint
+
+# Fix linting issues
+yarn lint:fix
+
+# Format code
+yarn format
+```
+
+## Debugging
+
+### Development Tools
+- React DevTools
+- Network inspector
+- Solana Explorer
+- Firebase Console
+
+### Common Issues
+<Callout type="warning">
+  Check these common issues before submitting a bug report:
+  - Environment variables set correctly
+  - Dependencies installed
+  - Correct network selected
+  - Wallet connected
+</Callout>
+
+## Release Process
+
+### Version Control
+```bash
+# Create release branch
+git checkout -b release/v1.0.0
+
+# Update version
+yarn version
+
+# Generate changelog
+yarn changelog
+```
+
+### Deployment Stages
+1. Development
+2. Staging
+3. Production
+
+## Community
+
+### Communication Channels
+- GitHub Discussions
+- Discord Server
+- Community Calls
+
+### Getting Help
+- Check documentation first
+- Search existing issues
+- Ask in Discord
+- Create a discussion
+
+## Security
+
+### Reporting Vulnerabilities
+<Callout type="error">
+  Do not report security vulnerabilities through public GitHub issues. Email security@H1V3M1ND.example.com instead.
+</Callout>
+
+### Security Best Practices
+- Never commit secrets
+- Use environment variables
+- Follow OWASP guidelines
+- Regular dependency updates
+
+## Recognition
+
+### Contributor Levels
+- First-time contributor
+- Regular contributor
+- Core contributor
+- Maintainer
+
+### Rewards
+- Community recognition
+- Project89 token rewards
+- Special Discord roles
+- Featured in releases
+
+## Additional Resources
+
+### Documentation
+- [Architecture Guide](./architecture)
+- [API Reference](./api/overview)
+- [Smart Contracts](./smart-contracts)
+- [Frontend Guide](./frontend)
+
+### Tools & Services
+- [Solana Docs](https://docs.solana.com)
+- [Firebase Docs](https://firebase.google.com/docs)
+- [Next.js Docs](https://nextjs.org/docs)
+- [shadcn/ui](https://ui.shadcn.com)
+
+## Code of Conduct
+
+We are committed to providing a welcoming and inclusive experience for everyone. Please read our [Code of Conduct](https://github.com/your-org/H1V3M1ND/blob/main/CODE_OF_CONDUCT.md) before contributing.
+
+## License
+
+By contributing to H1V3M1ND, you agree that your contributions will be licensed under the [MIT License](https://github.com/your-org/H1V3M1ND/blob/main/LICENSE). 

@@ -7,9 +7,39 @@
     "title": "Getting Started",
     "type": "page"
   },
+  "technical-spec": {
+    "title": "Technical Specification",
+    "type": "page"
+  },
   "architecture": {
     "title": "Architecture",
     "type": "page"
+  },
+  "api": {
+    "title": "API Reference",
+    "type": "folder",
+    "items": {
+      "overview": {
+        "title": "Overview",
+        "type": "page"
+      },
+      "missions": {
+        "title": "Missions",
+        "type": "page"
+      },
+      "users": {
+        "title": "Users",
+        "type": "page"
+      },
+      "fingerprints": {
+        "title": "Fingerprints",
+        "type": "page"
+      },
+      "webhooks": {
+        "title": "Webhooks",
+        "type": "page"
+      }
+    }
   },
   "smart-contracts": {
     "title": "Smart Contracts",
@@ -17,10 +47,6 @@
   },
   "frontend": {
     "title": "Frontend",
-    "type": "page"
-  },
-  "api-reference": {
-    "title": "API Reference",
     "type": "page"
   },
   "contributing": {

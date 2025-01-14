@@ -6,7 +6,7 @@ Estimate: 5
 # Phase 1: Foundation
 
 ## Description
-Set up the foundational architecture and infrastructure for the Hive project.
+Set up the foundational architecture and infrastructure for the H1V3M1ND project.
 
 ## Acceptance Criteria
 - Complete monorepo setup with proper configuration ✅

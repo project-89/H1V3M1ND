@@ -62,8 +62,8 @@ $subtasks"
         --title "$title" \
         --body "$body" \
         --label "$labels" \
-        --project "Hive Development" \
-        -R project-89/Hive
+        --project "H1V3M1ND Development" \
+        -R project-89/H1V3M1ND
         
       echo "Created issue and added to project"
     else

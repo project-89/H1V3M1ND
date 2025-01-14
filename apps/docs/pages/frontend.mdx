@@ -1,0 +1,414 @@
+import { Callout } from 'nextra/components'
+
+# Frontend Development
+
+<Callout type="info">
+  The H1V3M1ND frontend is built with Next.js, utilizing modern React patterns and a comprehensive UI component library. This guide covers the frontend architecture, components, and development workflow.
+</Callout>
+
+## Project Structure
+
+```
+apps/web/
+├── src/
+│   ├── components/     # UI components
+│   ├── hooks/         # Custom React hooks
+│   ├── lib/           # Utility functions
+│   ├── pages/         # Next.js pages
+│   ├── styles/        # Global styles
+│   └── types/         # TypeScript definitions
+├── public/           # Static assets
+└── tests/           # Frontend tests
+```
+
+## Core Technologies
+
+### Framework
+- **Next.js 14+**: React framework with SSR/SSG
+- **TypeScript**: Type-safe development
+- **React 18**: Latest React features
+
+### Styling
+- **Tailwind CSS**: Utility-first CSS
+- **shadcn/ui**: Component library base
+- **CSS Modules**: Component-specific styles
+
+### State Management
+- **React Query**: Server state management
+- **Zustand**: Client state management
+- **Context API**: Theme and auth context
+
+## Component Library
+
+### Design System
+```typescript
+// Theme configuration
+const theme = {
+  colors: {
+    primary: {
+      DEFAULT: '#4F46E5',
+      dark: '#4338CA',
+      light: '#818CF8'
+    },
+    // ... other colors
+  },
+  spacing: {
+    // ... spacing scale
+  },
+  typography: {
+    // ... typography scale
+  }
+}
+```
+
+### Base Components
+- **Button**: Primary action component
+- **Input**: Form input fields
+- **Card**: Container component
+- **Dialog**: Modal dialogs
+- **Toast**: Notifications
+
+### Example Usage
+```tsx
+import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
+
+export function LoginForm() {
+  return (
+    <form className="space-y-4">
+      <Input
+        type="text"
+        placeholder="Username"
+        className="w-full"
+      />
+      <Button variant="primary">
+        Login
+      </Button>
+    </form>
+  )
+}
+```
+
+## State Management
+
+### Server State
+```typescript
+// Mission query hook
+export function useMission(id: string) {
+  return useQuery({
+    queryKey: ['mission', id],
+    queryFn: () => fetchMission(id),
+    staleTime: 1000 * 60 * 5, // 5 minutes
+  })
+}
+
+// Mission mutation hook
+export function useCreateMission() {
+  return useMutation({
+    mutationFn: (data: MissionInput) => 
+      createMission(data),
+    onSuccess: () => {
+      queryClient.invalidateQueries(['missions'])
+    },
+  })
+}
+```
+
+### Client State
+```typescript
+// Auth store
+interface AuthState {
+  user: User | null;
+  isLoading: boolean;
+  login: (wallet: Wallet) => Promise<void>;
+  logout: () => void;
+}
+
+export const useAuthStore = create<AuthState>((set) => ({
+  user: null,
+  isLoading: false,
+  login: async (wallet) => {
+    set({ isLoading: true })
+    try {
+      const user = await authenticateUser(wallet)
+      set({ user, isLoading: false })
+    } catch (error) {
+      set({ isLoading: false })
+      throw error
+    }
+  },
+  logout: () => set({ user: null }),
+}))
+```
+
+## Wallet Integration
+
+### Configuration
+```typescript
+const walletConfig = {
+  network: process.env.NEXT_PUBLIC_NETWORK,
+  walletConnectProjectId: 
+    process.env.NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID,
+}
+
+export function WalletProvider({ 
+  children 
+}: PropsWithChildren) {
+  return (
+    <WalletKitProvider
+      {...walletConfig}
+      defaultNetwork={walletConfig.network}
+    >
+      {children}
+    </WalletKitProvider>
+  )
+}
+```
+
+### Usage
+```typescript
+export function ConnectButton() {
+  const { connect, disconnect, connected } = 
+    useWallet()
+  
+  return (
+    <Button
+      onClick={connected ? disconnect : connect}
+      variant={connected ? 'outline' : 'primary'}
+    >
+      {connected ? 'Disconnect' : 'Connect Wallet'}
+    </Button>
+  )
+}
+```
+
+## API Integration
+
+### API Client
+```typescript
+export const api = {
+  missions: {
+    list: () => 
+      fetch('/api/missions').then(res => res.json()),
+    create: (data: MissionInput) =>
+      fetch('/api/missions', {
+        method: 'POST',
+        body: JSON.stringify(data),
+      }).then(res => res.json()),
+    // ... other mission endpoints
+  },
+  users: {
+    // ... user endpoints
+  },
+  fingerprints: {
+    // ... fingerprint endpoints
+  },
+}
+```
+
+### Error Handling
+```typescript
+export async function fetchWithErrorHandling<T>(
+  url: string,
+  options?: RequestInit
+): Promise<T> {
+  try {
+    const res = await fetch(url, options)
+    if (!res.ok) {
+      const error = await res.json()
+      throw new ApiError(error)
+    }
+    return res.json()
+  } catch (error) {
+    handleError(error)
+    throw error
+  }
+}
+```
+
+## Routing & Navigation
+
+### Page Structure
+```typescript
+// pages/missions/[id].tsx
+export default function MissionPage({ 
+  mission 
+}: Props) {
+  return (
+    <Layout>
+      <MissionDetails mission={mission} />
+      <MissionActions mission={mission} />
+    </Layout>
+  )
+}
+
+export const getServerSideProps: GetServerSideProps = 
+  async ({ params }) => {
+    const mission = await fetchMission(params.id)
+    return { props: { mission } }
+  }
+```
+
+### Navigation Guards
+```typescript
+export function withAuth<P>(
+  Component: ComponentType<P>
+) {
+  return function AuthenticatedComponent(props: P) {
+    const { user, isLoading } = useAuthStore()
+    const router = useRouter()
+
+    useEffect(() => {
+      if (!isLoading && !user) {
+        router.push('/login')
+      }
+    }, [user, isLoading, router])
+
+    if (isLoading) return <Loading />
+    if (!user) return null
+    
+    return <Component {...props} />
+  }
+}
+```
+
+## Forms & Validation
+
+### Form Handling
+```typescript
+import { zodResolver } from '@hookform/resolvers/zod'
+import { useForm } from 'react-hook-form'
+
+const missionSchema = z.object({
+  title: z.string().min(5).max(100),
+  description: z.string().min(20),
+  reward: z.number().min(1),
+})
+
+export function MissionForm() {
+  const form = useForm({
+    resolver: zodResolver(missionSchema),
+  })
+
+  const onSubmit = form.handleSubmit(async (data) => {
+    await createMission(data)
+  })
+
+  return (
+    <form onSubmit={onSubmit}>
+      {/* form fields */}
+    </form>
+  )
+}
+```
+
+## Testing
+
+### Unit Tests
+```typescript
+import { render, screen } from '@testing-library/react'
+import { MissionCard } from './MissionCard'
+
+describe('MissionCard', () => {
+  it('renders mission details', () => {
+    render(<MissionCard mission={mockMission} />)
+    
+    expect(screen.getByText(mockMission.title))
+      .toBeInTheDocument()
+    expect(screen.getByText(mockMission.reward))
+      .toBeInTheDocument()
+  })
+})
+```
+
+### Integration Tests
+```typescript
+import { renderWithProviders } from '@/test/utils'
+import { MissionList } from './MissionList'
+
+describe('MissionList', () => {
+  it('loads and displays missions', async () => {
+    renderWithProviders(<MissionList />)
+    
+    expect(await screen.findByText('Loading...'))
+      .toBeInTheDocument()
+    expect(await screen.findAllByRole('listitem'))
+      .toHaveLength(3)
+  })
+})
+```
+
+## Performance Optimization
+
+### Code Splitting
+```typescript
+// Dynamic imports for heavy components
+const MissionEditor = dynamic(() => 
+  import('@/components/MissionEditor'), {
+    loading: () => <Loading />,
+  }
+)
+```
+
+### Image Optimization
+```typescript
+import Image from 'next/image'
+
+export function OptimizedImage({ src, alt }: Props) {
+  return (
+    <Image
+      src={src}
+      alt={alt}
+      width={800}
+      height={600}
+      placeholder="blur"
+      loading="lazy"
+    />
+  )
+}
+```
+
+### Memoization
+```typescript
+export const MissionList = memo(
+  function MissionList({ missions }: Props) {
+    return missions.map(mission => (
+      <MissionCard
+        key={mission.id}
+        mission={mission}
+      />
+    ))
+  },
+  (prev, next) => 
+    prev.missions.length === next.missions.length
+)
+```
+
+## Development Workflow
+
+### Environment Setup
+```bash
+# Install dependencies
+yarn install
+
+# Start development server
+yarn dev
+
+# Run tests
+yarn test
+
+# Build for production
+yarn build
+```
+
+### Code Quality
+- ESLint configuration
+- Prettier formatting
+- TypeScript strict mode
+- Husky pre-commit hooks
+
+### Deployment
+- Netlify integration
+- Environment variables
+- Build optimization
+- Performance monitoring 

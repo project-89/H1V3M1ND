@@ -1,0 +1,223 @@
+import { Callout } from 'nextra/components'
+
+# Fingerprints API
+
+<Callout type="info">
+  Endpoints for managing fingerprint tracking and verification through the Argos API integration.
+</Callout>
+
+## Register Fingerprints
+
+```http
+POST /api/fingerprints
+```
+
+Register new fingerprints for tracking in a mission.
+
+### Request Body
+
+```typescript
+{
+  fingerprints: string[];
+  missionId: string;
+  metadata?: {
+    type?: string;
+    difficulty?: number;
+    hints?: string[];
+    description?: string;
+  };
+}
+```
+
+### Response
+
+```typescript
+{
+  registered: string[];     // Successfully registered fingerprint IDs
+  status: 'active';
+  missionId: string;
+  createdAt: string;
+}
+```
+
+<Callout type="warning">
+  Each mission can have a maximum of 10 fingerprints for tracking.
+</Callout>
+
+## Check Fingerprint Matches
+
+```http
+GET /api/fingerprints/:id/matches
+```
+
+Check for matches of a specific fingerprint.
+
+### Query Parameters
+
+| Parameter | Type | Description |
+| --- | --- | --- |
+| `userId` | string | Filter matches by user |
+| `timeframe` | number | Time window in seconds |
+| `verified` | boolean | Filter by verification status |
+
+### Response
+
+```typescript
+{
+  matches: Array<{
+    id: string;
+    userId: string;
+    timestamp: string;
+    metadata?: Record<string, any>;
+    verified: boolean;
+  }>;
+  total: number;
+}
+```
+
+## Verify Fingerprint Matches
+
+```http
+POST /api/fingerprints/verify
+```
+
+Verify multiple fingerprint matches for a mission.
+
+### Request Body
+
+```typescript
+{
+  fingerprintMatches: Array<{
+    fingerprintId: string;
+    matchId: string;
+    userId: string;
+  }>;
+  missionId: string;
+}
+```
+
+### Response
+
+```typescript
+{
+  verified: number;        // Number of successfully verified matches
+  failed: number;         // Number of failed verifications
+  missionComplete: boolean; // Whether all mission fingerprints are verified
+}
+```
+
+## Get Mission Fingerprints
+
+```http
+GET /api/missions/:missionId/fingerprints
+```
+
+Retrieve all fingerprints associated with a mission.
+
+### Response
+
+```typescript
+{
+  fingerprints: Array<{
+    id: string;
+    metadata?: {
+      type?: string;
+      difficulty?: number;
+      hints?: string[];
+      description?: string;
+    };
+    matches: number;      // Total number of matches
+    verified: number;     // Number of verified matches
+    createdAt: string;
+  }>;
+}
+```
+
+## Update Fingerprint Metadata
+
+```http
+PATCH /api/fingerprints/:id
+```
+
+Update metadata for a specific fingerprint.
+
+### Request Body
+
+```typescript
+{
+  metadata?: {
+    type?: string;
+    difficulty?: number;
+    hints?: string[];
+    description?: string;
+  };
+  active?: boolean;      // Enable/disable fingerprint tracking
+}
+```
+
+### Response
+
+```typescript
+{
+  id: string;
+  metadata: {
+    type?: string;
+    difficulty?: number;
+    hints?: string[];
+    description?: string;
+  };
+  active: boolean;
+  updatedAt: string;
+}
+```
+
+## Delete Fingerprint
+
+```http
+DELETE /api/fingerprints/:id
+```
+
+Remove a fingerprint from tracking.
+
+<Callout type="warning">
+  Fingerprints can only be deleted if they have no verified matches.
+</Callout>
+
+### Response
+
+```typescript
+{
+  success: true;
+  deletedAt: string;
+}
+```
+
+## Bulk Fingerprint Operations
+
+```http
+POST /api/fingerprints/bulk
+```
+
+Perform operations on multiple fingerprints.
+
+### Request Body
+
+```typescript
+{
+  operation: 'register' | 'verify' | 'delete';
+  fingerprints: string[];
+  missionId?: string;
+  metadata?: Record<string, any>;
+}
+```
+
+### Response
+
+```typescript
+{
+  successful: string[];   // Successfully processed fingerprint IDs
+  failed: {
+    [fingerprintId: string]: string; // Error message
+  };
+}
+``` 

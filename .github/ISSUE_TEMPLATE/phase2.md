@@ -1,7 +1,7 @@
 # Phase 2: Core Features
 
 ## Description
-Implement core features and functionality of the Hive platform.
+Implement core features and functionality of the H1V3M1ND platform.
 
 ## Acceptance Criteria
 - Complete implementation of core user flows

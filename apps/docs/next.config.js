@@ -4,5 +4,5 @@ const withNextra = require('nextra')({
 });
 
 module.exports = withNextra({
-  transpilePackages: ['@hive/ui'],
+  transpilePackages: ['@H1V3M1ND/ui'],
 });

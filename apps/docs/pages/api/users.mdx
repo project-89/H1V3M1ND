@@ -1,0 +1,210 @@
+import { Callout } from 'nextra/components'
+
+# Users API
+
+<Callout type="info">
+  Endpoints for managing user progress, statistics, and mission history.
+</Callout>
+
+## Get User Missions
+
+```http
+GET /api/users/:userId/missions
+```
+
+Retrieve a user's mission history.
+
+### Query Parameters
+
+| Parameter | Type | Description |
+| --- | --- | --- |
+| `status` | string | Filter by status: 'completed', 'in-progress', 'failed' |
+| `page` | number | Page number for pagination |
+| `limit` | number | Number of missions per page |
+
+### Response
+
+```typescript
+{
+  missions: Array<{
+    id: string;
+    title: string;
+    status: string;
+    progress: {
+      fingerprintsMatched: string[];
+      lastUpdate: string;
+    };
+    rewards?: {
+      tokenAmount: number;
+      experience: number;
+    };
+    completedAt?: string;
+  }>;
+  pagination: {
+    total: number;
+    page: number;
+    limit: number;
+  };
+}
+```
+
+## Get User Stats
+
+```http
+GET /api/users/:userId/stats
+```
+
+Retrieve user's mission statistics and rewards.
+
+### Response
+
+```typescript
+{
+  completed: number;
+  attempted: number;
+  success_rate: number;
+  total_rewards: number;     // In Project89 tokens
+  experience: number;
+  rank: {
+    current: number;
+    progress: number;        // Progress to next rank (0-100)
+  };
+  achievements: Array<{
+    id: string;
+    name: string;
+    description: string;
+    unlockedAt: string;
+  }>;
+}
+```
+
+<Callout type="info">
+  User stats are updated in real-time as missions are completed and verified.
+</Callout>
+
+## Get User Balance
+
+```http
+GET /api/users/:userId/balance
+```
+
+Retrieve user's Project89 token balance and staking information.
+
+### Response
+
+```typescript
+{
+  balance: number;          // Available Project89 tokens
+  staked: number;          // Project89 tokens staked in missions
+  pending_rewards: number; // Pending Project89 rewards from missions
+  transactions: Array<{
+    type: 'stake' | 'unstake' | 'reward' | 'burn';
+    amount: number;
+    timestamp: string;
+    missionId?: string;
+  }>;
+}
+```
+
+## Update User Profile
+
+```http
+PATCH /api/users/:userId/profile
+```
+
+Update user's profile information.
+
+### Request Body
+
+```typescript
+{
+  displayName?: string;
+  avatar?: string;
+  preferences?: {
+    notifications: boolean;
+    missionTypes: string[];
+    theme: 'light' | 'dark';
+  };
+}
+```
+
+### Response
+
+```typescript
+{
+  id: string;
+  displayName: string;
+  avatar: string;
+  preferences: {
+    notifications: boolean;
+    missionTypes: string[];
+    theme: 'light' | 'dark';
+  };
+  updatedAt: string;
+}
+```
+
+## Get User Notifications
+
+```http
+GET /api/users/:userId/notifications
+```
+
+Retrieve user's notifications.
+
+### Query Parameters
+
+| Parameter | Type | Description |
+| --- | --- | --- |
+| `read` | boolean | Filter by read status |
+| `page` | number | Page number for pagination |
+| `limit` | number | Number of notifications per page |
+
+### Response
+
+```typescript
+{
+  notifications: Array<{
+    id: string;
+    type: 'mission_complete' | 'reward_received' | 'mission_available';
+    title: string;
+    message: string;
+    read: boolean;
+    createdAt: string;
+    data?: {
+      missionId?: string;
+      rewardAmount?: number;
+    };
+  }>;
+  pagination: {
+    total: number;
+    page: number;
+    limit: number;
+  };
+}
+```
+
+## Mark Notifications as Read
+
+```http
+POST /api/users/:userId/notifications/mark-read
+```
+
+Mark one or more notifications as read.
+
+### Request Body
+
+```typescript
+{
+  notificationIds: string[];
+}
+```
+
+### Response
+
+```typescript
+{
+  success: true;
+  updatedCount: number;
+}
+``` 

@@ -1,0 +1,200 @@
+import { Callout } from 'nextra/components'
+
+# Mission API
+
+<Callout type="info">
+  Endpoints for managing missions, including creation, listing, and verification.
+</Callout>
+
+## Create Mission
+
+```http
+POST /api/missions
+```
+
+Create a new mission with specified requirements and rewards.
+
+### Request Body
+
+```typescript
+{
+  title: string;
+  description: string;
+  requirements: {
+    fingerprints: string[];
+    stakeAmount?: number;    // Project89 tokens
+    timeLimit?: number;      // In seconds
+  };
+  rewards: {
+    tokenAmount: number;     // Project89 tokens
+    experience: number;
+  };
+  burnAmount?: number;       // Project89 tokens
+  expiryDate: string;       // ISO date string
+}
+```
+
+### Response
+
+```typescript
+{
+  id: string;
+  escrowAddress: string;    // Project89 token escrow address
+  status: 'active';
+  createdAt: string;
+}
+```
+
+<Callout type="warning">
+  Mission creation requires sufficient Project89 tokens for rewards and escrow.
+</Callout>
+
+## List Missions
+
+```http
+GET /api/missions
+```
+
+Retrieve a list of available missions.
+
+### Query Parameters
+
+| Parameter | Type | Description |
+| --- | --- | --- |
+| `status` | string | Filter by status: 'active', 'completed', 'expired' |
+| `page` | number | Page number for pagination |
+| `limit` | number | Number of missions per page |
+| `sort` | string | Sort by: 'newest', 'reward', 'expiry' |
+
+### Response
+
+```typescript
+{
+  missions: Array<{
+    id: string;
+    title: string;
+    description: string;
+    requirements: {
+      fingerprints: string[];
+      stakeAmount?: number;
+      timeLimit?: number;
+    };
+    rewards: {
+      tokenAmount: number;
+      experience: number;
+    };
+    status: string;
+    createdAt: string;
+  }>;
+  pagination: {
+    total: number;
+    page: number;
+    limit: number;
+  };
+}
+```
+
+## Get Mission Details
+
+```http
+GET /api/missions/:id
+```
+
+Retrieve detailed information about a specific mission.
+
+### Response
+
+```typescript
+{
+  id: string;
+  title: string;
+  description: string;
+  requirements: {
+    fingerprints: string[];
+    stakeAmount?: number;
+    timeLimit?: number;
+  };
+  rewards: {
+    tokenAmount: number;
+    experience: number;
+  };
+  status: 'active' | 'completed' | 'expired';
+  participants: {
+    [userId: string]: {
+      status: string;
+      progress: {
+        fingerprintsMatched: string[];
+        lastUpdate: string;
+      };
+    };
+  };
+}
+```
+
+## Submit Mission Proof
+
+```http
+POST /api/missions/:id/submissions
+```
+
+Submit proof of mission completion.
+
+### Request Body
+
+```typescript
+{
+  userId: string;
+  proof: string;
+  fingerprintMatches: string[];
+}
+```
+
+### Response
+
+```typescript
+{
+  id: string;
+  status: 'pending';
+  submittedAt: string;
+}
+```
+
+<Callout type="info">
+  Submissions are verified by a three-node system before rewards are distributed.
+</Callout>
+
+## List Mission Submissions
+
+```http
+GET /api/missions/:id/submissions
+```
+
+Retrieve submissions for a specific mission.
+
+### Query Parameters
+
+| Parameter | Type | Description |
+| --- | --- | --- |
+| `status` | string | Filter by status: 'pending', 'approved', 'rejected' |
+| `page` | number | Page number for pagination |
+| `limit` | number | Number of submissions per page |
+
+### Response
+
+```typescript
+{
+  submissions: Array<{
+    id: string;
+    userId: string;
+    status: string;
+    proof: string;
+    fingerprintMatches: string[];
+    submittedAt: string;
+  }>;
+  pagination: {
+    total: number;
+    page: number;
+    limit: number;
+  };
+}
+``` 

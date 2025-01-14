@@ -1,0 +1,286 @@
+import { Callout } from 'nextra/components'
+
+# Smart Contracts
+
+<Callout type="info">
+  The H1V3M1ND platform utilizes Solana smart contracts for token management, mission rewards, and escrow functionality. This documentation covers the core smart contracts and their interactions.
+</Callout>
+
+## Project89 Token Contract
+
+### Overview
+The Project89 token is the native utility token of the H1V3M1ND platform, used for:
+- Mission rewards
+- Staking requirements
+- Governance (future)
+- Platform fees
+
+### Token Specification
+```typescript
+{
+  name: "Project 89 Token",
+  symbol: "Project89",
+  decimals: 9,
+  supply: "1,000,000,000",
+  mintAuthority: "Controlled by DAO",
+  freezeAuthority: null
+}
+```
+
+### Token Instructions
+- `mint`: Create new tokens (restricted to mint authority)
+- `burn`: Destroy tokens
+- `transfer`: Move tokens between accounts
+- `approve`: Delegate spending authority
+- `revoke`: Remove spending authority
+
+## Escrow Program
+
+### Overview
+The escrow program manages mission rewards and staking requirements:
+- Locks rewards during mission creation
+- Handles reward distribution
+- Manages stake requirements
+- Processes refunds for failed missions
+
+### Program Instructions
+
+#### Initialize Escrow
+```typescript
+interface InitializeEscrow {
+  // Amount of tokens to lock
+  amount: number;
+  // Mission creator's wallet
+  creator: PublicKey;
+  // Mission ID from Firestore
+  missionId: string;
+  // Expiry timestamp
+  expiryTs: number;
+}
+```
+
+#### Claim Rewards
+```typescript
+interface ClaimRewards {
+  // Escrow account
+  escrowAccount: PublicKey;
+  // Recipient wallet
+  recipient: PublicKey;
+  // Mission completion proof
+  proof: {
+    missionId: string;
+    completionTimestamp: number;
+    verificationSignatures: string[];
+  };
+}
+```
+
+#### Return Funds
+```typescript
+interface ReturnFunds {
+  // Escrow account
+  escrowAccount: PublicKey;
+  // Original creator wallet
+  creator: PublicKey;
+  // Reason for return
+  reason: 'expired' | 'cancelled' | 'failed';
+}
+```
+
+### Account Structure
+```typescript
+interface EscrowAccount {
+  // Is the escrow active
+  isActive: boolean;
+  // Mission creator
+  creator: PublicKey;
+  // Locked token amount
+  amount: number;
+  // Associated mission
+  missionId: string;
+  // Expiry timestamp
+  expiryTs: number;
+  // Claim status
+  claimed: boolean;
+  // Claim timestamp
+  claimedAt?: number;
+  // Recipient if claimed
+  recipient?: PublicKey;
+}
+```
+
+## Verification Program
+
+### Overview
+The verification program handles on-chain verification of mission completion:
+- Validates completion proofs
+- Manages verification nodes
+- Processes consensus decisions
+- Triggers reward distribution
+
+### Program Instructions
+
+#### Register Verifier
+```typescript
+interface RegisterVerifier {
+  // Verifier's public key
+  verifier: PublicKey;
+  // Verifier type
+  type: 'creator' | 'community';
+  // Stake amount
+  stake: number;
+}
+```
+
+#### Submit Verification
+```typescript
+interface SubmitVerification {
+  // Mission ID
+  missionId: string;
+  // Verifier's decision
+  approved: boolean;
+  // Verification timestamp
+  timestamp: number;
+  // Optional notes
+  notes?: string;
+}
+```
+
+#### Process Consensus
+```typescript
+interface ProcessConsensus {
+  // Mission ID
+  missionId: string;
+  // Required verifications
+  requiredVerifications: number;
+  // Minimum approval percentage
+  minApprovalPercentage: number;
+}
+```
+
+## Token Economics
+
+### Distribution
+- Initial supply: 1,000,000,000 Project89
+- Mission rewards pool: 40%
+- Community rewards: 20%
+- Team & development: 20%
+- DAO treasury: 20%
+
+### Tokenomics
+- Mission creation requires token stake
+- Failed missions result in token burn
+- Successful missions earn rewards
+- Verification nodes stake tokens
+
+### Vesting Schedule
+```typescript
+interface VestingSchedule {
+  team: {
+    cliff: "12 months",
+    duration: "48 months",
+    schedule: "Linear"
+  },
+  advisors: {
+    cliff: "6 months",
+    duration: "24 months",
+    schedule: "Linear"
+  },
+  community: {
+    cliff: "0 months",
+    duration: "36 months",
+    schedule: "Linear"
+  }
+}
+```
+
+## Security Considerations
+
+### Access Control
+- Program upgrade authority
+- Token mint authority
+- Escrow program authority
+- Verification node requirements
+
+### Critical Operations
+- Token minting restrictions
+- Escrow withdrawal limits
+- Verification consensus requirements
+- Emergency shutdown procedures
+
+### Audit Status
+<Callout type="warning">
+  Smart contracts are currently under development and will undergo multiple security audits before mainnet deployment.
+</Callout>
+
+## Development & Testing
+
+### Local Development
+```bash
+# Build programs
+anchor build
+
+# Deploy to localnet
+anchor deploy
+
+# Run tests
+anchor test
+```
+
+### Test Coverage
+- Unit tests for all instructions
+- Integration tests for program interactions
+- Stress tests for concurrent operations
+- Security vulnerability tests
+
+### Deployment Process
+1. Security audit completion
+2. Testnet deployment & testing
+3. Community review period
+4. Mainnet deployment
+5. Authority transfer to DAO
+
+## Program Addresses
+
+### Devnet
+```typescript
+const DEVNET_ADDRESSES = {
+  token: "Project89dev...",
+  escrow: "ESCdev...",
+  verification: "VERdev..."
+}
+```
+
+### Mainnet
+```typescript
+const MAINNET_ADDRESSES = {
+  token: "Project89mnt...",
+  escrow: "ESCmnt...",
+  verification: "VERmnt..."
+}
+```
+
+## Error Handling
+
+### Common Errors
+```typescript
+enum ProgramError {
+  // Token errors
+  InsufficientFunds = 6000,
+  InvalidMintAuthority = 6001,
+  
+  // Escrow errors
+  EscrowExpired = 6100,
+  InvalidClaim = 6101,
+  
+  // Verification errors
+  InvalidVerifier = 6200,
+  ConsensusNotReached = 6201
+}
+```
+
+### Error Recovery
+- Automatic retry for failed transactions
+- Manual intervention procedures
+- Emergency shutdown triggers
+- Fund recovery mechanisms 

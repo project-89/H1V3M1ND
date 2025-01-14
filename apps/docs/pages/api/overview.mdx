@@ -1,0 +1,78 @@
+import { Callout } from 'nextra/components'
+
+# API Overview
+
+<Callout type="info">
+  The H1V3M1ND API provides endpoints for mission management, user interactions, and blockchain integration. Fingerprint tracking functionality is provided through integration with the [Argos API](https://argos.project89.org) (in development).
+</Callout>
+
+## Base URLs
+
+```bash
+Development: http://localhost:4000
+Production:  https://api.h1v3m1nd.example.com
+Argos API:   https://argos.project89.org
+```
+
+## External Services
+
+### Argos Integration
+The H1V3M1ND platform uses Argos for fingerprint tracking:
+- Server: [github.com/project-89/argos-server](https://github.com/project-89/argos-server)
+- SDK: [github.com/project-89/argos-sdk](https://github.com/project-89/argos-sdk)
+
+<Callout type="warning">
+  The Argos integration is currently in development. API shapes and endpoints may change.
+</Callout>
+
+## Authentication
+
+All endpoints require authentication using Firebase Auth tokens and wallet signatures.
+
+```typescript
+headers: {
+  'Authorization': 'Bearer ${firebaseToken}',
+  'X-Wallet-Signature': '${walletSignature}'
+}
+```
+
+## Error Handling
+
+All endpoints follow the same error response format:
+
+```typescript
+{
+  error: {
+    code: string;
+    message: string;
+    details?: any;
+  }
+}
+```
+
+### Common Error Codes
+
+| Code | Description |
+| --- | --- |
+| `AUTH_REQUIRED` | Authentication required |
+| `INVALID_SIGNATURE` | Invalid wallet signature |
+| `INSUFFICIENT_BALANCE` | Insufficient Project89 token balance |
+| `MISSION_NOT_FOUND` | Mission not found |
+| `INVALID_STATE` | Invalid mission state for operation |
+| `RATE_LIMITED` | Too many requests |
+
+## Rate Limiting
+
+<Callout type="warning">
+  To ensure fair usage, the API implements rate limiting per user and per IP address.
+</Callout>
+
+- **User-based limits**: 100 requests per minute
+- **IP-based limits**: 1000 requests per minute
+- **Webhook endpoints**: 500 requests per minute
+
+## API Sections
+
+- [Missions](/api/missions) - Mission creation, management, and verification
+- [Users](/api/users) - User progress and statistics
+- [Webhooks](/api/webhooks) - Event notifications and callbacks 
