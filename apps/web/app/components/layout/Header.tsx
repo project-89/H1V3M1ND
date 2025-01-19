@@ -10,7 +10,7 @@ export function Header() {
   const isActive = (path: string) => pathname === path;
 
   return (
-    <header className="border-b border-gray-800 bg-black/50 backdrop-blur-sm">
+    <header className="fixed top-0 left-0 right-0 z-20 border-b border-gray-800 bg-black">
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-8">

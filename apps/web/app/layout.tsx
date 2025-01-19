@@ -17,10 +17,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body
         className={`${inter.className} min-h-screen bg-gradient-to-b from-gray-900 to-black text-white`}
       >
-        <div className="flex flex-col min-h-screen">
+        <div className="flex flex-col min-h-screen pt-[72px]">
           <Header />
-          <main className="flex-grow container mx-auto px-4 py-8">{children}</main>
-          <Footer />
+          <main className="flex-1 container mx-auto px-4 py-8 mb-[180px]">{children}</main>
+          <div className="fixed bottom-0 left-0 right-0 z-10">
+            <Footer />
+          </div>
         </div>
         <Toaster
           theme="dark"
