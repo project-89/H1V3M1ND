@@ -1,7 +1,7 @@
 'use client';
 
 import { AlertTriangle, RefreshCw } from 'lucide-react';
-import { Button } from '@/components/ui';
+import { Button } from '@H1V3M1ND/ui';
 
 interface ErrorStateProps {
   title?: string;
