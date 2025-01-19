@@ -51,11 +51,35 @@ const config: Config = {
           DEFAULT: 'hsl(var(--card))',
           foreground: 'hsl(var(--card-foreground))',
         },
+        neon: {
+          pink: '#ff2ecc',
+          purple: '#9d4edd',
+          blue: '#2b2d42',
+        },
+        cyber: {
+          black: '#13111C',
+          darker: '#0c0a14',
+          dark: '#1a1727',
+          purple: '#2d1b69',
+          'purple-light': '#6247aa',
+          pink: '#ff2ecc',
+          'pink-dark': '#d431ab',
+        },
       },
       borderRadius: {
         lg: 'var(--radius)',
         md: 'calc(var(--radius) - 2px)',
         sm: 'calc(var(--radius) - 4px)',
+      },
+      boxShadow: {
+        'neon-glow': '0 0 5px theme(colors.neon.purple), 0 0 20px theme(colors.neon.purple)',
+        'neon-glow-strong':
+          '0 0 5px theme(colors.neon.pink), 0 0 20px theme(colors.neon.pink), 0 0 40px theme(colors.neon.purple)',
+        cyber: '0 0 0 1px theme(colors.cyber.purple-light)',
+        'cyber-md':
+          '0 0 0 1px theme(colors.cyber.purple-light), 0 0 15px theme(colors.cyber.purple)',
+        'cyber-lg':
+          '0 0 0 1px theme(colors.cyber.purple-light), 0 0 30px theme(colors.cyber.purple)',
       },
       keyframes: {
         'accordion-down': {
@@ -66,10 +90,23 @@ const config: Config = {
           from: { height: 'var(--radix-accordion-content-height)' },
           to: { height: '0' },
         },
+        glitch: {
+          '0%, 100%': { transform: 'translate(0)' },
+          '20%': { transform: 'translate(-2px, 2px)' },
+          '40%': { transform: 'translate(-2px, -2px)' },
+          '60%': { transform: 'translate(2px, 2px)' },
+          '80%': { transform: 'translate(2px, -2px)' },
+        },
+        'pulse-glow': {
+          '0%, 100%': { opacity: '1' },
+          '50%': { opacity: '0.5' },
+        },
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
+        glitch: 'glitch 0.5s ease-in-out infinite',
+        'pulse-glow': 'pulse-glow 2s ease-in-out infinite',
       },
     },
   },
