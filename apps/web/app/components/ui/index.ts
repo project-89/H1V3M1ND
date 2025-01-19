@@ -33,3 +33,5 @@ export { RadioGroup, RadioGroupItem } from './radio-group';
 export { Label } from './label';
 
 export { Textarea } from './textarea';
+
+export { Progress } from './progress';

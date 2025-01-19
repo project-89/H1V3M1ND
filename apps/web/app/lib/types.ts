@@ -90,10 +90,11 @@ interface BaseMission {
 }
 
 export interface SingleParticipantRequirements {
-  minimumRank: ROLE;
   capabilities: string[];
-  specialRequirements?: string[];
+  minimumRank: ROLE;
   categorySpecificRanks?: Record<string, ROLE>;
+  preferredAgent?: string;
+  specialRequirements?: string[];
 }
 
 export interface TeamComposition {
@@ -101,6 +102,7 @@ export interface TeamComposition {
   agents?: number;
   teamStructure?: string;
   roleDistribution?: string;
+  collaborationRequirements?: string;
 }
 
 export interface MultiParticipantRequirements {

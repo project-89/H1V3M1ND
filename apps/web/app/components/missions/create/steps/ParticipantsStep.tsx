@@ -6,6 +6,7 @@ import {
   MissionType,
   SingleParticipantMission,
   MultiParticipantMission,
+  ROLE,
 } from '@/lib/types';
 
 interface ParticipantsStepProps {
@@ -25,6 +26,8 @@ export function ParticipantsStep({ data, onUpdate }: ParticipantsStepProps) {
       type: MissionType.Single,
       requirements: {
         ...data.requirements,
+        capabilities: data.requirements?.capabilities || [],
+        minimumRank: data.requirements?.minimumRank || ROLE.AGENT_INITIATE,
         [field]: value,
       },
     };
@@ -41,7 +44,7 @@ export function ParticipantsStep({ data, onUpdate }: ParticipantsStepProps) {
       requirements: {
         minParticipants: currentData.requirements?.minParticipants || 2,
         maxParticipants: currentData.requirements?.maxParticipants || 5,
-        capabilities: currentData.requirements?.capabilities,
+        capabilities: currentData.requirements?.capabilities || [],
         composition: {
           ...currentData.requirements?.composition,
           [field]: value,
