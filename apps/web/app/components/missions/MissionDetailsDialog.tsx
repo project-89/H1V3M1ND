@@ -61,11 +61,11 @@ const getRequirementsList = (mission: Mission) => {
 
 const getSeverityIcon = (severity: Severity) => {
   switch (severity) {
-    case Severity.Critical:
+    case Severity.High:
       return <AlertOctagon className="h-4 w-4 text-red-400" />;
-    case Severity.Major:
+    case Severity.Medium:
       return <AlertCircle className="h-4 w-4 text-yellow-400" />;
-    case Severity.Minor:
+    case Severity.Low:
       return <AlertTriangle className="h-4 w-4 text-blue-400" />;
   }
 };
@@ -76,11 +76,11 @@ const getCategoryColor = (category: Category) => {
       return 'bg-blue-500/20 text-blue-400';
     case Category.Security:
       return 'bg-red-500/20 text-red-400';
-    case Category.Quality:
+    case Category.Compliance:
       return 'bg-purple-500/20 text-purple-400';
-    case Category.Time:
+    case Category.Technical:
       return 'bg-yellow-500/20 text-yellow-400';
-    case Category.Resource:
+    case Category.Communication:
       return 'bg-green-500/20 text-green-400';
   }
 };

@@ -7,6 +7,7 @@ import {
   MissionType,
   FailureConditionSeverity as Severity,
   FailureConditionCategory as Category,
+  MultiParticipantMission,
 } from '@/lib/types';
 
 interface MissionStore {
@@ -21,10 +22,7 @@ interface MissionStore {
   acceptMission: (missionId: string) => Promise<void>;
   updateMissionStatus: (missionId: string, status: MissionStatus) => Promise<void>;
   createMission: (
-    mission: Omit<
-      SingleParticipantMission,
-      'id' | 'status' | 'createdAt' | 'expiryDate' | 'escrowAddress' | 'createdBy'
-    >
+    missionData: Partial<SingleParticipantMission> | Partial<MultiParticipantMission>
   ) => Promise<void>;
 
   // Queries
@@ -59,25 +57,25 @@ const sampleMissions: Mission[] = [
       {
         id: '1-1',
         description: 'Model accuracy falls below 85% on validation dataset',
-        severity: Severity.Critical,
+        severity: Severity.High,
         category: Category.Performance,
       },
       {
         id: '1-2',
         description: 'Training time exceeds the specified time limit',
-        severity: Severity.Major,
-        category: Category.Time,
+        severity: Severity.High,
+        category: Category.Performance,
       },
       {
         id: '1-3',
         description: 'Memory usage exceeds allocated resources',
-        severity: Severity.Major,
-        category: Category.Resource,
+        severity: Severity.High,
+        category: Category.Performance,
       },
       {
         id: '1-4',
         description: 'Failure to implement required safety measures',
-        severity: Severity.Critical,
+        severity: Severity.High,
         category: Category.Security,
       },
     ],
@@ -109,25 +107,25 @@ const sampleMissions: Mission[] = [
       {
         id: '2-1',
         description: 'Protocol fails to achieve consensus in test environment',
-        severity: Severity.Critical,
+        severity: Severity.High,
         category: Category.Performance,
       },
       {
         id: '2-2',
         description: 'Network latency exceeds acceptable thresholds',
-        severity: Severity.Major,
+        severity: Severity.High,
         category: Category.Performance,
       },
       {
         id: '2-3',
         description: 'System fails to scale beyond minimum participant count',
-        severity: Severity.Critical,
+        severity: Severity.High,
         category: Category.Performance,
       },
       {
         id: '2-4',
         description: 'Critical security vulnerabilities identified in code review',
-        severity: Severity.Critical,
+        severity: Severity.High,
         category: Category.Security,
       },
     ],
@@ -155,26 +153,26 @@ const sampleMissions: Mission[] = [
       {
         id: '3-1',
         description: 'Missing critical vulnerabilities during the audit',
-        severity: Severity.Critical,
+        severity: Severity.High,
         category: Category.Security,
       },
       {
         id: '3-2',
         description: 'Providing false positives that delay deployment',
-        severity: Severity.Major,
-        category: Category.Quality,
+        severity: Severity.High,
+        category: Category.Performance,
       },
       {
         id: '3-3',
         description: 'Failing to document findings according to standard',
-        severity: Severity.Major,
-        category: Category.Quality,
+        severity: Severity.High,
+        category: Category.Performance,
       },
       {
         id: '3-4',
         description: 'Not completing all test cases in the audit plan',
-        severity: Severity.Major,
-        category: Category.Quality,
+        severity: Severity.High,
+        category: Category.Performance,
       },
     ],
   },
@@ -234,9 +232,9 @@ const createMissionStore: StateCreator<MissionStore, [], [], MissionStore> = (se
       await new Promise((resolve) => setTimeout(resolve, 1000));
 
       const now = Date.now();
-      const timeLimit = missionData.baseRequirements.timeLimit || 24;
+      const timeLimit = missionData.baseRequirements?.timeLimit || 24;
 
-      const newMission: SingleParticipantMission = {
+      const baseData = {
         ...missionData,
         id: Math.random().toString(36).substr(2, 9), // Generate random ID (replace with actual ID from API)
         status: MissionStatus.Active,
@@ -244,7 +242,40 @@ const createMissionStore: StateCreator<MissionStore, [], [], MissionStore> = (se
         expiryDate: now + timeLimit * 60 * 60 * 1000,
         createdBy: 'user', // Replace with actual user ID
         escrowAddress: '0x...', // Replace with actual escrow address
+        failureConditions: [], // Will be added in a later step
       };
+
+      let newMission: Mission;
+      if (missionData.type === MissionType.Single) {
+        const singleMissionData = missionData as Partial<SingleParticipantMission>;
+        if (!singleMissionData.participantType) {
+          throw new Error('Participant type is required for single participant missions');
+        }
+        newMission = {
+          ...baseData,
+          type: MissionType.Single,
+          participantType: singleMissionData.participantType,
+          requirements: singleMissionData.requirements || {},
+        } as SingleParticipantMission;
+      } else {
+        const multiMissionData = missionData as Partial<MultiParticipantMission>;
+        if (
+          !multiMissionData.requirements?.minParticipants ||
+          !multiMissionData.requirements?.maxParticipants
+        ) {
+          throw new Error('Min and max participants are required for multi-participant missions');
+        }
+        newMission = {
+          ...baseData,
+          type: MissionType.Multi,
+          requirements: {
+            minParticipants: multiMissionData.requirements.minParticipants,
+            maxParticipants: multiMissionData.requirements.maxParticipants,
+            composition: multiMissionData.requirements.composition,
+            capabilities: multiMissionData.requirements.capabilities,
+          },
+        } as MultiParticipantMission;
+      }
 
       const missions = [...get().missions, newMission];
       set({ missions, isLoading: false });

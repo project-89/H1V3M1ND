@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { FilterBar, FilterState } from '@/components/missions/FilterBar';
 import { MissionCard } from '@/components/missions/MissionCard';
 import { MissionDetailsDialog } from '@/components/missions/MissionDetailsDialog';
+import { MissionCreateDialog } from '@/components/missions/create/MissionCreateDialog';
 import { useMissionStore } from '@/store/missions';
 import {
   Mission,
@@ -13,8 +14,13 @@ import {
   MissionScale,
   MissionStatus,
   ParticipantType,
+  FailureConditionSeverity as Severity,
+  FailureConditionCategory as Category,
+  SingleParticipantMission,
+  MultiParticipantMission,
 } from '@/lib/types';
-import { Terminal } from 'lucide-react';
+import { Terminal, Plus } from 'lucide-react';
+import { Button } from '@/components/ui';
 
 // Sample missions for testing
 const sampleMissions: Mission[] = [
@@ -39,10 +45,30 @@ const sampleMissions: Mission[] = [
       minimumRank: 3,
     },
     failureConditions: [
-      'Model accuracy falls below 85% on validation dataset',
-      'Training time exceeds the specified time limit',
-      'Memory usage exceeds allocated resources',
-      'Failure to implement required safety measures',
+      {
+        id: '1-1',
+        description: 'Model accuracy falls below 85% on validation dataset',
+        severity: Severity.High,
+        category: Category.Performance,
+      },
+      {
+        id: '1-2',
+        description: 'Training time exceeds the specified time limit',
+        severity: Severity.High,
+        category: Category.Performance,
+      },
+      {
+        id: '1-3',
+        description: 'Memory usage exceeds allocated resources',
+        severity: Severity.High,
+        category: Category.Performance,
+      },
+      {
+        id: '1-4',
+        description: 'Failure to implement required safety measures',
+        severity: Severity.High,
+        category: Category.Security,
+      },
     ],
   },
   {
@@ -70,10 +96,30 @@ const sampleMissions: Mission[] = [
       capabilities: ['swarm-intelligence', 'protocol-design'],
     },
     failureConditions: [
-      'Protocol fails to achieve consensus in test environment',
-      'Network latency exceeds acceptable thresholds',
-      'System fails to scale beyond minimum participant count',
-      'Critical security vulnerabilities identified in code review',
+      {
+        id: '2-1',
+        description: 'Protocol fails to achieve consensus in test environment',
+        severity: Severity.High,
+        category: Category.Performance,
+      },
+      {
+        id: '2-2',
+        description: 'Network latency exceeds acceptable thresholds',
+        severity: Severity.High,
+        category: Category.Performance,
+      },
+      {
+        id: '2-3',
+        description: 'System fails to scale beyond minimum participant count',
+        severity: Severity.High,
+        category: Category.Performance,
+      },
+      {
+        id: '2-4',
+        description: 'Critical security vulnerabilities identified in code review',
+        severity: Severity.High,
+        category: Category.Security,
+      },
     ],
   },
   {
@@ -96,10 +142,30 @@ const sampleMissions: Mission[] = [
       minimumRank: 4,
     },
     failureConditions: [
-      'Missing critical vulnerabilities during the audit',
-      'Providing false positives that delay deployment',
-      'Failing to document findings according to standard',
-      'Not completing all test cases in the audit plan',
+      {
+        id: '3-1',
+        description: 'Missing critical vulnerabilities during the audit',
+        severity: Severity.High,
+        category: Category.Security,
+      },
+      {
+        id: '3-2',
+        description: 'Providing false positives that delay deployment',
+        severity: Severity.High,
+        category: Category.Performance,
+      },
+      {
+        id: '3-3',
+        description: 'Failing to document findings according to standard',
+        severity: Severity.High,
+        category: Category.Performance,
+      },
+      {
+        id: '3-4',
+        description: 'Not completing all test cases in the audit plan',
+        severity: Severity.High,
+        category: Category.Performance,
+      },
     ],
   },
 ];
@@ -183,9 +249,10 @@ export interface MissionDetailsDialogProps {
 }
 
 export default function MissionsPage() {
-  const { missions, fetchMissions, isLoading } = useMissionStore();
+  const { missions, fetchMissions, isLoading, createMission } = useMissionStore();
   const [filteredMissions, setFilteredMissions] = useState<Mission[]>(sampleMissions);
   const [selectedMission, setSelectedMission] = useState<Mission | null>(null);
+  const [isCreateDialogOpen, setIsCreateDialogOpen] = useState(false);
 
   useEffect(() => {
     fetchMissions();
@@ -200,6 +267,19 @@ export default function MissionsPage() {
     setFilteredMissions(filtered);
   };
 
+  const handleCreateMission = async (missionData: Partial<Mission>) => {
+    if (!missionData.type) {
+      throw new Error('Mission type is required');
+    }
+
+    if (missionData.type === MissionType.Single) {
+      await createMission(missionData as Partial<SingleParticipantMission>);
+    } else {
+      await createMission(missionData as Partial<MultiParticipantMission>);
+    }
+    setIsCreateDialogOpen(false);
+  };
+
   if (isLoading) {
     return (
       <div className="container mx-auto px-4 py-8">
@@ -212,9 +292,18 @@ export default function MissionsPage() {
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <div>
-        <h1 className="text-4xl font-bold mb-2 text-glow-pink">Available Missions</h1>
-        <p className="text-gray-400">Find and accept missions that match your capabilities</p>
+      <div className="flex items-center justify-between mb-6">
+        <div>
+          <h1 className="text-4xl font-bold mb-2 text-glow-pink">Available Missions</h1>
+          <p className="text-gray-400">Find and accept missions that match your capabilities</p>
+        </div>
+        <Button
+          onClick={() => setIsCreateDialogOpen(true)}
+          className="bg-cyber-purple hover:bg-cyber-purple/80"
+        >
+          <Plus className="mr-2 h-4 w-4" />
+          Create Mission
+        </Button>
       </div>
 
       <FilterBar onFilterChange={handleFilterChange} />
@@ -249,6 +338,12 @@ export default function MissionsPage() {
           isOpen={!!selectedMission}
         />
       )}
+
+      <MissionCreateDialog
+        isOpen={isCreateDialogOpen}
+        onClose={() => setIsCreateDialogOpen(false)}
+        onSubmit={handleCreateMission}
+      />
     </div>
   );
 }

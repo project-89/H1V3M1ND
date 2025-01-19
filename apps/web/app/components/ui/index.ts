@@ -27,3 +27,9 @@ export {
 } from './dropdown-menu';
 
 export { Badge } from './badge';
+
+export { RadioGroup, RadioGroupItem } from './radio-group';
+
+export { Label } from './label';
+
+export { Textarea } from './textarea';

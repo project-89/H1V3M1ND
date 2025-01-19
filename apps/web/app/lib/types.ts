@@ -38,17 +38,17 @@ export enum StakeRange {
 }
 
 export enum FailureConditionSeverity {
-  Critical = 'critical',
-  Major = 'major',
-  Minor = 'minor',
+  Low = 'Low',
+  Medium = 'Medium',
+  High = 'High',
 }
 
 export enum FailureConditionCategory {
-  Performance = 'performance',
-  Security = 'security',
-  Quality = 'quality',
-  Time = 'time',
-  Resource = 'resource',
+  Performance = 'Performance',
+  Security = 'Security',
+  Compliance = 'Compliance',
+  Technical = 'Technical',
+  Communication = 'Communication',
 }
 
 export interface FailureCondition {
@@ -77,29 +77,38 @@ export interface BaseMission {
   failureConditions: FailureCondition[];
 }
 
+interface SingleParticipantRequirements {
+  capabilities?: string[];
+  minimumRank?: number;
+  categorySpecificRanks?: { [category: string]: number };
+  preferredAgent?: string;
+  specialRequirements?: string;
+}
+
+interface TeamComposition {
+  humans?: number;
+  agents?: number;
+  teamStructure?: string;
+  roleDistribution?: string;
+  collaborationRequirements?: string;
+}
+
+interface MultiParticipantRequirements {
+  minParticipants: number;
+  maxParticipants: number;
+  capabilities?: string[];
+  composition?: TeamComposition;
+}
+
 export interface SingleParticipantMission extends BaseMission {
   type: MissionType.Single;
   participantType: ParticipantType;
-  requirements: {
-    capabilities?: string[];
-    minimumRank?: number;
-    categorySpecificRanks?: {
-      [category: string]: number;
-    };
-  };
+  requirements: SingleParticipantRequirements;
 }
 
 export interface MultiParticipantMission extends BaseMission {
   type: MissionType.Multi;
-  requirements: {
-    minParticipants: number;
-    maxParticipants: number;
-    composition?: {
-      humans?: number;
-      agents?: number;
-    };
-    capabilities?: string[];
-  };
+  requirements: MultiParticipantRequirements;
 }
 
 export type Mission = SingleParticipantMission | MultiParticipantMission;
