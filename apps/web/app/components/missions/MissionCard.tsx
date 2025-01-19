@@ -61,7 +61,10 @@ export function MissionCard({ mission, onClick }: MissionCardProps) {
   const participantType = getParticipantType(mission);
 
   return (
-    <Card className="cyber-card group cursor-pointer overflow-hidden" onClick={onClick}>
+    <Card
+      className="cyber-card group cursor-pointer overflow-hidden h-full flex flex-col"
+      onClick={onClick}
+    >
       <CardHeader className="space-y-2">
         <div className="flex items-center justify-between">
           <Badge
@@ -77,8 +80,8 @@ export function MissionCard({ mission, onClick }: MissionCardProps) {
         </h3>
       </CardHeader>
 
-      <CardContent className="space-y-4">
-        <p className="text-sm text-gray-400">{mission.description}</p>
+      <CardContent className="space-y-4 flex-1">
+        <p className="text-sm text-gray-400 line-clamp-2">{mission.description}</p>
 
         <div className="flex items-center space-x-2">
           <Badge className={`px-2 py-1 ${getScaleColor(scale)}`}>{scale}</Badge>

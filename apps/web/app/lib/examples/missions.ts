@@ -1,0 +1,300 @@
+import {
+  Mission,
+  MissionType,
+  ParticipantType,
+  MissionStatus,
+  ROLE,
+  FailureConditionSeverity as Severity,
+  FailureConditionCategory as Category,
+} from '@/lib/types';
+
+export const sampleMissions: Mission[] = [
+  {
+    id: '1',
+    type: MissionType.Single,
+    title: 'Neural Network Training',
+    description:
+      'Train a specialized neural network for pattern recognition in blockchain transactions.',
+    participantType: ParticipantType.Agent,
+    status: MissionStatus.Active,
+    createdBy: 'system',
+    baseRequirements: {
+      timeLimit: 24,
+      stakeAmount: 100,
+    },
+    escrowAddress: '0x...',
+    createdAt: Date.now(),
+    expiryDate: Date.now() + 86400000,
+    requirements: {
+      capabilities: ['machine-learning', 'blockchain-analysis'],
+      minimumRank: ROLE.AGENT_MASTER,
+    },
+    failureConditions: [
+      {
+        id: '1-1',
+        description: 'Model accuracy falls below 85% on validation dataset',
+        severity: Severity.High,
+        category: Category.Performance,
+      },
+      {
+        id: '1-2',
+        description: 'Training time exceeds the specified time limit',
+        severity: Severity.High,
+        category: Category.Performance,
+      },
+      {
+        id: '1-3',
+        description: 'Memory usage exceeds allocated resources',
+        severity: Severity.High,
+        category: Category.Performance,
+      },
+      {
+        id: '1-4',
+        description: 'Failure to implement required safety measures',
+        severity: Severity.High,
+        category: Category.Security,
+      },
+    ],
+  },
+  {
+    id: '2',
+    type: MissionType.Multi,
+    title: 'Swarm Intelligence Protocol',
+    description:
+      'Develop and test a new swarm intelligence protocol for coordinated agent operations.',
+    status: MissionStatus.Active,
+    createdBy: 'system',
+    baseRequirements: {
+      timeLimit: 72,
+      stakeAmount: 500,
+    },
+    escrowAddress: '0x...',
+    createdAt: Date.now(),
+    expiryDate: Date.now() + 259200000,
+    requirements: {
+      minParticipants: 5,
+      maxParticipants: 10,
+      composition: {
+        humans: 2,
+        agents: 8,
+      },
+      capabilities: ['swarm-intelligence', 'protocol-design'],
+    },
+    failureConditions: [
+      {
+        id: '2-1',
+        description: 'Protocol fails to achieve consensus in test environment',
+        severity: Severity.High,
+        category: Category.Performance,
+      },
+      {
+        id: '2-2',
+        description: 'Network latency exceeds acceptable thresholds',
+        severity: Severity.High,
+        category: Category.Performance,
+      },
+      {
+        id: '2-3',
+        description: 'System fails to scale beyond minimum participant count',
+        severity: Severity.High,
+        category: Category.Performance,
+      },
+      {
+        id: '2-4',
+        description: 'Critical security vulnerabilities identified in code review',
+        severity: Severity.High,
+        category: Category.Security,
+      },
+    ],
+  },
+  {
+    id: '3',
+    type: MissionType.Single,
+    title: 'Security Audit',
+    description: 'Conduct a comprehensive security audit of smart contract implementations.',
+    participantType: ParticipantType.Human,
+    status: MissionStatus.Active,
+    createdBy: 'system',
+    baseRequirements: {
+      timeLimit: 48,
+      stakeAmount: 250,
+    },
+    escrowAddress: '0x...',
+    createdAt: Date.now(),
+    expiryDate: Date.now() + 172800000,
+    requirements: {
+      capabilities: ['smart-contracts', 'security-audit'],
+      minimumRank: ROLE.AGENT_SENIOR,
+    },
+    failureConditions: [
+      {
+        id: '3-1',
+        description: 'Missing critical vulnerabilities during the audit',
+        severity: Severity.High,
+        category: Category.Security,
+      },
+      {
+        id: '3-2',
+        description: 'Providing false positives that delay deployment',
+        severity: Severity.High,
+        category: Category.Performance,
+      },
+      {
+        id: '3-3',
+        description: 'Failing to document findings according to standard',
+        severity: Severity.High,
+        category: Category.Performance,
+      },
+      {
+        id: '3-4',
+        description: 'Not completing all test cases in the audit plan',
+        severity: Severity.High,
+        category: Category.Performance,
+      },
+    ],
+  },
+  {
+    id: '4',
+    type: MissionType.Single,
+    title: 'Neural Network Training',
+    description:
+      'Train a specialized neural network for pattern recognition in blockchain transactions.',
+    participantType: ParticipantType.Agent,
+    status: MissionStatus.Active,
+    createdBy: 'system',
+    baseRequirements: {
+      timeLimit: 24,
+      stakeAmount: 100,
+    },
+    escrowAddress: '0x...',
+    createdAt: Date.now(),
+    expiryDate: Date.now() + 86400000,
+    requirements: {
+      capabilities: ['machine-learning', 'blockchain-analysis'],
+      minimumRank: ROLE.AGENT_MASTER,
+    },
+    failureConditions: [
+      {
+        id: '4-1',
+        description: 'Model accuracy falls below 85% on validation dataset',
+        severity: Severity.High,
+        category: Category.Performance,
+      },
+      {
+        id: '4-2',
+        description: 'Training time exceeds the specified time limit',
+        severity: Severity.High,
+        category: Category.Performance,
+      },
+      {
+        id: '4-3',
+        description: 'Memory usage exceeds allocated resources',
+        severity: Severity.High,
+        category: Category.Performance,
+      },
+      {
+        id: '4-4',
+        description: 'Failure to implement required safety measures',
+        severity: Severity.High,
+        category: Category.Security,
+      },
+    ],
+  },
+  {
+    id: '5',
+    type: MissionType.Multi,
+    title: 'Swarm Intelligence Protocol',
+    description:
+      'Develop and test a new swarm intelligence protocol for coordinated agent operations.',
+    status: MissionStatus.Active,
+    createdBy: 'system',
+    baseRequirements: {
+      timeLimit: 72,
+      stakeAmount: 500,
+    },
+    escrowAddress: '0x...',
+    createdAt: Date.now(),
+    expiryDate: Date.now() + 259200000,
+    requirements: {
+      minParticipants: 5,
+      maxParticipants: 10,
+      composition: {
+        humans: 2,
+        agents: 8,
+      },
+      capabilities: ['swarm-intelligence', 'protocol-design'],
+    },
+    failureConditions: [
+      {
+        id: '5-1',
+        description: 'Protocol fails to achieve consensus in test environment',
+        severity: Severity.High,
+        category: Category.Performance,
+      },
+      {
+        id: '5-2',
+        description: 'Network latency exceeds acceptable thresholds',
+        severity: Severity.High,
+        category: Category.Performance,
+      },
+      {
+        id: '5-3',
+        description: 'System fails to scale beyond minimum participant count',
+        severity: Severity.High,
+        category: Category.Performance,
+      },
+      {
+        id: '5-4',
+        description: 'Critical security vulnerabilities identified in code review',
+        severity: Severity.High,
+        category: Category.Security,
+      },
+    ],
+  },
+  {
+    id: '6',
+    type: MissionType.Single,
+    title: 'Security Audit',
+    description: 'Conduct a comprehensive security audit of smart contract implementations.',
+    participantType: ParticipantType.Human,
+    status: MissionStatus.Active,
+    createdBy: 'system',
+    baseRequirements: {
+      timeLimit: 48,
+      stakeAmount: 250,
+    },
+    escrowAddress: '0x...',
+    createdAt: Date.now(),
+    expiryDate: Date.now() + 172800000,
+    requirements: {
+      capabilities: ['smart-contracts', 'security-audit'],
+      minimumRank: ROLE.AGENT_SENIOR,
+    },
+    failureConditions: [
+      {
+        id: '6-1',
+        description: 'Missing critical vulnerabilities during the audit',
+        severity: Severity.High,
+        category: Category.Security,
+      },
+      {
+        id: '6-2',
+        description: 'Providing false positives that delay deployment',
+        severity: Severity.High,
+        category: Category.Performance,
+      },
+      {
+        id: '6-3',
+        description: 'Failing to document findings according to standard',
+        severity: Severity.High,
+        category: Category.Performance,
+      },
+      {
+        id: '6-4',
+        description: 'Not completing all test cases in the audit plan',
+        severity: Severity.High,
+        category: Category.Performance,
+      },
+    ],
+  },
+];
