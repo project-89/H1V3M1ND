@@ -1,0 +1,81 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --cyber-black: #13111C;
+    --cyber-darker: #0c0a14;
+    --cyber-dark: #1a1727;
+    --cyber-purple: #2d1b69;
+    --cyber-purple-light: #6247aa;
+    --cyber-pink: #ff2ecc;
+    --cyber-pink-dark: #d431ab;
+  }
+}
+
+@layer components {
+  .cyber-border {
+    @apply border border-cyber-purple-light shadow-cyber;
+  }
+
+  .cyber-card {
+    @apply bg-cyber-dark border border-cyber-purple-light shadow-cyber-md 
+           hover:shadow-cyber-lg transition-shadow duration-300;
+  }
+
+  .text-glow {
+    text-shadow: 0 0 10px theme('colors.cyber.purple'),
+                 0 0 20px theme('colors.cyber.purple');
+  }
+
+  .text-glow-pink {
+    text-shadow: 0 0 10px theme('colors.cyber.pink'),
+                 0 0 20px theme('colors.cyber.pink');
+  }
+
+  .glitch-text {
+    @apply relative;
+    text-shadow: 0.05em 0 0 theme('colors.cyber.pink'),
+                -0.025em -0.05em 0 theme('colors.cyber.purple'),
+                0.025em 0.05em 0 theme('colors.neon.blue');
+    animation: glitch 500ms infinite;
+  }
+
+  .cyber-gradient {
+    background: linear-gradient(
+      135deg,
+      theme('colors.cyber.purple') 0%,
+      theme('colors.cyber.purple-light') 50%,
+      theme('colors.cyber.pink') 100%
+    );
+  }
+
+  .cyber-gradient-animate {
+    background: linear-gradient(
+      270deg,
+      theme('colors.cyber.purple'),
+      theme('colors.cyber.purple-light'),
+      theme('colors.cyber.pink'),
+      theme('colors.cyber.purple-light'),
+      theme('colors.cyber.purple')
+    );
+    background-size: 200% 100%;
+    animation: gradient 6s ease infinite;
+  }
+}
+
+@keyframes gradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes glitch {
+  0% { transform: translate(0) }
+  20% { transform: translate(-2px, 2px) }
+  40% { transform: translate(-2px, -2px) }
+  60% { transform: translate(2px, 2px) }
+  80% { transform: translate(2px, -2px) }
+  100% { transform: translate(0) }
+} 

@@ -1,3 +1,5 @@
+import './styles/globals.css';
+
 export { Input } from './input';
 export type { InputProps } from './input';
 

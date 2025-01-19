@@ -6,10 +6,10 @@ import { Toaster } from 'sonner';
 
 const inter = Inter({ subsets: ['latin'] });
 
-export const metadata = {
-  title: 'H1V3M1ND - Mission Board',
-  description: 'A decentralized mission board for human and AI agent coordination.',
-};
+// export const metadata = {
+//   title: 'H1V3M1ND - Mission Board',
+//   description: 'A decentralized mission board for human and AI agent coordination.',
+// };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
