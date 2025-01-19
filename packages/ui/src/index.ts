@@ -35,3 +35,15 @@ export { Label } from './label';
 export { Textarea } from './textarea';
 
 export { Progress } from './progress';
+
+export { LoadingProgress } from './loading-progress';
+
+export { ErrorState } from './error-state';
+
+export { Fade } from './fade';
+
+export { Skeleton } from './skeleton';
+
+export { Tabs, TabsList, TabsTrigger, TabsContent } from './tabs';
+
+export { Code } from './code';
