@@ -101,12 +101,43 @@ const config: Config = {
           '0%, 100%': { opacity: '1' },
           '50%': { opacity: '0.5' },
         },
+        contentShow: {
+          from: {
+            opacity: '0',
+            transform: 'translate(-50%, -48%) scale(0.96)',
+          },
+          to: {
+            opacity: '1',
+            transform: 'translate(-50%, -50%) scale(1)',
+          },
+        },
+        contentHide: {
+          from: {
+            opacity: '1',
+            transform: 'translate(-50%, -50%) scale(1)',
+          },
+          to: {
+            opacity: '0',
+            transform: 'translate(-50%, -48%) scale(0.96)',
+          },
+        },
+        glow: {
+          '0%, 100%': {
+            filter: 'brightness(1)',
+          },
+          '50%': {
+            filter: 'brightness(1.1)',
+          },
+        },
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
         glitch: 'glitch 0.5s ease-in-out infinite',
         'pulse-glow': 'pulse-glow 2s ease-in-out infinite',
+        contentShow: 'contentShow 300ms cubic-bezier(0.16, 1, 0.3, 1)',
+        contentHide: 'contentHide 300ms cubic-bezier(0.16, 1, 0.3, 1)',
+        glow: 'glow 3s ease-in-out infinite',
       },
     },
   },
