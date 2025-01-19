@@ -22,9 +22,7 @@ import {
   ProfileAchievementsLoading,
   MissionHistoryLoading,
 } from '@/components/profile/loading';
-import { Fade } from '@/components/ui/fade';
-import { ErrorState } from '@/components/ui/error-state';
-import { LoadingProgress } from '@/components/ui/loading-progress';
+import { Fade, ErrorState, LoadingProgress } from '@H1V3M1ND/ui';
 
 // Sample data - replace with actual data fetching
 const sampleProfileData = {

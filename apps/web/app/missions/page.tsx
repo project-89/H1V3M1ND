@@ -21,7 +21,7 @@ import {
   ROLE,
 } from '@/lib/types';
 import { Terminal, Plus } from 'lucide-react';
-import { Button } from '@/components/ui';
+import { Button } from '@H1V3M1ND/ui';
 
 // Sample missions for testing
 const sampleMissions: Mission[] = [
