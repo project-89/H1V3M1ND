@@ -55,7 +55,7 @@ export function MissionHistory({
         </div>
         <div className="flex items-center space-x-1 text-gray-400">
           <Target className="w-4 h-4" />
-          <span>{mission.baseRequirements.stakeAmount} P89</span>
+          <span>{mission.baseRequirements.stakeAmount} Project89</span>
         </div>
         <div className="flex items-center space-x-1 text-gray-400">
           <Award className="w-4 h-4" />
@@ -72,7 +72,7 @@ export function MissionHistory({
           <Award className="w-4 h-4 text-cyber-purple-light" />
           <span className="text-gray-400">Total Earnings</span>
         </div>
-        <p className="text-2xl font-bold text-white">{totalEarned} P89</p>
+        <p className="text-2xl font-bold text-white">{totalEarned} Project89</p>
         <p className="text-sm text-gray-400">From {completedMissions.length} completed missions</p>
       </div>
 

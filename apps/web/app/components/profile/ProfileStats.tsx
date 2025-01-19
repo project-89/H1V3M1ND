@@ -28,7 +28,7 @@ export function ProfileStats({ stats }: ProfileStatsProps) {
     },
     {
       label: 'Total Staked',
-      value: `${stats.totalStaked} P89`,
+      value: `${stats.totalStaked} Project89`,
       icon: Target,
       color: 'text-cyber-purple',
     },

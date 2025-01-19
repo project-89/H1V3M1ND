@@ -102,7 +102,7 @@ export function ProfileHeader({ username, avatarUrl, stats }: ProfileHeaderProps
             <span className="text-gray-400">Total Staked</span>
           </div>
           <p className="text-2xl font-bold text-white">{stats.totalStaked}</p>
-          <p className="text-sm text-gray-400">P89 Tokens</p>
+          <p className="text-sm text-gray-400">Project89 Tokens</p>
         </div>
       </div>
     </div>

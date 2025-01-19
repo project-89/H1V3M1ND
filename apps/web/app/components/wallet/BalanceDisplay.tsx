@@ -19,7 +19,7 @@ export function BalanceDisplay({ className }: BalanceDisplayProps) {
   const [balance, setBalance] = useState<TokenBalance>({
     amount: 0,
     change24h: 0,
-    symbol: 'P89',
+    symbol: 'Project89',
   });
   const [isLoading, setIsLoading] = useState(true);
 
@@ -31,7 +31,7 @@ export function BalanceDisplay({ className }: BalanceDisplayProps) {
       setBalance({
         amount: 1250.75,
         change24h: 5.23,
-        symbol: 'P89',
+        symbol: 'Project89',
       });
     } catch (error) {
       console.error('Failed to fetch balance:', error);

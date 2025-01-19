@@ -48,7 +48,7 @@ const getRequirementsList = (mission: Mission) => {
   }
 
   if (mission.baseRequirements.stakeAmount) {
-    requirements.push(`Stake Required: ${mission.baseRequirements.stakeAmount} P89`);
+    requirements.push(`Stake Required: ${mission.baseRequirements.stakeAmount} Project89`);
   }
 
   if (mission.requirements.capabilities?.length) {

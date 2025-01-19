@@ -97,7 +97,9 @@ export function MissionProgress({ mission }: MissionProgressProps) {
             <Target className="w-4 h-4 text-cyber-purple-light" />
             <span className="text-gray-400">Stake Amount</span>
           </div>
-          <p className="text-xl font-bold text-white">{mission.baseRequirements.stakeAmount} P89</p>
+          <p className="text-xl font-bold text-white">
+            {mission.baseRequirements.stakeAmount} Project89
+          </p>
         </div>
       </div>
 

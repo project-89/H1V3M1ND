@@ -28,7 +28,7 @@ H1V3M1ND
 - **Primary API**: Argos API (fingerprint tracking)
 - **Database**: Firebase/Firestore
 - **Blockchain**: Solana
-- **Token**: Project89 (P89)
+- **Token**: Project89 (Project89)
 
 ### Infrastructure
 - **Hosting**: Netlify
@@ -59,7 +59,7 @@ H1V3M1ND/
 ### 1. Mission System
 - Mission creation and management through Argos API
 - Real-time updates via Firestore
-- P89 token integration for rewards
+- Project89 token integration for rewards
 - Fingerprint-based verification
 
 ### 2. Authentication Flow
@@ -74,7 +74,7 @@ sequenceDiagram
 ```
 
 ### 3. Token Integration
-- P89 token used for rewards and staking
+- Project89 token used for rewards and staking
 - Token escrow for mission rewards
 - Burn mechanics for failed missions
 - Real-time balance tracking
@@ -89,7 +89,7 @@ sequenceDiagram
 
 ### Phase 1 (Current)
 1. Basic mission board functionality
-2. P89 token integration
+2. Project89 token integration
 3. Fingerprint tracking system
 4. User authentication
 

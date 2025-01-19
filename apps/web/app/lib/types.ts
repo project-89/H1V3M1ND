@@ -41,9 +41,9 @@ export enum TimeRange {
 }
 
 export enum StakeRange {
-  Low = 'low', // < 500 P89
-  Medium = 'medium', // 500-2000 P89
-  High = 'high', // > 2000 P89
+  Low = 'low', // < 500 Project89
+  Medium = 'medium', // 500-2000 Project89
+  High = 'high', // > 2000 Project89
 }
 
 export enum FailureConditionSeverity {
@@ -72,7 +72,7 @@ export type MissionPriority = 'normal' | 'urgent' | 'critical';
 
 interface BaseRequirements {
   timeLimit: number; // in hours
-  stakeAmount: number; // in P89 tokens
+  stakeAmount: number; // in Project89 tokens
 }
 
 interface BaseMission {

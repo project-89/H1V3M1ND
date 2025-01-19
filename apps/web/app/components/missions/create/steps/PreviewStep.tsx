@@ -58,7 +58,7 @@ export function PreviewStep({ data }: PreviewStepProps) {
             </div>
             <div>
               <p className="text-gray-400">Stake Amount</p>
-              <p className="text-white">{data.baseRequirements?.stakeAmount} P89</p>
+              <p className="text-white">{data.baseRequirements?.stakeAmount} Project89</p>
             </div>
           </div>
 

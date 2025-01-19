@@ -209,7 +209,7 @@ export function RequirementsStep({ data, onUpdate }: RequirementsStepProps) {
 
         <div className="space-y-2">
           <Label htmlFor="stakeAmount" className="text-cyber-purple-light">
-            Stake Amount (P89)
+            Stake Amount (Project89)
           </Label>
           <Input
             id="stakeAmount"

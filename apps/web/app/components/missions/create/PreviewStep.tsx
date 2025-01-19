@@ -59,7 +59,9 @@ export function PreviewStep({ data }: PreviewStepProps) {
           </div>
           <div>
             <label className="text-sm text-gray-400">Stake Amount</label>
-            <p className="text-white">{data.baseRequirements?.stakeAmount || 'Not set'} P89</p>
+            <p className="text-white">
+              {data.baseRequirements?.stakeAmount || 'Not set'} Project89
+            </p>
           </div>
           {isSingleParticipant && (data as Partial<SingleParticipantMission>).requirements && (
             <>

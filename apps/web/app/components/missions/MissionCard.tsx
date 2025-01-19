@@ -64,10 +64,13 @@ export function MissionCard({ mission, onClick }: MissionCardProps) {
     <Card className="cyber-card group cursor-pointer overflow-hidden" onClick={onClick}>
       <CardHeader className="space-y-2">
         <div className="flex items-center justify-between">
-          <Badge variant="outline" className={getParticipantTypeColor(participantType)}>
+          <Badge
+            variant="outline"
+            className={`px-2 py-1 ${getParticipantTypeColor(participantType)}`}
+          >
             {participantType}
           </Badge>
-          <Badge className={getStatusColor(mission.status)}>{mission.status}</Badge>
+          <Badge className={`px-2 py-1 ${getStatusColor(mission.status)}`}>{mission.status}</Badge>
         </div>
         <h3 className="text-lg font-bold text-glow-pink group-hover:animate-glitch">
           {mission.title}
@@ -78,9 +81,9 @@ export function MissionCard({ mission, onClick }: MissionCardProps) {
         <p className="text-sm text-gray-400">{mission.description}</p>
 
         <div className="flex items-center space-x-2">
-          <Badge className={getScaleColor(scale)}>{scale}</Badge>
+          <Badge className={`px-2 py-1 ${getScaleColor(scale)}`}>{scale}</Badge>
           {mission.baseRequirements.timeLimit && (
-            <Badge variant="outline" className="border-cyber-purple-light">
+            <Badge variant="outline" className="px-2 py-1 border-cyber-purple-light">
               {mission.baseRequirements.timeLimit}h
             </Badge>
           )}
@@ -92,7 +95,7 @@ export function MissionCard({ mission, onClick }: MissionCardProps) {
           <div className="flex items-center space-x-4">
             <div className="text-sm">
               <span className="text-gray-400">Reward: </span>
-              <span className="text-neon-pink font-bold">1000 P89</span>
+              <span className="text-neon-pink font-bold">1000 Project89</span>
             </div>
             <div className="text-sm">
               <span className="text-gray-400">XP: </span>
@@ -103,7 +106,7 @@ export function MissionCard({ mission, onClick }: MissionCardProps) {
             <div className="text-sm">
               <span className="text-gray-400">Stake: </span>
               <span className="text-cyber-purple-light">
-                {mission.baseRequirements.stakeAmount} P89
+                {mission.baseRequirements.stakeAmount} Project89
               </span>
             </div>
           )}

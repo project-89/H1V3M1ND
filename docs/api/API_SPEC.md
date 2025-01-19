@@ -33,14 +33,14 @@ POST /api/missions
   description: string;
   requirements: {
     fingerprints: string[];
-    stakeAmount?: number;    // P89 tokens
+    stakeAmount?: number;    // Project89 tokens
     timeLimit?: number;      // In seconds
   };
   rewards: {
-    tokenAmount: number;     // P89 tokens
+    tokenAmount: number;     // Project89 tokens
     experience: number;
   };
-  burnAmount?: number;       // P89 tokens
+  burnAmount?: number;       // Project89 tokens
   expiryDate: string;       // ISO date string
 }
 ```
@@ -49,7 +49,7 @@ POST /api/missions
 ```typescript
 {
   id: string;
-  escrowAddress: string;    // P89 token escrow address
+  escrowAddress: string;    // Project89 token escrow address
   status: 'active';
   createdAt: string;
 }
@@ -158,7 +158,7 @@ GET /api/users/:userId/stats
   completed: number;
   attempted: number;
   success_rate: number;
-  total_rewards: number;     // In P89 tokens
+  total_rewards: number;     // In Project89 tokens
   experience: number;
 }
 ```
@@ -244,7 +244,7 @@ All endpoints follow the same error response format:
 Common error codes:
 - `AUTH_REQUIRED`: Authentication required
 - `INVALID_SIGNATURE`: Invalid wallet signature
-- `INSUFFICIENT_BALANCE`: Insufficient P89 token balance
+- `INSUFFICIENT_BALANCE`: Insufficient Project89 token balance
 - `MISSION_NOT_FOUND`: Mission not found
 - `INVALID_STATE`: Invalid mission state for operation
 - `RATE_LIMITED`: Too many requests 

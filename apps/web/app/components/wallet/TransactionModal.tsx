@@ -65,7 +65,7 @@ export function TransactionModal({
             <div className="space-y-4">
               <div className="flex justify-between items-center p-3 rounded-lg bg-cyber-dark/50 border border-cyber-purple/20">
                 <span className="text-sm text-gray-400">Amount</span>
-                <span className="font-medium">{amount} P89</span>
+                <span className="font-medium">{amount} Project89</span>
               </div>
 
               <Button

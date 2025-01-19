@@ -169,7 +169,7 @@
   - [ ] Participant tracking
   - [ ] Reward distribution
 - [ ] Token Contract
-  - [ ] P89 token implementation
+  - [ ] Project89 token implementation
   - [ ] Transfer functions
   - [ ] Allowance system
 
