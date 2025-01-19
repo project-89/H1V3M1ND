@@ -18,6 +18,7 @@ import {
   FailureConditionCategory as Category,
   SingleParticipantMission,
   MultiParticipantMission,
+  ROLE,
 } from '@/lib/types';
 import { Terminal, Plus } from 'lucide-react';
 import { Button } from '@/components/ui';
@@ -42,7 +43,7 @@ const sampleMissions: Mission[] = [
     expiryDate: Date.now() + 86400000,
     requirements: {
       capabilities: ['machine-learning', 'blockchain-analysis'],
-      minimumRank: 3,
+      minimumRank: ROLE.AGENT_MASTER,
     },
     failureConditions: [
       {
@@ -139,7 +140,7 @@ const sampleMissions: Mission[] = [
     expiryDate: Date.now() + 172800000,
     requirements: {
       capabilities: ['smart-contracts', 'security-audit'],
-      minimumRank: 4,
+      minimumRank: ROLE.AGENT_SENIOR,
     },
     failureConditions: [
       {

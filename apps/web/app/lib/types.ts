@@ -1,3 +1,12 @@
+export enum ROLE {
+  USER = 'user',
+  AGENT_INITIATE = 'agent-initiate',
+  AGENT_FIELD = 'agent-field',
+  AGENT_SENIOR = 'agent-senior',
+  AGENT_MASTER = 'agent-master',
+  ADMIN = 'admin',
+}
+
 export enum ParticipantType {
   Human = 'human',
   Agent = 'agent',
@@ -12,7 +21,7 @@ export enum MissionScale {
 
 export enum MissionStatus {
   Active = 'active',
-  InProgress = 'in_progress',
+  InProgress = 'in-progress',
   PendingValidation = 'pending_validation',
   InValidation = 'in_validation',
   Completed = 'completed',
@@ -38,17 +47,17 @@ export enum StakeRange {
 }
 
 export enum FailureConditionSeverity {
-  Low = 'Low',
-  Medium = 'Medium',
-  High = 'High',
+  Low = 'low',
+  Medium = 'medium',
+  High = 'high',
 }
 
 export enum FailureConditionCategory {
-  Performance = 'Performance',
-  Security = 'Security',
-  Compliance = 'Compliance',
-  Technical = 'Technical',
-  Communication = 'Communication',
+  Performance = 'performance',
+  Security = 'security',
+  Compliance = 'compliance',
+  Technical = 'technical',
+  Communication = 'communication',
 }
 
 export interface FailureCondition {
@@ -61,43 +70,44 @@ export interface FailureCondition {
 export type ValidationRequirement = 'none' | 'single' | 'multi';
 export type MissionPriority = 'normal' | 'urgent' | 'critical';
 
-export interface BaseMission {
+interface BaseRequirements {
+  timeLimit: number; // in hours
+  stakeAmount: number; // in P89 tokens
+}
+
+interface BaseMission {
   id: string;
+  type: MissionType;
   title: string;
   description: string;
-  createdBy: string; // participant id
   status: MissionStatus;
-  baseRequirements: {
-    timeLimit?: number; // in hours
-    stakeAmount?: number; // in P89 tokens
-  };
+  createdAt: number;
+  expiryDate: number;
   escrowAddress: string;
-  createdAt: number; // timestamp
-  expiryDate: number; // timestamp
+  createdBy: string;
+  baseRequirements: BaseRequirements;
   failureConditions: FailureCondition[];
 }
 
-interface SingleParticipantRequirements {
-  capabilities?: string[];
-  minimumRank?: number;
-  categorySpecificRanks?: { [category: string]: number };
-  preferredAgent?: string;
-  specialRequirements?: string;
+export interface SingleParticipantRequirements {
+  minimumRank: ROLE;
+  capabilities: string[];
+  specialRequirements?: string[];
+  categorySpecificRanks?: Record<string, ROLE>;
 }
 
-interface TeamComposition {
+export interface TeamComposition {
   humans?: number;
   agents?: number;
   teamStructure?: string;
   roleDistribution?: string;
-  collaborationRequirements?: string;
 }
 
-interface MultiParticipantRequirements {
+export interface MultiParticipantRequirements {
   minParticipants: number;
   maxParticipants: number;
-  capabilities?: string[];
-  composition?: TeamComposition;
+  capabilities: string[];
+  composition: TeamComposition;
 }
 
 export interface SingleParticipantMission extends BaseMission {

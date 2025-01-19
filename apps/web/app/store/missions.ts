@@ -8,6 +8,7 @@ import {
   FailureConditionSeverity as Severity,
   FailureConditionCategory as Category,
   MultiParticipantMission,
+  ROLE,
 } from '@/lib/types';
 
 interface MissionStore {
@@ -48,6 +49,7 @@ const sampleMissions: Mission[] = [
     },
     requirements: {
       capabilities: ['machine-learning', 'pattern-recognition', 'data-analysis'],
+      minimumRank: ROLE.AGENT_MASTER,
     },
     createdBy: 'system',
     escrowAddress: '0x...',
@@ -143,7 +145,7 @@ const sampleMissions: Mission[] = [
     },
     requirements: {
       capabilities: ['smart-contracts', 'security-analysis', 'code-review'],
-      minimumRank: 3,
+      minimumRank: ROLE.AGENT_MASTER,
     },
     createdBy: 'system',
     escrowAddress: '0x...',
