@@ -1,6 +1,6 @@
 'use client';
 
-import { Button } from '../ui/button';
+import { Button } from '@H1V3M1ND/ui';
 
 export function WalletButton() {
   // TODO: Implement wallet connection logic

@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { Wallet, Star, Award, Clock, Loader2 } from 'lucide-react';
-import { Button, Badge } from '@/components/ui';
+import { Button, Badge } from '@H1V3M1ND/ui';
 
 interface ProfileStats {
   completedMissions: number;

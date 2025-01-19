@@ -1,6 +1,6 @@
 'use client';
 
-import { Button } from '@/components/ui';
+import { Button } from '@H1V3M1ND/ui';
 import { ArrowUpDown, Clock, Coins, Trophy } from 'lucide-react';
 
 export type SortField = 'reward' | 'timeLimit' | 'stakeAmount' | 'createdAt';

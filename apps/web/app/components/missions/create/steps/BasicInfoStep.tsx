@@ -1,6 +1,6 @@
 'use client';
 
-import { Input, Label, Textarea, RadioGroup, RadioGroupItem } from '@/components/ui';
+import { Input, Label, Textarea, RadioGroup, RadioGroupItem } from '@H1V3M1ND/ui';
 import {
   Mission,
   MissionType,

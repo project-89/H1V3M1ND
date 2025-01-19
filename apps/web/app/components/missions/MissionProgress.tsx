@@ -2,7 +2,7 @@
 
 import { Clock, Target, AlertTriangle, CheckCircle2, Timer } from 'lucide-react';
 import { Mission, MissionStatus } from '@/lib/types';
-import { Badge } from '@/components/ui';
+import { Badge } from '@H1V3M1ND/ui';
 
 interface MissionProgressProps {
   mission: Mission;

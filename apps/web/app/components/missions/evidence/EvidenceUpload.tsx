@@ -3,9 +3,9 @@
 import { useState, useCallback } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { Upload, X, FileText, CheckCircle2, AlertCircle } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { Progress } from '@/components/ui';
-import { cn } from '@/lib/utils';
+import { Button } from '@H1V3M1ND/ui';
+import { Progress } from '@H1V3M1ND/ui';
+import { cn } from '@H1V3M1ND/ui/lib/utils';
 
 interface EvidenceFile {
   id: string;

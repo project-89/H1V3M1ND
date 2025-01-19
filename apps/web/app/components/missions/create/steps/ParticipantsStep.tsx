@@ -1,6 +1,6 @@
 'use client';
 
-import { Label, Textarea } from '@/components/ui';
+import { Label, Textarea } from '@H1V3M1ND/ui';
 import {
   Mission,
   MissionType,

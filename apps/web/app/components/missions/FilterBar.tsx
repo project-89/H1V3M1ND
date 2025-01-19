@@ -8,7 +8,7 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from '@/components/ui';
+} from '@H1V3M1ND/ui';
 import { ParticipantType, MissionScale, MissionStatus, TimeRange, StakeRange } from '@/lib/types';
 import { ChevronDown, Search, Clock, Coins } from 'lucide-react';
 

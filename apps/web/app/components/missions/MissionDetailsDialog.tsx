@@ -18,7 +18,7 @@ import {
   DialogFooter,
   Button,
   Badge,
-} from '@/components/ui';
+} from '@H1V3M1ND/ui';
 import {
   Mission,
   MissionType,

@@ -1,6 +1,6 @@
 'use client';
 
-import { Badge, Card, CardContent, CardFooter, CardHeader } from '@/components/ui';
+import { Badge, Card, CardContent, CardFooter, CardHeader } from '@H1V3M1ND/ui';
 import { ParticipantType, MissionScale, MissionStatus, Mission, MissionType } from '@/lib/types';
 
 export interface MissionCardProps {

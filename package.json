@@ -4,6 +4,8 @@
   "scripts": {
     "build": "turbo build",
     "dev": "turbo dev",
+    "web": "yarn workspace web dev",
+    "docs": "yarn workspace docs dev",
     "lint": "turbo lint",
     "format": "prettier --write \"**/*.{ts,tsx,md,json}\"",
     "lint:fix": "turbo lint -- --fix",

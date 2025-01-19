@@ -2,8 +2,8 @@
 
 import { useState, useEffect } from 'react';
 import { Wallet, TrendingUp, TrendingDown, RefreshCcw } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { cn } from '@/lib/utils';
+import { Button } from '@H1V3M1ND/ui';
+import { cn } from '@H1V3M1ND/ui/lib/utils';
 
 interface BalanceDisplayProps {
   className?: string;

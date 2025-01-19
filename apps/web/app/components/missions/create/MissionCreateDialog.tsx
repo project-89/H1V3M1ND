@@ -9,7 +9,7 @@ import {
   DialogTitle,
   DialogFooter,
   Button,
-} from '@/components/ui';
+} from '@H1V3M1ND/ui';
 import { Mission, MissionType, MultiParticipantMission } from '@/lib/types';
 import { BasicInfoStep } from './steps/BasicInfoStep';
 import { RequirementsStep } from './steps/RequirementsStep';

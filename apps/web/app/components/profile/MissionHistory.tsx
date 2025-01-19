@@ -1,7 +1,7 @@
 'use client';
 
-import { Badge } from '@/components/ui';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Tabs, TabsContent, TabsList, TabsTrigger, Badge } from '@H1V3M1ND/ui';
+
 import { Mission, MissionStatus } from '@/lib/types';
 import { Clock, Target, Award } from 'lucide-react';
 

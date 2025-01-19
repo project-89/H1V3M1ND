@@ -1,6 +1,6 @@
 'use client';
 
-import { Badge } from '@/components/ui';
+import { Badge } from '@H1V3M1ND/ui';
 import { Brain, Code, Shield, Network } from 'lucide-react';
 
 interface Capability {

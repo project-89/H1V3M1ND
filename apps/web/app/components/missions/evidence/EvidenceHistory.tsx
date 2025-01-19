@@ -1,7 +1,7 @@
 'use client';
 
 import { FileText, CheckCircle2, XCircle, Clock } from 'lucide-react';
-import { cn } from '@/lib/utils';
+import { cn } from '@H1V3M1ND/ui/lib/utils';
 
 interface Evidence {
   id: string;

@@ -8,9 +8,9 @@ import {
   DialogHeader,
   DialogTitle,
   DialogDescription,
-} from '@/components/ui/dialog';
-import { Button } from '@/components/ui/button';
-import { Progress } from '@/components/ui/progress';
+  Button,
+  Progress,
+} from '@H1V3M1ND/ui';
 
 interface TransactionModalProps {
   isOpen: boolean;

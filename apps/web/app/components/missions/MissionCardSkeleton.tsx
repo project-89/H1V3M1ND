@@ -1,6 +1,6 @@
 'use client';
 
-import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui';
+import { Card, CardContent, CardFooter, CardHeader } from '@H1V3M1ND/ui';
 
 export function MissionCardSkeleton() {
   return (

@@ -1,6 +1,6 @@
 'use client';
 
-import { Skeleton } from '@/components/ui/skeleton';
+import { Skeleton } from '@H1V3M1ND/ui';
 
 export function ProfileHeaderLoading() {
   return (

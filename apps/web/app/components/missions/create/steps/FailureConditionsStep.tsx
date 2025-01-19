@@ -2,10 +2,7 @@
 
 import { useState } from 'react';
 import { Trash2 } from 'lucide-react';
-import { Input } from '@/components/ui';
-import { Label } from '@/components/ui/label';
-import { Button } from '@/components/ui/button';
-import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
+import { Input, Label, Button, RadioGroup, RadioGroupItem } from '@H1V3M1ND/ui';
 import {
   Mission,
   FailureCondition,

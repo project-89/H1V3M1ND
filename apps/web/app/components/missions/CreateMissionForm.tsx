@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Button, Input, Badge, Card, CardContent, CardFooter, CardHeader } from '@/components/ui';
+import { Button, Input, Badge, Card, CardContent, CardFooter, CardHeader } from '@H1V3M1ND/ui';
 import { ParticipantType, MissionScale } from '@/lib/types';
 import { Clock, Coins, Users } from 'lucide-react';
 import { z } from 'zod';

@@ -1,8 +1,7 @@
 'use client';
 
-import { Badge } from '@/components/ui';
+import { Badge } from '@H1V3M1ND/ui';
 import {
-  Mission,
   MissionType,
   SingleParticipantMission,
   MultiParticipantMission,

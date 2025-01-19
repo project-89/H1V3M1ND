@@ -1,7 +1,7 @@
 'use client';
 
 import { Trophy, Star, Target, Zap } from 'lucide-react';
-import { Badge } from '@/components/ui';
+import { Badge } from '@H1V3M1ND/ui';
 
 interface Achievement {
   id: string;
