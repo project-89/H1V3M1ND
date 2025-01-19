@@ -5,6 +5,8 @@ import {
   ParticipantType,
   SingleParticipantMission,
   MissionType,
+  FailureConditionSeverity as Severity,
+  FailureConditionCategory as Category,
 } from '@/lib/types';
 
 interface MissionStore {
@@ -54,10 +56,30 @@ const sampleMissions: Mission[] = [
     createdAt: Date.now(),
     expiryDate: Date.now() + 48 * 60 * 60 * 1000, // 48 hours from now
     failureConditions: [
-      'Model accuracy falls below 85% on validation dataset',
-      'Training time exceeds the specified time limit',
-      'Memory usage exceeds allocated resources',
-      'Failure to implement required safety measures',
+      {
+        id: '1-1',
+        description: 'Model accuracy falls below 85% on validation dataset',
+        severity: Severity.Critical,
+        category: Category.Performance,
+      },
+      {
+        id: '1-2',
+        description: 'Training time exceeds the specified time limit',
+        severity: Severity.Major,
+        category: Category.Time,
+      },
+      {
+        id: '1-3',
+        description: 'Memory usage exceeds allocated resources',
+        severity: Severity.Major,
+        category: Category.Resource,
+      },
+      {
+        id: '1-4',
+        description: 'Failure to implement required safety measures',
+        severity: Severity.Critical,
+        category: Category.Security,
+      },
     ],
   },
   {
@@ -84,10 +106,30 @@ const sampleMissions: Mission[] = [
     createdAt: Date.now(),
     expiryDate: Date.now() + 168 * 60 * 60 * 1000, // 168 hours from now
     failureConditions: [
-      'Protocol fails to achieve consensus in test environment',
-      'Network latency exceeds acceptable thresholds',
-      'System fails to scale beyond minimum participant count',
-      'Critical security vulnerabilities identified in code review',
+      {
+        id: '2-1',
+        description: 'Protocol fails to achieve consensus in test environment',
+        severity: Severity.Critical,
+        category: Category.Performance,
+      },
+      {
+        id: '2-2',
+        description: 'Network latency exceeds acceptable thresholds',
+        severity: Severity.Major,
+        category: Category.Performance,
+      },
+      {
+        id: '2-3',
+        description: 'System fails to scale beyond minimum participant count',
+        severity: Severity.Critical,
+        category: Category.Performance,
+      },
+      {
+        id: '2-4',
+        description: 'Critical security vulnerabilities identified in code review',
+        severity: Severity.Critical,
+        category: Category.Security,
+      },
     ],
   },
   {
@@ -110,10 +152,30 @@ const sampleMissions: Mission[] = [
     createdAt: Date.now(),
     expiryDate: Date.now() + 72 * 60 * 60 * 1000, // 72 hours from now
     failureConditions: [
-      'Missing critical vulnerabilities during the audit',
-      'Providing false positives that delay deployment',
-      'Failing to document findings according to standard',
-      'Not completing all test cases in the audit plan',
+      {
+        id: '3-1',
+        description: 'Missing critical vulnerabilities during the audit',
+        severity: Severity.Critical,
+        category: Category.Security,
+      },
+      {
+        id: '3-2',
+        description: 'Providing false positives that delay deployment',
+        severity: Severity.Major,
+        category: Category.Quality,
+      },
+      {
+        id: '3-3',
+        description: 'Failing to document findings according to standard',
+        severity: Severity.Major,
+        category: Category.Quality,
+      },
+      {
+        id: '3-4',
+        description: 'Not completing all test cases in the audit plan',
+        severity: Severity.Major,
+        category: Category.Quality,
+      },
     ],
   },
 ];

@@ -37,6 +37,27 @@ export enum StakeRange {
   High = 'high', // > 2000 P89
 }
 
+export enum FailureConditionSeverity {
+  Critical = 'critical',
+  Major = 'major',
+  Minor = 'minor',
+}
+
+export enum FailureConditionCategory {
+  Performance = 'performance',
+  Security = 'security',
+  Quality = 'quality',
+  Time = 'time',
+  Resource = 'resource',
+}
+
+export interface FailureCondition {
+  id: string;
+  description: string;
+  severity: FailureConditionSeverity;
+  category: FailureConditionCategory;
+}
+
 export type ValidationRequirement = 'none' | 'single' | 'multi';
 export type MissionPriority = 'normal' | 'urgent' | 'critical';
 
@@ -53,6 +74,7 @@ export interface BaseMission {
   escrowAddress: string;
   createdAt: number; // timestamp
   expiryDate: number; // timestamp
+  failureConditions: FailureCondition[];
 }
 
 export interface SingleParticipantMission extends BaseMission {
@@ -65,7 +87,6 @@ export interface SingleParticipantMission extends BaseMission {
       [category: string]: number;
     };
   };
-  failureConditions: string[];
 }
 
 export interface MultiParticipantMission extends BaseMission {
@@ -79,7 +100,6 @@ export interface MultiParticipantMission extends BaseMission {
     };
     capabilities?: string[];
   };
-  failureConditions: string[];
 }
 
 export type Mission = SingleParticipantMission | MultiParticipantMission;

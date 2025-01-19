@@ -1,7 +1,15 @@
 'use client';
 
 import { useState } from 'react';
-import { Loader2, Users, Clock, Coins, AlertTriangle } from 'lucide-react';
+import {
+  Loader2,
+  Users,
+  Clock,
+  Coins,
+  AlertTriangle,
+  AlertCircle,
+  AlertOctagon,
+} from 'lucide-react';
 import {
   Dialog,
   DialogContent,
@@ -11,7 +19,13 @@ import {
   Button,
   Badge,
 } from '@/components/ui';
-import { Mission, MissionType, ParticipantType } from '@/lib/types';
+import {
+  Mission,
+  MissionType,
+  FailureCondition,
+  FailureConditionSeverity as Severity,
+  FailureConditionCategory as Category,
+} from '@/lib/types';
 
 export interface MissionDetailsDialogProps {
   mission: Mission;
@@ -43,6 +57,32 @@ const getRequirementsList = (mission: Mission) => {
   }
 
   return requirements;
+};
+
+const getSeverityIcon = (severity: Severity) => {
+  switch (severity) {
+    case Severity.Critical:
+      return <AlertOctagon className="h-4 w-4 text-red-400" />;
+    case Severity.Major:
+      return <AlertCircle className="h-4 w-4 text-yellow-400" />;
+    case Severity.Minor:
+      return <AlertTriangle className="h-4 w-4 text-blue-400" />;
+  }
+};
+
+const getCategoryColor = (category: Category) => {
+  switch (category) {
+    case Category.Performance:
+      return 'bg-blue-500/20 text-blue-400';
+    case Category.Security:
+      return 'bg-red-500/20 text-red-400';
+    case Category.Quality:
+      return 'bg-purple-500/20 text-purple-400';
+    case Category.Time:
+      return 'bg-yellow-500/20 text-yellow-400';
+    case Category.Resource:
+      return 'bg-green-500/20 text-green-400';
+  }
 };
 
 export function MissionDetailsDialog({ mission, isOpen, onClose }: MissionDetailsDialogProps) {
@@ -105,11 +145,21 @@ export function MissionDetailsDialog({ mission, isOpen, onClose }: MissionDetail
 
           <div className="space-y-4">
             <h4 className="text-lg font-semibold text-cyber-purple-light">Failure Conditions</h4>
-            <div className="space-y-2">
-              {mission.failureConditions?.map((condition: string, index: number) => (
-                <div key={index} className="flex items-center gap-2 text-gray-300">
-                  <AlertTriangle className="h-4 w-4 text-red-400" />
-                  <span>{condition}</span>
+            <div className="space-y-3">
+              {mission.failureConditions.map((condition: FailureCondition) => (
+                <div key={condition.id} className="flex items-start gap-3 text-gray-300">
+                  {getSeverityIcon(condition.severity)}
+                  <div className="flex-1 space-y-1">
+                    <p>{condition.description}</p>
+                    <div className="flex gap-2">
+                      <Badge variant="outline" className="text-xs border-red-400/50">
+                        {condition.severity.toLowerCase()}
+                      </Badge>
+                      <Badge className={`text-xs ${getCategoryColor(condition.category)}`}>
+                        {condition.category.toLowerCase()}
+                      </Badge>
+                    </div>
+                  </div>
                 </div>
               ))}
             </div>
