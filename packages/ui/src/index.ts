@@ -6,6 +6,8 @@ export type { InputProps } from './input';
 export { Button } from './button';
 export type { ButtonProps } from './button';
 
+export { Avatar, AvatarImage, AvatarFallback } from './avatar';
+
 export { Card, CardHeader, CardFooter, CardTitle, CardDescription, CardContent } from './card';
 
 export {

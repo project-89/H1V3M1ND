@@ -67,7 +67,7 @@ export function WalletButton() {
         <Button
           variant="outline"
           size="sm"
-          className="!shadow-none hover:!shadow-none border border-cyber-purple hover:bg-cyber-purple/70 transition-colors duration-200"
+          className="!shadow-none hover:!shadow-none bg-cyber-purple border border-cyber-purple hover:bg-cyber-purple-light transition-colors duration-200"
         >
           {`${publicKey?.slice(0, 6)}...${publicKey?.slice(-4)}`}
         </Button>
@@ -75,7 +75,6 @@ export function WalletButton() {
       <DropdownMenuContent
         className="w-56 bg-cyber-dark border border-cyber-purple mt-6 mr-20"
         align="center"
-        sideOffset={4}
       >
         <DropdownMenuLabel className="text-gray-400 px-3 py-2">Wallet</DropdownMenuLabel>
         <DropdownMenuSeparator className="bg-cyber-purple/20" />
