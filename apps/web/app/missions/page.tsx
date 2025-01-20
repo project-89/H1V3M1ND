@@ -156,7 +156,7 @@ export default function MissionsPage() {
     <>
       <div className="grid-background" />
       <div className="flex flex-col">
-        <div className="fixed top-[6%] pt-4 left-0 right-0 z-10 bg-gradient-to-b from-gray-900 to-transparent pb-6">
+        <div className="fixed top-[6%] pt-4 left-0 right-0 z-10 bg-gradient-to-b from-black via-cyber-darker/90 to-transparent pb-6">
           <div className="container mx-auto px-4">
             <div className="flex items-center justify-between my-6">
               <div>
@@ -179,7 +179,7 @@ export default function MissionsPage() {
             <FilterBar onFilterChange={handleFilterChange} />
           </div>
         </div>
-        <div className="flex-1 overflow-y-auto px-4 mt-[180px] pt-4">
+        <div className="flex-1 overflow-y-auto px-10 mt-[180px] pt-4">
           <div className="container mx-auto">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {filteredMissions.length === 0 ? (

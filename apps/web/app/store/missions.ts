@@ -2,13 +2,9 @@ import { create, StateCreator } from 'zustand';
 import {
   Mission,
   MissionStatus,
-  ParticipantType,
   SingleParticipantMission,
   MissionType,
-  FailureConditionSeverity as Severity,
-  FailureConditionCategory as Category,
   MultiParticipantMission,
-  ROLE,
 } from '@/lib/types';
 import { sampleMissions } from '@/lib/examples/missions';
 
