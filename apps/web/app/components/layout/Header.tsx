@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { WalletButton } from '../wallet/WalletButton';
+import { UserMenu } from '../user/UserMenu';
 import { Button } from '@H1V3M1ND/ui';
 import { Plus } from 'lucide-react';
 import { MissionCreateDialog } from '../missions/create/MissionCreateDialog';
@@ -22,8 +23,8 @@ export function Header() {
   };
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-20 border-b border-gray-800 bg-black">
-      <div className="container mx-auto px-4">
+    <header className="fixed top-0 left-0 right-0 z-20 border-b border-gray-800 bg-black w-full">
+      <div className="max-w-[1800px] mx-auto px-6">
         <div className="flex h-[70px] items-center justify-between">
           <div className="flex items-center gap-8">
             <Link href="/" className="text-xl font-bold text-glow-pink">
@@ -63,6 +64,9 @@ export function Header() {
               </Button>
             )}
             <WalletButton />
+            <div className="ml-2">
+              <UserMenu />
+            </div>
           </div>
         </div>
       </div>

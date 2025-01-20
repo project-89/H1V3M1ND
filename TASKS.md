@@ -173,20 +173,102 @@
   - [ ] Transfer functions
   - [ ] Allowance system
 
+### Agent Registration UI ⚡
+- [ ] Human Agent Registration Flow
+  - [ ] Add "Become an Agent" button to profile
+  - [ ] Create registration form component
+    - [ ] Basic information step
+    - [ ] Capability selection with custom input option
+    - [ ] Verification proof upload
+    - [ ] Review & submit
+  - [ ] Implement API endpoint integration
+  - [ ] Add success/error states
+
+- [ ] AI Agent Registration Flow
+  - [ ] Create on-chain registration interface
+  - [ ] Implement capability declaration system
+  - [ ] Add API endpoint verification
+  - [ ] Create automated verification process
+  - [ ] Add monitoring dashboard for AI agents
+
+- [ ] Agent Profile UI
+  - [ ] Create unified profile view component
+    - [ ] Human agent view
+    - [ ] AI agent view
+  - [ ] Display capabilities and verification status
+  - [ ] Show mission history and stats
+  - [ ] Add capability management interface
+    - [ ] Add/remove capabilities
+    - [ ] Custom capability input
+    - [ ] Capability verification status
+
+- [ ] Verification Interface
+  - [ ] Create verification request list
+  - [ ] Add capability verification form
+  - [ ] Implement verification status updates
+  - [ ] Add feedback/notes system
+  - [ ] Automated verification for AI agents
+  - [ ] Manual verification for custom capabilities
+
+- [ ] Dashboard Integration
+  - [ ] Add agent registration buttons
+    - [ ] Human agent registration
+    - [ ] AI agent registration
+  - [ ] Create agents list view
+    - [ ] Filter by agent type
+    - [ ] Search by capabilities
+    - [ ] Sort by verification status
+  - [ ] Add agent status indicators
+  - [ ] Create agent analytics view
+
 ### Backend Services
 - [ ] API Implementation
   - [ ] Mission management
   - [ ] Transaction history
-- [ ] Profile System
-  - [ ] Profile data management
-    - [ ] Agent profile creation & verification
-    - [ ] Capability system
-    - [ ] Mission history tracking
-    - [ ] Reputation calculation
-  - [ ] Achievement system
-    - [ ] Achievement triggers
-    - [ ] Progress tracking
-    - [ ] Reward distribution
+
+### User Authentication & Profile Flow 🔥
+- [ ] Wallet Authentication
+  - [ ] Implement wallet connection as auth method
+  - [ ] Auto-create basic profile on first connection
+  - [ ] Handle wallet disconnection
+  - [ ] Session management
+
+- [ ] Header Profile UI
+  - [ ] Add avatar placeholder in header
+  - [ ] Create user settings dropdown
+    - [ ] Profile settings option
+    - [ ] Wallet info display
+    - [ ] Logout option
+  - [ ] Add notifications indicator
+  - [ ] Show connected wallet address
+
+- [ ] Profile Settings
+  - [ ] Create settings modal/page
+    - [ ] Avatar upload/change
+    - [ ] Display name input
+    - [ ] Bio/description
+    - [ ] Social links
+  - [ ] Profile preview
+  - [ ] Save/cancel actions
+  - [ ] Loading states
+
+- [ ] Profile Store
+  - [ ] Create profile zustand store
+  - [ ] Profile update actions
+  - [ ] Cache profile data
+  - [ ] Handle profile loading states
+  - [ ] Profile validation
+
+### Profile System
+- [ ] Profile data management
+  - [ ] Agent profile creation & verification
+  - [ ] Capability system
+  - [ ] Mission history tracking
+  - [ ] Reputation calculation
+- [ ] Achievement system
+  - [ ] Achievement triggers
+  - [ ] Progress tracking
+  - [ ] Reward distribution
 - [ ] IPFS Integration
   - [ ] Evidence storage
   - [ ] Mission data backup
