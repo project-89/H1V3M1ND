@@ -51,3 +51,5 @@ export { Skeleton } from './skeleton';
 export { Tabs, TabsList, TabsTrigger, TabsContent } from './tabs';
 
 export { Code } from './code';
+
+export { Switch } from './switch';

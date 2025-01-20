@@ -1,6 +1,7 @@
 import { Inter } from 'next/font/google';
 import './globals.css';
-import { Header } from './components/layout/Header';
+import './styles/grid-background.css';
+import { Header } from '@/components/layout/Header';
 import { Footer } from './components/layout/Footer';
 import { Toaster } from 'sonner';
 
@@ -17,6 +18,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body
         className={`${inter.className} min-h-screen bg-gradient-to-b from-gray-900 to-black text-white`}
       >
+        <div className="grid-background" />
         <div className="flex flex-col min-h-screen pt-[72px]">
           <Header />
           <main className="flex-1 container mx-auto px-4 py-8 mb-[180px]">{children}</main>

@@ -57,24 +57,6 @@ export function ProfileHeader({ username, avatarUrl, stats }: ProfileHeaderProps
             </div>
           </div>
         </div>
-
-        <Button
-          onClick={handleConnect}
-          disabled={isConnecting}
-          className="bg-cyber-purple hover:bg-cyber-purple/80"
-        >
-          {isConnecting ? (
-            <>
-              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-              Connecting...
-            </>
-          ) : (
-            <>
-              <Wallet className="mr-2 h-4 w-4" />
-              Connect Wallet
-            </>
-          )}
-        </Button>
       </div>
 
       <div className="grid grid-cols-3 gap-4 mt-6">

@@ -20,7 +20,6 @@ import {
   SingleParticipantMission,
   MultiParticipantMission,
 } from '@/lib/types';
-import '../styles/grid-background.css';
 
 function filterMissions(missions: Mission[], filters: FilterState): Mission[] {
   return missions.filter((mission) => {
@@ -171,7 +170,6 @@ export default function MissionsPage() {
 
   return (
     <>
-      <div className="grid-background" />
       <div className="flex flex-col">
         <div className="fixed top-[6%] pt-4 left-0 right-0 z-[0] bg-gradient-to-b from-black via-cyber-darker/90 to-transparent pb-6">
           <div className="container mx-auto px-4">
