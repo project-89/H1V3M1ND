@@ -153,7 +153,7 @@ export default function MissionsPage() {
     <>
       <div className="grid-background" />
       <div className="flex flex-col">
-        <div className="fixed top-[6%] pt-0 left-0 right-0 z-[0] bg-gradient-to-b from-black via-cyber-darker/90 to-transparent pb-6">
+        <div className="fixed top-[6%] pt-4 left-0 right-0 z-[0] bg-gradient-to-b from-black via-cyber-darker/90 to-transparent pb-6">
           <div className="container mx-auto px-4">
             <div className="flex items-center justify-between my-6">
               <div>
