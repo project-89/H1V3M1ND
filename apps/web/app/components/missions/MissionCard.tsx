@@ -93,9 +93,9 @@ export function MissionCard({ mission, onClick }: MissionCardProps) {
         </div>
       </CardContent>
 
-      <CardFooter className="border-t border-cyber-purple bg-cyber-dark/50">
-        <div className="flex w-full items-center justify-between">
-          <div className="flex items-center space-x-4">
+      <CardFooter className="border-t  border-cyber-purple bg-cyber-dark/50">
+        <div className="flex w-full items-center justify-between pt-4">
+          <div className="flex items-center space-x-4 ">
             <div className="text-sm">
               <span className="text-gray-400">Reward: </span>
               <span className="text-neon-pink font-bold">1000 Project89</span>

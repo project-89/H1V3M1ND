@@ -71,7 +71,7 @@ export function FilterBar({ onFilterChange }: FilterBarProps) {
           <DropdownMenuTrigger asChild>
             <Button
               variant="outline"
-              className="border-cyber-purple-light hover:border-neon-pink h-9"
+              className="border-cyber-purple-light hover:border-cyber-pink h-9 focus:border-cyber-pink-dark focus:outline-none transition-colors duration-100"
             >
               <div className="flex items-center gap-2">
                 <span>{filters.participantType || 'Participant Type'}</span>
@@ -79,22 +79,28 @@ export function FilterBar({ onFilterChange }: FilterBarProps) {
               </div>
             </Button>
           </DropdownMenuTrigger>
-          <DropdownMenuContent className="bg-cyber-dark border-cyber-purple">
-            <DropdownMenuItem onClick={() => updateFilters({ participantType: undefined })}>
+          <DropdownMenuContent className="bg-cyber-dark border-cyber-purple shadow-cyber hover:shadow-cyber-lg">
+            <DropdownMenuItem
+              onClick={() => updateFilters({ participantType: undefined })}
+              className="hover:bg-cyber-purple/70 hover:text-white"
+            >
               All
             </DropdownMenuItem>
             <DropdownMenuItem
               onClick={() => updateFilters({ participantType: ParticipantType.Human })}
+              className="hover:bg-cyber-purple/70 hover:text-white"
             >
               Human
             </DropdownMenuItem>
             <DropdownMenuItem
               onClick={() => updateFilters({ participantType: ParticipantType.Agent })}
+              className="hover:bg-cyber-purple/70 hover:text-white"
             >
               Agent
             </DropdownMenuItem>
             <DropdownMenuItem
               onClick={() => updateFilters({ participantType: ParticipantType.Any })}
+              className="hover:bg-cyber-purple/70 hover:text-white"
             >
               Any
             </DropdownMenuItem>
@@ -106,7 +112,7 @@ export function FilterBar({ onFilterChange }: FilterBarProps) {
           <DropdownMenuTrigger asChild>
             <Button
               variant="outline"
-              className="border-cyber-purple-light hover:border-neon-pink h-9"
+              className="border-cyber-purple-light hover:border-cyber-pink h-9 focus:border-cyber-pink-dark focus:outline-none transition-colors duration-100"
             >
               <div className="flex items-center gap-2">
                 <span>{filters.scale || 'Scale'}</span>
@@ -135,7 +141,7 @@ export function FilterBar({ onFilterChange }: FilterBarProps) {
           <DropdownMenuTrigger asChild>
             <Button
               variant="outline"
-              className="border-cyber-purple-light hover:border-neon-pink h-9"
+              className="border-cyber-purple-light hover:border-cyber-pink h-9 focus:border-cyber-pink-dark focus:outline-none transition-colors duration-100"
             >
               <div className="flex items-center gap-2">
                 <span>{filters.status || 'Status'}</span>
@@ -169,7 +175,7 @@ export function FilterBar({ onFilterChange }: FilterBarProps) {
           <DropdownMenuTrigger asChild>
             <Button
               variant="outline"
-              className="border-cyber-purple-light hover:border-neon-pink h-9"
+              className="border-cyber-purple-light hover:border-cyber-pink h-9 focus:border-cyber-pink-dark focus:outline-none transition-colors duration-100"
             >
               <div className="flex items-center gap-2">
                 <Clock size={16} />
@@ -201,7 +207,7 @@ export function FilterBar({ onFilterChange }: FilterBarProps) {
           <DropdownMenuTrigger asChild>
             <Button
               variant="outline"
-              className="border-cyber-purple-light hover:border-neon-pink h-9"
+              className="border-cyber-purple-light hover:border-cyber-pink h-9 focus:border-cyber-pink-dark focus:outline-none transition-colors duration-100"
             >
               <div className="flex items-center gap-2">
                 <Coins size={16} />
