@@ -5,29 +5,16 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { WalletButton } from '../wallet/WalletButton';
 import { UserMenu } from '../user/UserMenu';
-import { Button } from '@H1V3M1ND/ui';
-import { Plus } from 'lucide-react';
-import { MissionCreateDialog } from '../missions/create/MissionCreateDialog';
-import { useMissionStore } from '@/store/missions';
-import { useWalletStore } from '@/store/wallet';
 
 export function Header() {
   const pathname = usePathname();
-  const [isCreateDialogOpen, setIsCreateDialogOpen] = useState(false);
-  const { createMission } = useMissionStore();
-  const { isConnected } = useWalletStore();
-
-  const handleCreateMission = async (missionData: any) => {
-    await createMission(missionData);
-    setIsCreateDialogOpen(false);
-  };
 
   return (
     <header className="fixed top-0 left-0 right-0 z-20 border-b border-gray-800 bg-black w-full">
       <div className="max-w-[1800px] mx-auto px-6">
         <div className="flex h-[70px] items-center justify-between">
           <div className="flex items-center gap-8">
-            <Link href="/" className="text-xl font-bold text-glow-pink">
+            <Link href="/" className="text-xl font-bold text-primary">
               H1V3M1ND
             </Link>
             <nav className="hidden md:block">
@@ -53,29 +40,12 @@ export function Header() {
           </div>
           <div className="flex items-center gap-4">
             <WalletButton />
-            <Button
-              variant="outline"
-              size="sm"
-              disabled={!isConnected}
-              className="!shadow-none hover:!shadow-none border border-cyber-purple hover:bg-cyber-purple/70 transition-colors duration-200"
-            >
-              <div className="flex items-center gap-2">
-                <Plus className="h-4 w-4" />
-                Create Mission
-              </div>
-            </Button>
             <div className="ml-2">
               <UserMenu />
             </div>
           </div>
         </div>
       </div>
-
-      <MissionCreateDialog
-        isOpen={isCreateDialogOpen}
-        onClose={() => setIsCreateDialogOpen(false)}
-        onSubmit={handleCreateMission}
-      />
     </header>
   );
 }

@@ -6,6 +6,10 @@ import { MissionCard } from '@/components/missions/MissionCard';
 import { MissionDetailsDialog } from '@/components/missions/MissionDetailsDialog';
 import { MissionCreateDialog } from '@/components/missions/create/MissionCreateDialog';
 import { useMissionStore, useWalletStore } from '@/store';
+import { Button } from '@H1V3M1ND/ui';
+import { Terminal, Plus } from 'lucide-react';
+import { sampleMissions } from '@/lib/examples/missions';
+import { toast } from 'sonner';
 
 import {
   Mission,
@@ -16,9 +20,6 @@ import {
   SingleParticipantMission,
   MultiParticipantMission,
 } from '@/lib/types';
-import { Terminal } from 'lucide-react';
-
-import { sampleMissions } from '@/lib/examples/missions';
 import '../styles/grid-background.css';
 
 function filterMissions(missions: Mission[], filters: FilterState): Mission[] {
@@ -138,6 +139,25 @@ export default function MissionsPage() {
     setIsCreateDialogOpen(false);
   };
 
+  const handleCreateMissionClick = () => {
+    if (!isWalletConnected) {
+      toast('Connect Wallet', {
+        description: 'Please connect your wallet to create missions',
+        action: {
+          label: 'Connect',
+          onClick: () => {
+            const walletButton = document.querySelector(
+              '[data-wallet-button="true"]'
+            ) as HTMLElement;
+            walletButton?.click();
+          },
+        },
+      });
+      return;
+    }
+    setIsCreateDialogOpen(true);
+  };
+
   // Only show loading when we're refreshing actual mission data
   if (isLoading && missions && missions.length > 0) {
     return (
@@ -162,6 +182,17 @@ export default function MissionsPage() {
                   Find and accept missions that match your capabilities
                 </p>
               </div>
+              <Button
+                variant="default"
+                size="lg"
+                onClick={handleCreateMissionClick}
+                className="shadow-none hover:shadow-none border-2 bg-[#582cd0] border-cyber-purple hover:bg-[#582cd0]/70 transition-colors duration-200"
+              >
+                <div className="flex items-center gap-3">
+                  <Plus className="h-5 w-5" />
+                  Create Mission
+                </div>
+              </Button>
             </div>
 
             <FilterBar onFilterChange={handleFilterChange} />

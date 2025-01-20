@@ -23,14 +23,18 @@ export function UserMenu() {
           </div>
         </button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="w-56 bg-cyber-dark border-cyber-purple" align="end">
-        <DropdownMenuLabel className="text-gray-400">My Account</DropdownMenuLabel>
+      <DropdownMenuContent
+        className="w-56 bg-cyber-dark border border-cyber-purple mt-5"
+        align="end"
+        sideOffset={4}
+      >
+        <DropdownMenuLabel className="text-gray-400 px-3 py-2">My Account</DropdownMenuLabel>
         <DropdownMenuSeparator className="bg-cyber-purple/20" />
-        <DropdownMenuItem className="flex items-center gap-2 cursor-pointer hover:bg-cyber-purple/10">
+        <DropdownMenuItem className="flex items-center gap-2">
           <Settings className="w-4 h-4" />
           <span>Settings</span>
         </DropdownMenuItem>
-        <DropdownMenuItem className="flex items-center gap-2 text-red-400 cursor-pointer hover:bg-red-500/10">
+        <DropdownMenuItem className="flex items-center gap-2 text-red-400">
           <LogOut className="w-4 h-4" />
           <span>Log out</span>
         </DropdownMenuItem>

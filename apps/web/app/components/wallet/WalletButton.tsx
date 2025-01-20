@@ -1,23 +1,24 @@
 'use client';
 
-import { Button } from '@H1V3M1ND/ui';
+import {
+  Button,
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from '@H1V3M1ND/ui';
 import { useWalletStore } from '@/store/wallet';
 import { useState } from 'react';
-import { Loader2 } from 'lucide-react';
+import { Loader2, Coins, LogOut } from 'lucide-react';
 
 export function WalletButton() {
   const { isConnected, publicKey, setConnected, setPublicKey } = useWalletStore();
   const [isLoading, setIsLoading] = useState(false);
   const [balance, setBalance] = useState('0');
 
-  const handleClick = async () => {
-    if (isConnected) {
-      // Disconnect wallet
-      setConnected(false);
-      setPublicKey(null);
-      return;
-    }
-
+  const handleConnect = async () => {
     setIsLoading(true);
     try {
       // Simulate wallet connection for now
@@ -33,38 +34,63 @@ export function WalletButton() {
     }
   };
 
+  const handleDisconnect = () => {
+    setConnected(false);
+    setPublicKey(null);
+  };
+
+  if (!isConnected) {
+    return (
+      <Button
+        variant="default"
+        size="sm"
+        onClick={handleConnect}
+        disabled={isLoading}
+        data-wallet-button="true"
+        className="!shadow-none hover:!shadow-none bg-cyber-purple hover:bg-cyber-purple-light transition-colors duration-200"
+      >
+        {isLoading ? (
+          <div className="flex items-center gap-2">
+            <Loader2 className="h-4 w-4 animate-spin" />
+            <span>Connecting...</span>
+          </div>
+        ) : (
+          'Connect Wallet'
+        )}
+      </Button>
+    );
+  }
+
   return (
-    <div className="flex items-center gap-4">
-      {isConnected ? (
-        <div className="flex items-center gap-2">
-          <span className="text-sm text-gray-400">{balance} P89</span>
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={handleClick}
-            className="!shadow-none hover:!shadow-none border border-cyber-purple hover:bg-cyber-purple/10 transition-colors duration-200"
-          >
-            {`${publicKey?.slice(0, 6)}...${publicKey?.slice(-4)}`}
-          </Button>
-        </div>
-      ) : (
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
         <Button
-          variant="default"
+          variant="outline"
           size="sm"
-          onClick={handleClick}
-          disabled={isLoading}
-          className="!shadow-none hover:!shadow-none bg-cyber-purple hover:bg-cyber-purple-light transition-colors duration-200"
+          className="!shadow-none hover:!shadow-none border border-cyber-purple hover:bg-cyber-purple/70 transition-colors duration-200"
         >
-          {isLoading ? (
-            <>
-              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-              Connecting...
-            </>
-          ) : (
-            'Connect Wallet'
-          )}
+          {`${publicKey?.slice(0, 6)}...${publicKey?.slice(-4)}`}
         </Button>
-      )}
-    </div>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent
+        className="w-56 bg-cyber-dark border border-cyber-purple"
+        align="center"
+        sideOffset={4}
+      >
+        <DropdownMenuLabel className="text-gray-400 px-3 py-2">Wallet</DropdownMenuLabel>
+        <DropdownMenuSeparator className="bg-cyber-purple/20" />
+        <div className="px-3 py-2 flex items-center gap-2 text-sm">
+          <Coins className="w-4 h-4 text-cyber-purple" />
+          <span>{balance} Project89</span>
+        </div>
+        <DropdownMenuItem
+          className="flex items-center gap-2 text-red-400"
+          onClick={handleDisconnect}
+        >
+          <LogOut className="w-4 h-4" />
+          <span>Disconnect</span>
+        </DropdownMenuItem>
+      </DropdownMenuContent>
+    </DropdownMenu>
   );
 }
