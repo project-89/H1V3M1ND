@@ -52,18 +52,18 @@ export function Header() {
             </nav>
           </div>
           <div className="flex items-center gap-4">
-            {isConnected && (
-              <Button
-                onClick={() => setIsCreateDialogOpen(true)}
-                className="bg-cyber-purple hover:bg-cyber-purple/80 h-9"
-              >
-                <div className="flex items-center gap-2">
-                  <Plus className="h-4 w-4" />
-                  <span>Create Mission</span>
-                </div>
-              </Button>
-            )}
             <WalletButton />
+            <Button
+              variant="outline"
+              size="sm"
+              disabled={!isConnected}
+              className="!shadow-none hover:!shadow-none border border-cyber-purple hover:bg-cyber-purple/70 transition-colors duration-200"
+            >
+              <div className="flex items-center gap-2">
+                <Plus className="h-4 w-4" />
+                Create Mission
+              </div>
+            </Button>
             <div className="ml-2">
               <UserMenu />
             </div>
