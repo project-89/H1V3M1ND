@@ -65,14 +65,6 @@ export function WalletButton() {
           )}
         </Button>
       )}
-      <Button
-        variant="outline"
-        size="sm"
-        disabled={!isConnected}
-        className="!shadow-none hover:!shadow-none border border-cyber-purple hover:bg-cyber-purple/10 transition-colors duration-200"
-      >
-        Create Mission
-      </Button>
     </div>
   );
 }
