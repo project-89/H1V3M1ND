@@ -1,9 +1,8 @@
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap');
-
+/* Import Tailwind directives */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
- 
+
 @layer base {
   :root {
     /* Base shadcn theme colors */
@@ -120,6 +119,31 @@
     --dialog-title-color: hsl(var(--cyber-purple-hsl));
     --dialog-description-color: rgb(156, 163, 175);
 
+    /* Dropdown Menu theme variables */
+    --dropdown-border: rgba(45, 27, 105, 0.5);
+    --dropdown-bg: rgba(26, 23, 39, 0.9);
+    --dropdown-text: rgb(229, 231, 235);
+    --dropdown-shadow: 0 0 30px -5px #2d1b69;
+    
+    --dropdown-item-hover-bg: rgba(45, 27, 105, 0.1);
+    --dropdown-item-hover-text: hsl(var(--cyber-purple-light-hsl));
+    
+    --dropdown-separator-bg: rgba(45, 27, 105, 0.5);
+    
+    --dropdown-label-text: hsl(var(--cyber-purple-hsl));
+    --dropdown-shortcut-text: rgb(156, 163, 175);
+    
+    --dropdown-sub-trigger-hover-bg: rgba(45, 27, 105, 0.1);
+    --dropdown-sub-trigger-hover-text: hsl(var(--cyber-purple-light-hsl));
+    
+    --dropdown-checkbox-indicator-bg: hsl(var(--cyber-purple-hsl));
+    --dropdown-radio-indicator-bg: hsl(var(--cyber-purple-hsl));
+
+    /* Label theme variables */
+    --label-text: rgb(209, 213, 219);
+    --label-hover: rgb(229, 231, 235);
+    --label-disabled-opacity: 0.7;
+
     /* Cyber theme colors as HSL values */
     --cyber-black-hsl: 252 25% 9%;
     --cyber-darker-hsl: 252 30% 6%;
@@ -134,213 +158,80 @@
     --neon-purple-hsl: 290 100% 50%;
     --neon-pink-hsl: 320 100% 50%;
     --neon-blue-hsl: 210 100% 50%;
-
-    /* Fallback hex values for direct color access */
-    --cyber-black: hsl(var(--cyber-black-hsl));
-    --cyber-darker: hsl(var(--cyber-darker-hsl));
-    --cyber-dark: hsl(var(--cyber-dark-hsl));
-    --cyber-purple: hsl(var(--cyber-purple-hsl));
-    --cyber-purple-light: hsl(var(--cyber-purple-light-hsl));
-    --cyber-pink: hsl(var(--cyber-pink-hsl));
-    --cyber-pink-dark: hsl(var(--cyber-pink-dark-hsl));
   }
 
   * {
     @apply border-border;
   }
-  
-  html {
-    @apply antialiased;
-    background: linear-gradient(to bottom, hsl(230 25% 5%), hsl(230 25% 2%));
-    min-height: 100vh;
-  }
-
   body {
-    @apply bg-transparent text-foreground;
-    text-shadow: 0 0 5px rgba(150, 255, 255, 0.3);
-  }
-
-  /* Terminal-style text selection */
-  ::selection {
-    @apply bg-primary/30 text-foreground;
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
   }
 }
 
-@layer components {
-  /* Card with cyber borders */
-  .cyber-card {
-    @apply relative overflow-hidden rounded-sm border border-primary/20 bg-card p-4;
-    box-shadow: 
-      inset 0 0 10px rgba(var(--primary), 0.2),
-      0 0 10px rgba(var(--primary), 0.1);
-  }
-
-  /* Glowing text effect */
-  .neon-text {
-    @apply relative;
-    text-shadow: 
-      0 0 5px theme('colors.primary.DEFAULT'),
-      0 0 10px theme('colors.primary.DEFAULT'),
-      0 0 20px theme('colors.primary.DEFAULT');
-  }
-
-  /* Matrix-style scrollbar */
-  ::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
-  }
-
-  ::-webkit-scrollbar-track {
-    @apply bg-background;
-  }
-
-  ::-webkit-scrollbar-thumb {
-    @apply bg-primary/50 rounded-full;
-    border: 2px solid transparent;
-    background-clip: padding-box;
-  }
-
-  ::-webkit-scrollbar-thumb:hover {
-    @apply bg-primary/70;
-  }
-}
-
+/* Cyberpunk Utilities */
 @layer utilities {
-  /* Glitch effect utilities */
-  .glitch-effect {
-    position: relative;
+  .cyber-border {
+    @apply border border-cyber-purple-light shadow-cyber;
   }
 
-  .glitch-effect::before,
-  .glitch-effect::after {
-    content: attr(data-text);
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    clip: rect(0, 0, 0, 0);
+  .cyber-card {
+    @apply bg-cyber-dark border border-cyber-purple-light shadow-cyber-md 
+           hover:shadow-cyber-lg transition-shadow duration-300;
   }
 
-  .glitch-effect::before {
-    left: -2px;
-    text-shadow: 2px 0 theme('colors.accent.DEFAULT');
-    animation: glitch-anim-1 2s infinite linear alternate-reverse;
+  .text-glow {
+    text-shadow: 0 0 10px theme('colors.neon.purple'),
+                 0 0 20px theme('colors.neon.purple');
   }
 
-  .glitch-effect::after {
-    left: 2px;
-    text-shadow: -2px 0 theme('colors.primary.DEFAULT');
-    animation: glitch-anim-2 3s infinite linear alternate-reverse;
+  .text-glow-pink {
+    text-shadow: 0 0 10px theme('colors.neon.pink'),
+                 0 0 20px theme('colors.neon.pink');
   }
 
-  /* Cyber gradient text */
+  .glitch-text {
+    @apply relative;
+    text-shadow: 0.05em 0 0 theme('colors.neon.pink'),
+                -0.025em -0.05em 0 theme('colors.neon.purple'),
+                0.025em 0.05em 0 theme('colors.neon.blue');
+    animation: glitch 500ms infinite;
+  }
+
   .cyber-gradient {
-    @apply bg-clip-text text-transparent;
-    background-image: linear-gradient(
-      90deg,
-      theme('colors.primary.DEFAULT'),
-      theme('colors.accent.DEFAULT'),
-      theme('colors.primary.DEFAULT')
+    background: linear-gradient(
+      135deg,
+      theme('colors.cyber.purple') 0%,
+      theme('colors.cyber.purple-light') 50%,
+      theme('colors.cyber.pink') 100%
     );
-    background-size: 200% auto;
-    animation: cyber-gradient 3s linear infinite;
   }
 
-  /* Terminal typing effect */
-  .terminal-cursor::after {
-    content: '|';
-    animation: terminal-blink 1.2s step-end infinite;
+  .cyber-gradient-animate {
+    background: linear-gradient(
+      270deg,
+      theme('colors.cyber.purple'),
+      theme('colors.cyber.purple-light'),
+      theme('colors.cyber.pink'),
+      theme('colors.cyber.purple-light'),
+      theme('colors.cyber.purple')
+    );
+    background-size: 200% 100%;
+    animation: gradient 6s ease infinite;
+  }
+
+  .hide-scrollbar {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;     /* Firefox */
+  }
+  
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;  /* Chrome, Safari and Opera */
   }
 }
 
-@keyframes glitch-anim-1 {
-  0% {
-    clip: rect(20px, 9999px, 21px, 0);
-  }
-  10% {
-    clip: rect(42px, 9999px, 44px, 0);
-  }
-  20% {
-    clip: rect(15px, 9999px, 18px, 0);
-  }
-  30% {
-    clip: rect(34px, 9999px, 37px, 0);
-  }
-  40% {
-    clip: rect(26px, 9999px, 28px, 0);
-  }
-  50% {
-    clip: rect(5px, 9999px, 7px, 0);
-  }
-  60% {
-    clip: rect(48px, 9999px, 50px, 0);
-  }
-  70% {
-    clip: rect(11px, 9999px, 13px, 0);
-  }
-  80% {
-    clip: rect(38px, 9999px, 41px, 0);
-  }
-  90% {
-    clip: rect(23px, 9999px, 25px, 0);
-  }
-  100% {
-    clip: rect(9px, 9999px, 11px, 0);
-  }
+@keyframes gradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
-
-@keyframes glitch-anim-2 {
-  0% {
-    clip: rect(25px, 9999px, 28px, 0);
-  }
-  10% {
-    clip: rect(48px, 9999px, 50px, 0);
-  }
-  20% {
-    clip: rect(12px, 9999px, 14px, 0);
-  }
-  30% {
-    clip: rect(37px, 9999px, 40px, 0);
-  }
-  40% {
-    clip: rect(21px, 9999px, 24px, 0);
-  }
-  50% {
-    clip: rect(8px, 9999px, 10px, 0);
-  }
-  60% {
-    clip: rect(45px, 9999px, 47px, 0);
-  }
-  70% {
-    clip: rect(16px, 9999px, 18px, 0);
-  }
-  80% {
-    clip: rect(33px, 9999px, 36px, 0);
-  }
-  90% {
-    clip: rect(28px, 9999px, 30px, 0);
-  }
-  100% {
-    clip: rect(4px, 9999px, 6px, 0);
-  }
-}
-
-@keyframes cyber-gradient {
-  0% {
-    background-position: 0% 50%;
-  }
-  100% {
-    background-position: 200% 50%;
-  }
-}
-
-@keyframes terminal-blink {
-  0%, 100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0;
-  }
-}
- 

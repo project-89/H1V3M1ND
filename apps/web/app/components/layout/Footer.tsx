@@ -2,7 +2,7 @@ import { Book, Github, Twitter, MessageCircle } from 'lucide-react';
 
 export function Footer() {
   return (
-    <footer className="border-t border-gray-800 bg-black/50 backdrop-blur-sm">
+    <footer className="border-t border-gray-800 bg-black">
       <div className="container mx-auto px-6 py-2 max-w-[1800px]">
         <div className="flex items-center justify-between">
           <div>

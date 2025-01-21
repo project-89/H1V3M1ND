@@ -1,7 +1,7 @@
-import './styles/globals.css';
+import '../styles/globals.css';
 
+// Shadcn components
 export { Input } from './input';
-export type { InputProps } from './input';
 
 export { Button } from './button';
 export type { ButtonProps } from './button';
@@ -40,16 +40,10 @@ export { Textarea } from './textarea';
 
 export { Progress } from './progress';
 
-export { LoadingProgress } from './loading-progress';
-
-export { ErrorState } from './error-state';
-
-export { Fade } from './fade';
+export { Switch } from './switch';
 
 export { Skeleton } from './skeleton';
 
 export { Tabs, TabsList, TabsTrigger, TabsContent } from './tabs';
 
-export { Code } from './code';
-
-export { Switch } from './switch';
+export { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from './accordion';

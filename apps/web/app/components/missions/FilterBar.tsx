@@ -49,7 +49,7 @@ export function FilterBar({ onFilterChange }: FilterBarProps) {
   };
 
   return (
-    <div className="flex flex-wrap items-center justify-between gap-4 p-4 bg-cyber-darker border border-cyber-purple rounded-lg">
+    <div className="sticky top-0 z-10 flex flex-wrap items-center justify-between gap-4 p-4 bg-cyber-darker border border-cyber-purple rounded-lg backdrop-blur-md">
       {/* Search Input */}
       <div className="relative flex-grow max-w-md">
         <Search
@@ -58,7 +58,7 @@ export function FilterBar({ onFilterChange }: FilterBarProps) {
         />
         <Input
           placeholder="Search missions..."
-          className="pl-10 bg-cyber-dark border-cyber-purple-light focus:border-neon-pink"
+          className="pl-10 bg-cyber-dark border-cyber-purple-light focus:border-cyber-pink"
           value={filters.search}
           onChange={(e) => updateFilters({ search: e.target.value })}
         />
@@ -79,7 +79,7 @@ export function FilterBar({ onFilterChange }: FilterBarProps) {
               </div>
             </Button>
           </DropdownMenuTrigger>
-          <DropdownMenuContent className="bg-cyber-dark border-cyber-purple shadow-cyber hover:shadow-cyber-lg">
+          <DropdownMenuContent className="bg-cyber-dark border-cyber-purple w-40 mt-2">
             <DropdownMenuItem
               onClick={() => updateFilters({ participantType: undefined })}
               className="hover:bg-cyber-purple/70 hover:text-white"
@@ -120,17 +120,29 @@ export function FilterBar({ onFilterChange }: FilterBarProps) {
               </div>
             </Button>
           </DropdownMenuTrigger>
-          <DropdownMenuContent className="bg-cyber-dark border-cyber-purple">
-            <DropdownMenuItem onClick={() => updateFilters({ scale: undefined })}>
+          <DropdownMenuContent className="bg-cyber-dark border-cyber-purple w-20 mt-2">
+            <DropdownMenuItem
+              onClick={() => updateFilters({ scale: undefined })}
+              className="hover:bg-cyber-purple/70 hover:text-white"
+            >
               All
             </DropdownMenuItem>
-            <DropdownMenuItem onClick={() => updateFilters({ scale: MissionScale.Solo })}>
+            <DropdownMenuItem
+              onClick={() => updateFilters({ scale: MissionScale.Solo })}
+              className="hover:bg-cyber-purple/70 hover:text-white"
+            >
               Solo
             </DropdownMenuItem>
-            <DropdownMenuItem onClick={() => updateFilters({ scale: MissionScale.Party })}>
+            <DropdownMenuItem
+              onClick={() => updateFilters({ scale: MissionScale.Party })}
+              className="hover:bg-cyber-purple/70 hover:text-white"
+            >
               Party
             </DropdownMenuItem>
-            <DropdownMenuItem onClick={() => updateFilters({ scale: MissionScale.Swarm })}>
+            <DropdownMenuItem
+              onClick={() => updateFilters({ scale: MissionScale.Swarm })}
+              className="hover:bg-cyber-purple/70 hover:text-white"
+            >
               Swarm
             </DropdownMenuItem>
           </DropdownMenuContent>
@@ -149,22 +161,35 @@ export function FilterBar({ onFilterChange }: FilterBarProps) {
               </div>
             </Button>
           </DropdownMenuTrigger>
-          <DropdownMenuContent className="bg-cyber-dark border-cyber-purple">
-            <DropdownMenuItem onClick={() => updateFilters({ status: undefined })}>
+          <DropdownMenuContent className="bg-cyber-dark border-cyber-purple w-24 mt-2">
+            <DropdownMenuItem
+              onClick={() => updateFilters({ status: undefined })}
+              className="hover:bg-cyber-purple/70 hover:text-white"
+            >
               All
             </DropdownMenuItem>
-            <DropdownMenuItem onClick={() => updateFilters({ status: MissionStatus.Active })}>
+            <DropdownMenuItem
+              onClick={() => updateFilters({ status: MissionStatus.Active })}
+              className="hover:bg-cyber-purple/70 hover:text-white"
+            >
               Active
             </DropdownMenuItem>
-            <DropdownMenuItem onClick={() => updateFilters({ status: MissionStatus.InProgress })}>
+            <DropdownMenuItem
+              onClick={() => updateFilters({ status: MissionStatus.InProgress })}
+              className="hover:bg-cyber-purple/70 hover:text-white"
+            >
               In Progress
             </DropdownMenuItem>
             <DropdownMenuItem
               onClick={() => updateFilters({ status: MissionStatus.PendingValidation })}
+              className="hover:bg-cyber-purple/70 hover:text-white"
             >
               Pending Validation
             </DropdownMenuItem>
-            <DropdownMenuItem onClick={() => updateFilters({ status: MissionStatus.Completed })}>
+            <DropdownMenuItem
+              onClick={() => updateFilters({ status: MissionStatus.Completed })}
+              className="hover:bg-cyber-purple/70 hover:text-white"
+            >
               Completed
             </DropdownMenuItem>
           </DropdownMenuContent>
@@ -186,17 +211,29 @@ export function FilterBar({ onFilterChange }: FilterBarProps) {
               </div>
             </Button>
           </DropdownMenuTrigger>
-          <DropdownMenuContent className="bg-cyber-dark border-cyber-purple">
-            <DropdownMenuItem onClick={() => updateFilters({ timeRange: undefined })}>
+          <DropdownMenuContent className="bg-cyber-dark border-cyber-purple w-40 mt-2">
+            <DropdownMenuItem
+              onClick={() => updateFilters({ timeRange: undefined })}
+              className="hover:bg-cyber-purple/70 hover:text-white"
+            >
               All
             </DropdownMenuItem>
-            <DropdownMenuItem onClick={() => updateFilters({ timeRange: TimeRange.Short })}>
+            <DropdownMenuItem
+              onClick={() => updateFilters({ timeRange: TimeRange.Short })}
+              className="hover:bg-cyber-purple/70 hover:text-white"
+            >
               {TIME_RANGE_LABELS[TimeRange.Short]}
             </DropdownMenuItem>
-            <DropdownMenuItem onClick={() => updateFilters({ timeRange: TimeRange.Medium })}>
+            <DropdownMenuItem
+              onClick={() => updateFilters({ timeRange: TimeRange.Medium })}
+              className="hover:bg-cyber-purple/70 hover:text-white"
+            >
               {TIME_RANGE_LABELS[TimeRange.Medium]}
             </DropdownMenuItem>
-            <DropdownMenuItem onClick={() => updateFilters({ timeRange: TimeRange.Long })}>
+            <DropdownMenuItem
+              onClick={() => updateFilters({ timeRange: TimeRange.Long })}
+              className="hover:bg-cyber-purple/70 hover:text-white"
+            >
               {TIME_RANGE_LABELS[TimeRange.Long]}
             </DropdownMenuItem>
           </DropdownMenuContent>
@@ -218,17 +255,29 @@ export function FilterBar({ onFilterChange }: FilterBarProps) {
               </div>
             </Button>
           </DropdownMenuTrigger>
-          <DropdownMenuContent className="bg-cyber-dark border-cyber-purple">
-            <DropdownMenuItem onClick={() => updateFilters({ stakeRange: undefined })}>
+          <DropdownMenuContent className="bg-cyber-dark border-cyber-purple w-40 mt-2">
+            <DropdownMenuItem
+              onClick={() => updateFilters({ stakeRange: undefined })}
+              className="hover:bg-cyber-purple/70 hover:text-white"
+            >
               All
             </DropdownMenuItem>
-            <DropdownMenuItem onClick={() => updateFilters({ stakeRange: StakeRange.Low })}>
+            <DropdownMenuItem
+              onClick={() => updateFilters({ stakeRange: StakeRange.Low })}
+              className="hover:bg-cyber-purple/70 hover:text-white"
+            >
               {STAKE_RANGE_LABELS[StakeRange.Low]}
             </DropdownMenuItem>
-            <DropdownMenuItem onClick={() => updateFilters({ stakeRange: StakeRange.Medium })}>
+            <DropdownMenuItem
+              onClick={() => updateFilters({ stakeRange: StakeRange.Medium })}
+              className="hover:bg-cyber-purple/70 hover:text-white"
+            >
               {STAKE_RANGE_LABELS[StakeRange.Medium]}
             </DropdownMenuItem>
-            <DropdownMenuItem onClick={() => updateFilters({ stakeRange: StakeRange.High })}>
+            <DropdownMenuItem
+              onClick={() => updateFilters({ stakeRange: StakeRange.High })}
+              className="hover:bg-cyber-purple/70 hover:text-white"
+            >
               {STAKE_RANGE_LABELS[StakeRange.High]}
             </DropdownMenuItem>
           </DropdownMenuContent>

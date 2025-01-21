@@ -171,7 +171,7 @@ export default function MissionsPage() {
   return (
     <>
       <div className="flex flex-col">
-        <div className="fixed top-[6%] pt-4 left-0 right-0 z-[0] bg-gradient-to-b from-black via-cyber-darker/90 to-transparent pb-6">
+        <div className="fixed top-[6%] pt-4 left-0 right-0 z-mission-header bg-gradient-to-b from-black via-black to-transparent z-10">
           <div className="container mx-auto px-4">
             <div className="flex items-center justify-between my-6">
               <div>
@@ -182,12 +182,12 @@ export default function MissionsPage() {
               </div>
               <Button
                 variant="default"
-                size="lg"
+                size="default"
                 onClick={handleCreateMissionClick}
-                className="shadow-none hover:shadow-none border-2 bg-[#582cd0] border-cyber-purple hover:bg-[#582cd0]/70 transition-colors duration-200"
+                className="shadow-none hover:shadow-none border-2 bg-[#582cd0] border-cyber-purple hover:bg-[#582cd0]/70 transition-colors duration-200 px-4 py-3 text-lg h-auto"
               >
                 <div className="flex items-center gap-3">
-                  <Plus className="h-5 w-5" />
+                  <Plus className="h-6 w-6" />
                   Create Mission
                 </div>
               </Button>
@@ -196,9 +196,9 @@ export default function MissionsPage() {
             <FilterBar onFilterChange={handleFilterChange} />
           </div>
         </div>
-        <div className="flex-1 overflow-y-auto px-10 mt-[180px] py-4">
+        <main className="flex-1 mt-[0%] px-10  overflow-y-auto hide-scrollbar">
           <div className="container mx-auto">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 pb-8">
               {filteredMissions.length === 0 ? (
                 <div className="col-span-full flex flex-col items-center justify-center p-8 text-center">
                   <div className="rounded-full bg-cyber-darker p-4 mb-4">
@@ -221,7 +221,7 @@ export default function MissionsPage() {
               )}
             </div>
           </div>
-        </div>
+        </main>
       </div>
 
       {selectedMission && (

@@ -62,7 +62,7 @@ export function MissionCard({ mission, onClick }: MissionCardProps) {
 
   return (
     <Card
-      className="cyber-card group cursor-pointer overflow-hidden h-full flex flex-col"
+      className="cyber-card group cursor-pointer overflow-hidden h-full flex flex-col pb-0 pl-0 pr-0"
       onClick={onClick}
     >
       <CardHeader className="space-y-2">
@@ -75,9 +75,7 @@ export function MissionCard({ mission, onClick }: MissionCardProps) {
           </Badge>
           <Badge className={`px-2 py-1 ${getStatusColor(mission.status)}`}>{mission.status}</Badge>
         </div>
-        <h3 className="text-lg font-bold text-glow-pink group-hover:animate-glitch">
-          {mission.title}
-        </h3>
+        <h3 className="text-lg font-bold text-glow-pink">{mission.title}</h3>
       </CardHeader>
 
       <CardContent className="space-y-4 flex-1">
@@ -93,20 +91,18 @@ export function MissionCard({ mission, onClick }: MissionCardProps) {
         </div>
       </CardContent>
 
-      <CardFooter className="border-t  border-cyber-purple bg-cyber-dark/50">
-        <div className="flex w-full items-center justify-between pt-4">
-          <div className="flex items-center space-x-4 ">
-            <div className="text-sm">
-              <span className="text-gray-400">Reward: </span>
-              <span className="text-neon-pink font-bold">1000 Project89</span>
-            </div>
-            <div className="text-sm">
-              <span className="text-gray-400">XP: </span>
-              <span className="text-neon-purple font-bold">+500</span>
-            </div>
+      <CardFooter className="border-t border-cyber-purple/30 bg-cyber-dark/50 mt-4">
+        <div className="flex items-center gap-4 text-sm">
+          <div>
+            <span className="text-gray-400">Reward: </span>
+            <span className="text-neon-pink font-bold">1000 Project89</span>
+          </div>
+          <div>
+            <span className="text-gray-400">XP: </span>
+            <span className="text-neon-purple font-bold">+500</span>
           </div>
           {mission.baseRequirements.stakeAmount && (
-            <div className="text-sm">
+            <div className="ml-auto">
               <span className="text-gray-400">Stake: </span>
               <span className="text-cyber-purple-light">
                 {mission.baseRequirements.stakeAmount} Project89

@@ -19,6 +19,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-dropzone": "^14.3.5",
+    "shadcn-ui": "^0.9.4",
     "sonner": "^1.7.2",
     "tailwind-merge": "^2.6.0",
     "winston": "^3.17.0",

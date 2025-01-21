@@ -14,10 +14,8 @@ const inter = Inter({ subsets: ['latin'] });
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className="dark">
-      <body
-        className={`${inter.className} min-h-screen bg-gradient-to-b from-gray-900 to-black text-white`}
-      >
+    <html lang="en" className="dark h-full">
+      <body className={`${inter.className} h-full`}>
         <div className="grid-background" />
         <div className="flex flex-col min-h-screen pt-[72px]">
           <Header />
