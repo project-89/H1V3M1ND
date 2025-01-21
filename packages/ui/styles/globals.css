@@ -143,6 +143,69 @@
     --cyber-purple-light: hsl(var(--cyber-purple-light-hsl));
     --cyber-pink: hsl(var(--cyber-pink-hsl));
     --cyber-pink-dark: hsl(var(--cyber-pink-dark-hsl));
+
+    /* Accordion theme variables */
+    --accordion-border: rgba(45, 27, 105, 0.2);
+    --accordion-border-hover: rgba(45, 27, 105, 0.3);
+    --accordion-text: rgb(229, 231, 235);
+    --accordion-text-hover: hsl(var(--cyber-purple-hsl));
+    --accordion-icon: rgb(107, 114, 128);
+    --accordion-icon-hover: hsl(var(--cyber-purple-hsl));
+    --accordion-content: rgb(156, 163, 175);
+
+    /* Radio Group theme variables */
+    --radio-border: rgba(45, 27, 105, 0.5);
+    --radio-border-hover: hsl(var(--cyber-purple-hsl));
+    --radio-bg: rgba(26, 23, 39, 0.5);
+    --radio-text: hsl(var(--cyber-purple-hsl));
+    --radio-ring: hsl(var(--cyber-purple-hsl));
+    --radio-indicator: currentColor;
+
+    /* Switch theme variables */
+    --switch-border: hsl(var(--cyber-purple-hsl));
+    --switch-bg-checked: hsl(var(--cyber-purple-hsl));
+    --switch-bg-unchecked: rgba(26, 23, 39, 0.5);
+    --switch-thumb: white;
+    --switch-ring: hsl(var(--cyber-purple-hsl));
+
+    /* Progress theme variables */
+    --progress-bg: rgba(26, 23, 39, 0.2);
+    --progress-indicator-from: hsl(var(--cyber-purple-hsl));
+    --progress-indicator-via: hsl(var(--neon-pink-hsl));
+    --progress-indicator-to: hsl(var(--cyber-purple-light-hsl));
+    --progress-indicator-shadow: rgba(157, 78, 221, 0.5);
+    --progress-shimmer: rgba(255, 255, 255, 0.2);
+
+    /* Skeleton theme variables */
+    --skeleton-bg: hsl(var(--cyber-dark-hsl));
+    --skeleton-border: rgba(45, 27, 105, 0.2);
+    --skeleton-glow: rgba(45, 27, 105, 0.05);
+    
+    /* Tabs theme variables */
+    --tabs-list-border: rgba(45, 27, 105, 0.3);
+    --tabs-list-bg: rgba(26, 23, 39, 0.5);
+    --tabs-list-text: rgb(156, 163, 175);
+    
+    --tabs-trigger-hover: rgb(229, 231, 235);
+    --tabs-trigger-ring: hsl(var(--cyber-purple-hsl));
+    --tabs-trigger-active-bg: rgba(45, 27, 105, 0.1);
+    --tabs-trigger-active-text: hsl(var(--cyber-purple-hsl));
+    
+    --tabs-content-ring: hsl(var(--cyber-purple-hsl));
+    
+    /* Textarea theme variables */
+    --textarea-border: rgba(45, 27, 105, 0.5);
+    --textarea-bg: rgba(26, 23, 39, 0.5);
+    --textarea-text: rgb(229, 231, 235);
+    --textarea-placeholder: rgb(107, 114, 128);
+    --textarea-hover-border: rgba(45, 27, 105, 0.7);
+    --textarea-focus-border: hsl(var(--cyber-purple-hsl));
+    --textarea-focus-ring: rgba(45, 27, 105, 0.5);
+    
+    /* Avatar theme variables */
+    --avatar-fallback-bg: hsl(var(--muted));
+    --avatar-border: rgba(45, 27, 105, 0.5);
+    --avatar-ring: hsl(var(--cyber-purple-hsl));
   }
 
   * {

@@ -196,7 +196,7 @@ export default function MissionsPage() {
             <FilterBar onFilterChange={handleFilterChange} />
           </div>
         </div>
-        <main className="flex-1 mt-[0%] px-10  overflow-y-auto hide-scrollbar">
+        <main className="flex-1 mt-[16%] px-10  overflow-y-auto hide-scrollbar pt-2">
           <div className="container mx-auto">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 pb-8">
               {filteredMissions.length === 0 ? (

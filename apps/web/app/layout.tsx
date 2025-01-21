@@ -1,16 +1,12 @@
 import { Inter } from 'next/font/google';
-import './globals.css';
+import './styles/globals.css';
 import './styles/grid-background.css';
-import { Header } from '@/components/layout/Header';
-import { Footer } from './components/layout/Footer';
+
 import { Toaster } from 'sonner';
+import { Header } from './components/layout/Header';
+import { Footer } from './components/layout/Footer';
 
 const inter = Inter({ subsets: ['latin'] });
-
-// export const metadata = {
-//   title: 'H1V3M1ND - Mission Board',
-//   description: 'A decentralized mission board for human and AI agent coordination.',
-// };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
