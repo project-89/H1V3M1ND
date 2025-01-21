@@ -1,213 +1,224 @@
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
  
 @layer base {
   :root {
-    /* Base shadcn theme colors */
-    --background: 260 20% 5%;
-    --foreground: 264 10% 95%;
-    --card: 260 20% 10%;
-    --card-foreground: 264 10% 95%;
-    --popover: 260 20% 8%;
-    --popover-foreground: 264 10% 95%;
-    --primary: 287 100% 59%;
-    --primary-foreground: 264 10% 95%;
-    --secondary: 260 30% 30%;
-    --secondary-foreground: 264 10% 95%;
-    --muted: 260 20% 20%;
-    --muted-foreground: 264 10% 65%;
-    --accent: 287 100% 59%;
-    --accent-foreground: 264 10% 95%;
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 264 10% 95%;
-    --border: 260 20% 20%;
-    --input: 260 20% 20%;
-    --ring: 287 100% 59%;
-    --radius: 0.5rem;
+    --background: 230 25% 5%;
+    --foreground: 180 90% 90%;
+
+    --card: 230 30% 10%;
+    --card-foreground: 180 90% 90%;
+ 
+    --popover: 230 25% 8%;
+    --popover-foreground: 180 90% 90%;
+ 
+    /* Neon cyan primary */
+    --primary: 180 100% 50%;
+    --primary-foreground: 230 25% 5%;
+ 
+    /* Deep purple secondary */
+    --secondary: 270 90% 30%;
+    --secondary-foreground: 180 90% 90%;
+ 
+    /* Darker muted tones */
+    --muted: 230 25% 15%;
+    --muted-foreground: 180 30% 70%;
+ 
+    /* Neon purple accent */
+    --accent: 290 100% 50%;
+    --accent-foreground: 230 25% 5%;
+ 
+    /* Warning red with neon glow */
+    --destructive: 0 100% 60%;
+    --destructive-foreground: 180 90% 90%;
+
+    --border: 230 35% 20%;
+    --input: 230 35% 20%;
+    --ring: 180 100% 50%;
+ 
+    --radius: 0.25rem;
+
+    /* Custom theme colors */
+    --neon-cyan: 180 100% 50%;
+    --neon-purple: 290 100% 50%;
+    --neon-pink: 320 100% 50%;
+    --matrix-green: 135 100% 50%;
+    --cyber-yellow: 60 100% 50%;
 
     /* Button theme variables */
     --btn-default-bg: hsl(var(--cyber-purple-hsl));
+    --btn-default-text: rgb(229, 231, 235);
     --btn-default-border: hsl(var(--cyber-purple-hsl));
-    --btn-default-hover: hsl(var(--cyber-purple-light-hsl));
-    
-    --btn-destructive-bg: rgba(239, 68, 68, 0.2);
-    --btn-destructive-border: rgba(239, 68, 68, 0.5);
-    --btn-destructive-text: rgb(248, 113, 113);
-    --btn-destructive-hover: rgba(239, 68, 68, 0.3);
-    
-    --btn-outline-border: hsl(var(--cyber-purple-hsl));
-    --btn-outline-hover: rgba(45, 27, 105, 0.1);
-    
-    --btn-secondary-bg: hsl(var(--cyber-dark-hsl));
-    --btn-secondary-border: rgba(45, 27, 105, 0.5);
-    --btn-secondary-hover: rgba(26, 23, 39, 0.8);
-    
-    --btn-ghost-hover-bg: rgba(45, 27, 105, 0.1);
-    --btn-ghost-hover-text: hsl(var(--cyber-purple-light-hsl));
-    
-    --btn-link-text: hsl(var(--cyber-purple-hsl));
-    --btn-link-hover: hsl(var(--cyber-purple-light-hsl));
-    
-    --btn-focus-ring: hsl(var(--cyber-purple-hsl));
+    --btn-default-hover-bg: hsl(var(--cyber-purple-light-hsl));
+    --btn-default-hover-border: hsl(var(--cyber-purple-light-hsl));
+    --btn-default-focus-ring: rgba(98, 71, 170, 0.4);
 
-    /* Input theme variables */
-    --input-border: rgba(45, 27, 105, 0.5);
-    --input-bg: rgba(26, 23, 39, 0.5);
-    --input-text: rgb(229, 231, 235);
-    --input-placeholder: rgb(107, 114, 128);
-    --input-hover-border: rgba(45, 27, 105, 0.7);
-    --input-focus-border: hsl(var(--cyber-purple-hsl));
-    --input-focus-ring: rgba(45, 27, 105, 0.5);
+    --btn-destructive-bg: rgb(239, 68, 68);
+    --btn-destructive-text: rgb(255, 255, 255);
+    --btn-destructive-border: rgb(239, 68, 68);
+    --btn-destructive-hover-bg: rgb(220, 38, 38);
+    --btn-destructive-hover-border: rgb(220, 38, 38);
+    --btn-destructive-focus-ring: rgba(239, 68, 68, 0.4);
+
+    --btn-outline-bg: transparent;
+    --btn-outline-text: rgb(229, 231, 235);
+    --btn-outline-border: hsl(var(--cyber-purple-hsl));
+    --btn-outline-hover-bg: rgba(98, 71, 170, 0.1);
+    --btn-outline-hover-border: hsl(var(--cyber-purple-light-hsl));
+    --btn-outline-focus-ring: rgba(98, 71, 170, 0.4);
+
+    --btn-secondary-bg: rgb(42, 42, 45);
+    --btn-secondary-text: rgb(229, 231, 235);
+    --btn-secondary-border: rgb(42, 42, 45);
+    --btn-secondary-hover-bg: rgb(82, 82, 85);
+    --btn-secondary-hover-border: rgb(82, 82, 85);
+    --btn-secondary-focus-ring: rgba(82, 82, 85, 0.4);
+
+    --btn-ghost-bg: transparent;
+    --btn-ghost-text: rgb(229, 231, 235);
+    --btn-ghost-border: transparent;
+    --btn-ghost-hover-bg: rgba(98, 71, 170, 0.1);
+    --btn-ghost-hover-border: transparent;
+    --btn-ghost-focus-ring: rgba(98, 71, 170, 0.4);
 
     /* Badge theme variables */
-    --badge-focus-ring: rgba(45, 27, 105, 0.5);
-    
     --badge-default-border: hsl(var(--cyber-purple-hsl));
-    --badge-default-bg: rgba(45, 27, 105, 0.1);
-    --badge-default-text: hsl(var(--cyber-purple-hsl));
-    --badge-default-hover: rgba(45, 27, 105, 0.2);
+    --badge-default-bg: transparent;
+    --badge-default-text: hsl(var(--cyber-purple-light-hsl));
+    --badge-default-hover: rgba(98, 71, 170, 0.1);
     
-    --badge-secondary-border: hsl(var(--cyber-pink-hsl));
-    --badge-secondary-bg: rgba(255, 46, 204, 0.1);
-    --badge-secondary-text: hsl(var(--cyber-pink-hsl));
-    --badge-secondary-hover: rgba(255, 46, 204, 0.2);
+    --badge-secondary-border: rgb(42, 42, 45);
+    --badge-secondary-bg: rgb(42, 42, 45);
+    --badge-secondary-text: rgb(229, 231, 235);
+    --badge-secondary-hover: rgb(82, 82, 85);
     
     --badge-destructive-border: rgb(239, 68, 68);
-    --badge-destructive-bg: rgba(239, 68, 68, 0.1);
-    --badge-destructive-text: rgb(248, 113, 113);
-    --badge-destructive-hover: rgba(239, 68, 68, 0.2);
+    --badge-destructive-bg: transparent;
+    --badge-destructive-text: rgb(239, 68, 68);
+    --badge-destructive-hover: rgba(239, 68, 68, 0.1);
     
     --badge-success-border: rgb(34, 197, 94);
-    --badge-success-bg: rgba(34, 197, 94, 0.1);
-    --badge-success-text: rgb(74, 222, 128);
-    --badge-success-hover: rgba(34, 197, 94, 0.2);
+    --badge-success-bg: transparent;
+    --badge-success-text: rgb(34, 197, 94);
+    --badge-success-hover: rgba(34, 197, 94, 0.1);
     
-    --badge-outline-border: rgba(45, 27, 105, 0.5);
-    --badge-outline-text: rgb(209, 213, 219);
-    --badge-outline-hover-border: hsl(var(--cyber-purple-hsl));
-    --badge-outline-hover-bg: rgba(45, 27, 105, 0.1);
+    --badge-outline-border: hsl(var(--cyber-purple-hsl));
+    --badge-outline-bg: transparent;
+    --badge-outline-text: rgb(229, 231, 235);
+    --badge-outline-hover: rgba(98, 71, 170, 0.1);
 
     /* Card theme variables */
-    --card-border: rgba(45, 27, 105, 0.5);
-    --card-bg: hsl(var(--cyber-dark-hsl));
+    --card-border: rgba(98, 71, 170, 0.2);
+    --card-bg: rgb(26, 23, 39);
     --card-text: rgb(229, 231, 235);
     --card-shadow: 0 0 30px -5px #2d1b69;
-    --card-hover-border: rgba(45, 27, 105, 0.7);
     
-    --card-before-bg: rgba(45, 27, 105, 0.1);
-    --card-after-bg: rgba(45, 27, 105, 0.2);
+    --card-header-border: rgba(98, 71, 170, 0.2);
+    --card-footer-border: rgba(98, 71, 170, 0.2);
     
-    --card-title-color: hsl(var(--cyber-purple-hsl));
-    --card-description-color: rgb(156, 163, 175);
+    --card-title-text: rgb(229, 231, 235);
+    --card-description-text: rgb(156, 163, 175);
 
     /* Dialog theme variables */
-    --dialog-overlay-bg: rgba(0, 0, 0, 0.9);
-    
-    --dialog-border: rgba(45, 27, 105, 0.5);
-    --dialog-bg: rgba(26, 23, 39, 0.9);
+    --dialog-overlay-bg: rgba(0, 0, 0, 0.5);
+    --dialog-border: rgba(98, 71, 170, 0.5);
+    --dialog-bg: rgb(26, 23, 39);
     --dialog-text: rgb(229, 231, 235);
+    --dialog-shadow: 0 0 30px -5px #2d1b69;
     
-    --dialog-before-bg: rgba(45, 27, 105, 0.05);
-    --dialog-after-bg: rgba(45, 27, 105, 0.1);
+    --dialog-title-text: rgb(229, 231, 235);
+    --dialog-description-text: rgb(156, 163, 175);
     
     --dialog-close-text: rgb(156, 163, 175);
     --dialog-close-hover: rgb(229, 231, 235);
-    --dialog-close-focus-ring: hsl(var(--cyber-purple-hsl));
+    --dialog-close-focus-ring: rgba(98, 71, 170, 0.4);
+
+    /* Input theme variables */
+    --input-border: rgba(98, 71, 170, 0.5);
+    --input-bg: rgba(26, 23, 39, 0.5);
+    --input-text: rgb(229, 231, 235);
+    --input-placeholder: rgb(156, 163, 175);
     
-    --dialog-title-color: hsl(var(--cyber-purple-hsl));
-    --dialog-description-color: rgb(156, 163, 175);
+    --input-hover-border: rgba(98, 71, 170, 0.8);
+    --input-focus-border: hsl(var(--cyber-purple-hsl));
+    --input-focus-ring: rgba(98, 71, 170, 0.4);
 
-    /* Cyber theme colors as HSL values */
-    --cyber-black-hsl: 252 25% 9%;
-    --cyber-darker-hsl: 252 30% 6%;
-    --cyber-dark-hsl: 252 25% 12%;
-    --cyber-purple-hsl: 258 60% 26%;
-    --cyber-purple-light-hsl: 258 45% 47%;
-    --cyber-pink-hsl: 315 100% 59%;
-    --cyber-pink-dark-hsl: 315 65% 51%;
-
-    /* Neon colors as HSL values */
-    --neon-cyan-hsl: 180 100% 50%;
-    --neon-purple-hsl: 290 100% 50%;
-    --neon-pink-hsl: 320 100% 50%;
-    --neon-blue-hsl: 210 100% 50%;
-
-    /* Fallback hex values for direct color access */
-    --cyber-black: hsl(var(--cyber-black-hsl));
-    --cyber-darker: hsl(var(--cyber-darker-hsl));
-    --cyber-dark: hsl(var(--cyber-dark-hsl));
-    --cyber-purple: hsl(var(--cyber-purple-hsl));
-    --cyber-purple-light: hsl(var(--cyber-purple-light-hsl));
-    --cyber-pink: hsl(var(--cyber-pink-hsl));
-    --cyber-pink-dark: hsl(var(--cyber-pink-dark-hsl));
-
-    /* Accordion theme variables */
-    --accordion-border: rgba(45, 27, 105, 0.2);
-    --accordion-border-hover: rgba(45, 27, 105, 0.3);
-    --accordion-text: rgb(229, 231, 235);
-    --accordion-text-hover: hsl(var(--cyber-purple-hsl));
-    --accordion-icon: rgb(107, 114, 128);
-    --accordion-icon-hover: hsl(var(--cyber-purple-hsl));
-    --accordion-content: rgb(156, 163, 175);
+    /* Dropdown Menu theme variables */
+    --dropdown-border: rgba(45, 27, 105, 0.5);
+    --dropdown-bg: rgba(26, 23, 39, 0.9);
+    --dropdown-text: rgb(229, 231, 235);
+    --dropdown-shadow: 0 0 30px -5px #2d1b69;
+    --dropdown-z-index: 99999;
+    
+    --dropdown-item-hover-bg: rgba(45, 27, 105, 0.1);
+    --dropdown-item-hover-text: hsl(var(--cyber-purple-light-hsl));
+    
+    --dropdown-separator-bg: rgba(45, 27, 105, 0.5);
+    
+    --dropdown-label-text: hsl(var(--cyber-purple-hsl));
+    --dropdown-shortcut-text: rgb(156, 163, 175);
+    
+    --dropdown-sub-trigger-hover-bg: rgba(45, 27, 105, 0.1);
+    --dropdown-sub-trigger-hover-text: hsl(var(--cyber-purple-light-hsl));
+    
+    --dropdown-checkbox-indicator-bg: hsl(var(--cyber-purple-hsl));
+    --dropdown-radio-indicator-bg: hsl(var(--cyber-purple-hsl));
 
     /* Radio Group theme variables */
-    --radio-border: rgba(45, 27, 105, 0.5);
-    --radio-border-hover: hsl(var(--cyber-purple-hsl));
+    --radio-border: rgba(98, 71, 170, 0.5);
     --radio-bg: rgba(26, 23, 39, 0.5);
-    --radio-text: hsl(var(--cyber-purple-hsl));
-    --radio-ring: hsl(var(--cyber-purple-hsl));
-    --radio-indicator: currentColor;
+    --radio-text: rgb(229, 231, 235);
+    
+    --radio-hover-border: rgba(98, 71, 170, 0.8);
+    --radio-focus-border: hsl(var(--cyber-purple-hsl));
+    --radio-focus-ring: rgba(98, 71, 170, 0.4);
+    
+    --radio-indicator-bg: hsl(var(--cyber-purple-hsl));
 
     /* Switch theme variables */
-    --switch-border: hsl(var(--cyber-purple-hsl));
-    --switch-bg-checked: hsl(var(--cyber-purple-hsl));
+    --switch-border: rgba(98, 71, 170, 0.5);
     --switch-bg-unchecked: rgba(26, 23, 39, 0.5);
-    --switch-thumb: white;
-    --switch-ring: hsl(var(--cyber-purple-hsl));
-
-    /* Progress theme variables */
-    --progress-bg: rgba(26, 23, 39, 0.2);
-    --progress-indicator-from: hsl(var(--cyber-purple-hsl));
-    --progress-indicator-via: hsl(var(--neon-pink-hsl));
-    --progress-indicator-to: hsl(var(--cyber-purple-light-hsl));
-    --progress-indicator-shadow: rgba(157, 78, 221, 0.5);
-    --progress-shimmer: rgba(255, 255, 255, 0.2);
+    --switch-bg-checked: hsl(var(--cyber-purple-hsl));
+    
+    --switch-thumb-bg: rgb(229, 231, 235);
+    
+    --switch-focus-ring: rgba(98, 71, 170, 0.4);
 
     /* Skeleton theme variables */
     --skeleton-bg: hsl(var(--cyber-dark-hsl));
-    --skeleton-border: rgba(45, 27, 105, 0.2);
-    --skeleton-glow: rgba(45, 27, 105, 0.05);
-    
-    /* Tabs theme variables */
-    --tabs-list-border: rgba(45, 27, 105, 0.3);
-    --tabs-list-bg: rgba(26, 23, 39, 0.5);
-    --tabs-list-text: rgb(156, 163, 175);
-    
-    --tabs-trigger-hover: rgb(229, 231, 235);
-    --tabs-trigger-ring: hsl(var(--cyber-purple-hsl));
-    --tabs-trigger-active-bg: rgba(45, 27, 105, 0.1);
-    --tabs-trigger-active-text: hsl(var(--cyber-purple-hsl));
-    
-    --tabs-content-ring: hsl(var(--cyber-purple-hsl));
-    
-    /* Textarea theme variables */
-    --textarea-border: rgba(45, 27, 105, 0.5);
-    --textarea-bg: rgba(26, 23, 39, 0.5);
-    --textarea-text: rgb(229, 231, 235);
-    --textarea-placeholder: rgb(107, 114, 128);
-    --textarea-hover-border: rgba(45, 27, 105, 0.7);
-    --textarea-focus-border: hsl(var(--cyber-purple-hsl));
-    --textarea-focus-ring: rgba(45, 27, 105, 0.5);
-    
-    /* Avatar theme variables */
-    --avatar-fallback-bg: hsl(var(--muted));
-    --avatar-border: rgba(45, 27, 105, 0.5);
-    --avatar-ring: hsl(var(--cyber-purple-hsl));
-  }
+    --skeleton-border: hsl(var(--cyber-purple-hsl) / 0.2);
+    --skeleton-glow: hsl(var(--cyber-purple-hsl) / 0.05);
 
+    /* Tabs theme variables */
+    --tabs-list-border: hsl(var(--cyber-purple-hsl) / 0.3);
+    --tabs-list-bg: hsl(var(--cyber-dark-hsl) / 0.5);
+    --tabs-list-text: hsl(var(--cyber-gray-hsl));
+    
+    --tabs-trigger-hover-bg: hsl(var(--cyber-purple-hsl) / 0.1);
+    --tabs-trigger-hover-text: hsl(var(--cyber-white-hsl));
+    
+    --tabs-trigger-active-bg: hsl(var(--cyber-purple-hsl));
+    --tabs-trigger-active-text: hsl(var(--cyber-white-hsl));
+
+    /* Textarea theme variables */
+    --textarea-border: hsl(var(--cyber-purple-hsl) / 0.5);
+    --textarea-bg: hsl(var(--cyber-dark-hsl) / 0.5);
+    --textarea-text: hsl(var(--cyber-white-hsl));
+    --textarea-placeholder: hsl(var(--cyber-gray-hsl));
+    
+    --textarea-hover-border: hsl(var(--cyber-purple-hsl) / 0.8);
+    --textarea-focus-border: hsl(var(--cyber-purple-hsl));
+    --textarea-focus-ring: hsl(var(--cyber-purple-hsl) / 0.4);
+
+    /* Avatar theme variables */
+    --avatar-fallback-bg: hsl(var(--cyber-dark-hsl) / 0.5);
+    --avatar-border: hsl(var(--cyber-purple-hsl) / 0.5);
+    --avatar-ring: hsl(var(--cyber-purple-hsl) / 0.4);
+  }
+}
+ 
+@layer base {
   * {
     @apply border-border;
   }
@@ -230,12 +241,21 @@
 }
 
 @layer components {
-  /* Card with cyber borders */
+  /* Card with cyber borders and persistent glow */
   .cyber-card {
-    @apply relative overflow-hidden rounded-sm border border-primary/20 bg-card p-4;
+    @apply relative overflow-hidden rounded-sm border border-[var(--card-border)] bg-[var(--card-bg)] p-4 mt-4;
+    transition: all 500ms ease-in-out;
     box-shadow: 
-      inset 0 0 10px rgba(var(--primary), 0.2),
-      0 0 10px rgba(var(--primary), 0.1);
+      0 0 0 1px theme('colors.cyber.purple'),
+      0 0 20px theme('colors.cyber.purple');
+    transform: scale(1);
+  }
+
+  .cyber-card:hover {
+    box-shadow: 
+      0 0 0 1px theme('colors.cyber.purple'),
+      0 0 35px theme('colors.cyber.purple-light');
+    transform: scale(1.02);
   }
 
   /* Glowing text effect */
@@ -254,17 +274,21 @@
   }
 
   ::-webkit-scrollbar-track {
-    @apply bg-background;
+    @apply bg-transparent;
   }
 
   ::-webkit-scrollbar-thumb {
-    @apply bg-primary/50 rounded-full;
+    @apply rounded-full bg-cyber-purple/50;
     border: 2px solid transparent;
-    background-clip: padding-box;
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    @apply bg-primary/70;
+    @apply bg-cyber-purple;
+  }
+
+  /* Glowing focus ring */
+  .focus-ring {
+    @apply focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 focus-visible:ring-offset-background;
   }
 }
 
