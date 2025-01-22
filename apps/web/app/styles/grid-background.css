@@ -1,7 +1,7 @@
 .grid-background {
   background-image: 
-    linear-gradient(hsl(var(--cyber-purple-hsl) / 0.2) 1px, transparent 1px),
-    linear-gradient(90deg, hsl(var(--cyber-purple-hsl) / 0.2) 1px, transparent 1px);
+    linear-gradient(hsl(var(--neon-pink-hsl) / 0.2) 1px, transparent 1px),
+    linear-gradient(90deg, hsl(var(--neon-pink-hsl) / 0.2) 1px, transparent 1px);
   background-size: 20px 20px;
   position: fixed;
   left: 0;

@@ -51,6 +51,12 @@ const getStatusColor = (status: MissionStatus) => {
   }
 };
 
+const getTimeColor = (hours: number) => {
+  if (hours <= 24) return 'text-neon-pink border-neon-pink'; // Urgent/Short
+  if (hours < 72) return 'text-cyber-yellow border-cyber-yellow'; // Medium
+  return 'text-neon-purple border-neon-purple'; // Long
+};
+
 const getMissionScale = (mission: Mission): MissionScale => {
   if (mission.type === MissionType.Single) return MissionScale.Solo;
   const maxParticipants = mission.requirements.maxParticipants;
@@ -68,7 +74,7 @@ export function MissionCard({ mission, onClick }: MissionCardProps) {
 
   return (
     <Card
-      className="cyber-card group cursor-pointer overflow-hidden h-full flex flex-col pb-0 pl-0 pr-0"
+      className="cyber-card group cursor-pointer overflow-hidden h-full flex flex-col pb-0 pl-0 pr-0 hover:border-neon-pink"
       onClick={onClick}
     >
       <CardHeader className="space-y-2">
@@ -90,7 +96,10 @@ export function MissionCard({ mission, onClick }: MissionCardProps) {
         <div className="flex items-center space-x-2">
           <Badge className={`px-2 py-1 ${getScaleColor(scale)}`}>{scale}</Badge>
           {mission.baseRequirements.timeLimit && (
-            <Badge variant="outline" className="px-2 py-1 text-neon-pink border-neon-pink">
+            <Badge
+              variant="outline"
+              className={`px-2 py-1 ${getTimeColor(mission.baseRequirements.timeLimit)}`}
+            >
               {mission.baseRequirements.timeLimit}h
             </Badge>
           )}
