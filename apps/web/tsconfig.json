@@ -10,8 +10,7 @@
     "paths": {
       "@/*": ["./app/*"],
       "@/lib/*": ["app/lib/*"],
-      "@/components/*": ["app/components/*"],
-      "@/ui/*": ["app/components/ui/*"]
+      "@/components/*": ["app/components/*"]
     }
   },
   "include": [

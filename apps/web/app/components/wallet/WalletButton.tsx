@@ -74,7 +74,7 @@ export function WalletButton() {
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent
-        className="w-56 bg-cyber-dark border border-cyber-purple hover:shadow-cyber-lg mt-6"
+        className="w-56 bg-cyber-dark border border-cyber-purple hover:shadow-cyber-lg mt-6 Z-[11]"
         align="end"
         sideOffset={8}
       >

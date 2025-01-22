@@ -47,3 +47,8 @@ export { Skeleton } from './skeleton';
 export { Tabs, TabsList, TabsTrigger, TabsContent } from './tabs';
 
 export { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from './accordion';
+
+// Custom components
+export { Fade } from './fade';
+export { ErrorState } from './error-state';
+export { LoadingProgress } from './loading-progress';

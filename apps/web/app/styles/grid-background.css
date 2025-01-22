@@ -1,7 +1,7 @@
 .grid-background {
   background-image: 
-    linear-gradient(rgba(190, 46, 255, 0.2) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(190, 46, 255, 0.2) 1px, transparent 1px);
+    linear-gradient(hsl(var(--cyber-purple-hsl) / 0.2) 1px, transparent 1px),
+    linear-gradient(90deg, hsl(var(--cyber-purple-hsl) / 0.2) 1px, transparent 1px);
   background-size: 20px 20px;
   position: fixed;
   left: 0;
@@ -10,7 +10,7 @@
   height: 100%;
   z-index: -1;
   opacity: 0.6;
-  filter: drop-shadow(0 0 3px rgba(190, 46, 255, 0.4));
+  filter: drop-shadow(0 0 3px hsl(var(--cyber-purple-hsl) / 0.4));
 }
 
 .grid-background::before {
@@ -21,11 +21,11 @@
   right: 0;
   bottom: 0;
   background-image: 
-    linear-gradient(rgba(190, 46, 255, 0.15) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(190, 46, 255, 0.15) 1px, transparent 1px);
+    linear-gradient(hsl(var(--cyber-purple-hsl) / 0.15) 1px, transparent 1px),
+    linear-gradient(90deg, hsl(var(--cyber-purple-hsl) / 0.15) 1px, transparent 1px);
   background-size: 20px 20px;
   filter: blur(1px);
-  box-shadow: 0 0 25px rgba(190, 46, 255, 0.15);
+  box-shadow: 0 0 25px hsl(var(--cyber-purple-hsl) / 0.15);
 }
 
 .grid-background::after {
@@ -38,7 +38,7 @@
   background: linear-gradient(
     to bottom,
     transparent 10%,
-    rgba(0, 0, 0, 0.65) 70%,
-    rgba(0, 0, 0, 0.85)
+    hsl(var(--background-hsl) / 0.65) 70%,
+    hsl(var(--background-hsl) / 0.85)
   );
 } 

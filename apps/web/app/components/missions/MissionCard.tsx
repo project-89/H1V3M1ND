@@ -11,37 +11,37 @@ export interface MissionCardProps {
 const getParticipantTypeColor = (type: ParticipantType) => {
   switch (type) {
     case ParticipantType.Human:
-      return 'text-neon-pink border-neon-pink';
+      return 'text-[hsl(var(--mission-participant-human-hsl))] border-[hsl(var(--mission-participant-human-hsl))]';
     case ParticipantType.Agent:
-      return 'text-neon-purple border-neon-purple';
+      return 'text-[hsl(var(--mission-participant-agent-hsl))] border-[hsl(var(--mission-participant-agent-hsl))]';
     default:
-      return 'text-neon-blue border-neon-blue';
+      return 'text-[hsl(var(--mission-participant-any-hsl))] border-[hsl(var(--mission-participant-any-hsl))]';
   }
 };
 
 const getScaleColor = (scale: MissionScale) => {
   switch (scale) {
     case MissionScale.Solo:
-      return 'bg-cyber-purple/20 text-cyber-purple-light';
+      return 'bg-[hsl(var(--mission-scale-solo-bg-hsl))] text-[hsl(var(--mission-scale-solo-text-hsl))]';
     case MissionScale.Party:
-      return 'bg-neon-purple/20 text-neon-purple';
+      return 'bg-[hsl(var(--mission-scale-party-bg-hsl))] text-[hsl(var(--mission-scale-party-text-hsl))]';
     case MissionScale.Swarm:
-      return 'bg-neon-pink/20 text-neon-pink';
+      return 'bg-[hsl(var(--mission-scale-swarm-bg-hsl))] text-[hsl(var(--mission-scale-swarm-text-hsl))]';
   }
 };
 
 const getStatusColor = (status: MissionStatus) => {
   switch (status) {
     case MissionStatus.Active:
-      return 'bg-green-500/20 text-green-400';
+      return 'bg-[hsl(var(--mission-status-active-bg-hsl))] text-[hsl(var(--mission-status-active-text-hsl))]';
     case MissionStatus.InProgress:
-      return 'bg-blue-500/20 text-blue-400';
+      return 'bg-[hsl(var(--mission-status-in-progress-bg-hsl))] text-[hsl(var(--mission-status-in-progress-text-hsl))]';
     case MissionStatus.PendingValidation:
-      return 'bg-yellow-500/20 text-yellow-400';
+      return 'bg-[hsl(var(--mission-status-pending-bg-hsl))] text-[hsl(var(--mission-status-pending-text-hsl))]';
     case MissionStatus.Completed:
-      return 'bg-purple-500/20 text-purple-400';
+      return 'bg-[hsl(var(--mission-status-completed-bg-hsl))] text-[hsl(var(--mission-status-completed-text-hsl))]';
     default:
-      return 'bg-red-500/20 text-red-400';
+      return 'bg-[hsl(var(--mission-status-failed-bg-hsl))] text-[hsl(var(--mission-status-failed-text-hsl))]';
   }
 };
 
@@ -75,36 +75,41 @@ export function MissionCard({ mission, onClick }: MissionCardProps) {
           </Badge>
           <Badge className={`px-2 py-1 ${getStatusColor(mission.status)}`}>{mission.status}</Badge>
         </div>
-        <h3 className="text-lg font-bold text-glow-pink">{mission.title}</h3>
+        <h3 className="text-lg font-bold text-[hsl(var(--neon-pink-hsl))]">{mission.title}</h3>
       </CardHeader>
 
       <CardContent className="space-y-4 flex-1">
-        <p className="text-sm text-gray-400 line-clamp-2">{mission.description}</p>
+        <p className="text-sm text-[hsl(var(--cyber-gray-hsl))] line-clamp-2">
+          {mission.description}
+        </p>
 
         <div className="flex items-center space-x-2">
           <Badge className={`px-2 py-1 ${getScaleColor(scale)}`}>{scale}</Badge>
           {mission.baseRequirements.timeLimit && (
-            <Badge variant="outline" className="px-2 py-1 border-cyber-purple-light">
+            <Badge
+              variant="outline"
+              className="px-2 py-1 text-[hsl(var(--neon-pink-hsl))] border-[hsl(var(--neon-pink-hsl))]"
+            >
               {mission.baseRequirements.timeLimit}h
             </Badge>
           )}
         </div>
       </CardContent>
 
-      <CardFooter className="border-t border-cyber-purple/30 bg-cyber-dark/50 mt-4">
-        <div className="flex items-center gap-4 text-sm">
+      <CardFooter className="border-t border-[hsl(var(--cyber-purple-hsl)/0.3)] bg-[hsl(var(--cyber-dark-hsl))] mt-4 py-4">
+        <div className="flex items-center gap-4 text-sm w-full justify-center">
           <div>
-            <span className="text-gray-400">Reward: </span>
-            <span className="text-neon-pink font-bold">1000 Project89</span>
+            <span className="text-[hsl(var(--cyber-gray-hsl))]">Reward: </span>
+            <span className="text-[hsl(var(--neon-pink-hsl))] font-bold">1000 Project89</span>
           </div>
           <div>
-            <span className="text-gray-400">XP: </span>
-            <span className="text-neon-purple font-bold">+500</span>
+            <span className="text-[hsl(var(--cyber-gray-hsl))]">XP: </span>
+            <span className="text-[hsl(var(--neon-purple-hsl))] font-bold">+500</span>
           </div>
           {mission.baseRequirements.stakeAmount && (
             <div className="ml-auto">
-              <span className="text-gray-400">Stake: </span>
-              <span className="text-cyber-purple-light">
+              <span className="text-[hsl(var(--cyber-gray-hsl))]">Stake: </span>
+              <span className="text-[hsl(var(--cyber-purple-light-hsl))]">
                 {mission.baseRequirements.stakeAmount} Project89
               </span>
             </div>

@@ -162,7 +162,9 @@ export default function MissionsPage() {
     return (
       <div className="container mx-auto px-4 py-8">
         <div className="flex justify-center items-center h-64">
-          <div className="animate-pulse text-cyber-purple">Loading missions...</div>
+          <div className="animate-pulse text-[hsl(var(--cyber-purple-hsl))]">
+            Loading missions...
+          </div>
         </div>
       </div>
     );
@@ -171,12 +173,14 @@ export default function MissionsPage() {
   return (
     <>
       <div className="flex flex-col h-screen overflow-hidden">
-        <div className="fixed top-[6%] pt-4 left-0 right-0 bg-gradient-to-b from-black via-black/75 to-transparent z-[30]">
+        <div className="fixed top-[6%] pt-4 left-0 right-0 bg-gradient-to-b from-black via-black/75 to-transparent z-[10]">
           <div className="container mx-auto px-4">
             <div className="flex items-center justify-between my-6">
               <div>
-                <h1 className="text-3xl font-bold mb-1 text-glow-pink">Available Missions</h1>
-                <p className="text-gray-400">
+                <h1 className="text-3xl font-bold mb-1 text-[hsl(var(--neon-pink-hsl))]">
+                  Available Missions
+                </h1>
+                <p className="text-[hsl(var(--cyber-gray-hsl))]">
                   Find and accept missions that match your capabilities
                 </p>
               </div>
@@ -184,7 +188,7 @@ export default function MissionsPage() {
                 variant="default"
                 size="default"
                 onClick={handleCreateMissionClick}
-                className="shadow-none hover:shadow-none border-2 bg-[#582cd0] border-cyber-purple hover:bg-[#582cd0]/70 transition-colors duration-200 px-4 py-3 text-lg h-auto"
+                className="shadow-none hover:shadow-none border-2 bg-[hsl(var(--cyber-purple-hsl)/0.8)] border-[hsl(var(--cyber-purple-hsl))] hover:bg-[hsl(var(--cyber-purple-hsl)/0.6)] transition-colors duration-200 px-4 py-3 text-lg h-auto"
               >
                 <div className="flex items-center gap-3">
                   <Plus className="h-6 w-6" />
@@ -196,32 +200,36 @@ export default function MissionsPage() {
             <FilterBar onFilterChange={handleFilterChange} />
           </div>
         </div>
-        <main className="flex-1 mt-[220px] px-10 overflow-y-auto scrollbar-none">
-          <div className="container mx-auto">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 pb-8">
-              {filteredMissions.length === 0 ? (
-                <div className="col-span-full flex flex-col items-center justify-center p-8 text-center">
-                  <div className="rounded-full bg-cyber-darker p-4 mb-4">
-                    <Terminal className="h-8 w-8 text-neon-pink animate-pulse" />
+        <div className="relative flex-1 mt-[220px] overflow-hidden">
+          <div className="absolute inset-0 overflow-y-auto scrollbar-none px-10">
+            <div className="container mx-auto">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 pb-8">
+                {filteredMissions.length === 0 ? (
+                  <div className="col-span-full flex flex-col items-center justify-center p-8 text-center">
+                    <div className="rounded-full bg-[hsl(var(--cyber-darker-hsl))] p-4 mb-4">
+                      <Terminal className="h-8 w-8 text-[hsl(var(--neon-pink-hsl))] animate-pulse" />
+                    </div>
+                    <h3 className="text-xl font-bold text-[hsl(var(--neon-pink-hsl))] mb-2">
+                      No Missions Found
+                    </h3>
+                    <p className="text-[hsl(var(--cyber-gray-hsl))] max-w-md">
+                      No missions match your current filters. Try adjusting your search criteria or
+                      check back later for new opportunities.
+                    </p>
                   </div>
-                  <h3 className="text-xl font-bold text-neon-pink mb-2">No Missions Found</h3>
-                  <p className="text-gray-400 max-w-md">
-                    No missions match your current filters. Try adjusting your search criteria or
-                    check back later for new opportunities.
-                  </p>
-                </div>
-              ) : (
-                filteredMissions.map((mission, index) => (
-                  <MissionCard
-                    key={`${mission.id}-${index}`}
-                    mission={mission}
-                    onClick={() => setSelectedMission(mission)}
-                  />
-                ))
-              )}
+                ) : (
+                  filteredMissions.map((mission, index) => (
+                    <MissionCard
+                      key={`${mission.id}-${index}`}
+                      mission={mission}
+                      onClick={() => setSelectedMission(mission)}
+                    />
+                  ))
+                )}
+              </div>
             </div>
           </div>
-        </main>
+        </div>
       </div>
 
       {selectedMission && (

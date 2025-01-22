@@ -4,217 +4,249 @@
  
 @layer base {
   :root {
-    --background: 230 25% 5%;
-    --foreground: 180 90% 90%;
-
-    --card: 230 30% 10%;
-    --card-foreground: 180 90% 90%;
- 
-    --popover: 230 25% 8%;
-    --popover-foreground: 180 90% 90%;
- 
-    /* Neon cyan primary */
-    --primary: 180 100% 50%;
-    --primary-foreground: 230 25% 5%;
- 
-    /* Deep purple secondary */
-    --secondary: 270 90% 30%;
-    --secondary-foreground: 180 90% 90%;
- 
-    /* Darker muted tones */
-    --muted: 230 25% 15%;
-    --muted-foreground: 180 30% 70%;
- 
-    /* Neon purple accent */
-    --accent: 290 100% 50%;
-    --accent-foreground: 230 25% 5%;
- 
-    /* Warning red with neon glow */
-    --destructive: 0 100% 60%;
-    --destructive-foreground: 180 90% 90%;
-
-    --border: 230 35% 20%;
-    --input: 230 35% 20%;
-    --ring: 180 100% 50%;
- 
+    /* Base theme colors */
+    --background-hsl: 230 25% 5%;
+    --foreground-hsl: 180 90% 90%;
+    --card-hsl: 230 30% 10%;
+    --card-foreground-hsl: 180 90% 90%;
+    --popover-hsl: 230 25% 8%;
+    --popover-foreground-hsl: 180 90% 90%;
+    --primary-hsl: 180 100% 50%;
+    --primary-foreground-hsl: 230 25% 5%;
+    --secondary-hsl: 270 90% 30%;
+    --secondary-foreground-hsl: 180 90% 90%;
+    --muted-hsl: 230 25% 15%;
+    --muted-foreground-hsl: 180 30% 70%;
+    --accent-hsl: 290 100% 50%;
+    --accent-foreground-hsl: 230 25% 5%;
+    --destructive-hsl: 0 100% 60%;
+    --destructive-foreground-hsl: 180 90% 90%;
+    --border-hsl: 230 35% 20%;
+    --input-hsl: 230 35% 20%;
+    --ring-hsl: 180 100% 50%;
     --radius: 0.25rem;
 
-    /* Custom theme colors */
-    --neon-cyan: 180 100% 50%;
-    --neon-purple: 290 100% 50%;
-    --neon-pink: 320 100% 50%;
-    --matrix-green: 135 100% 50%;
-    --cyber-yellow: 60 100% 50%;
+    /* Custom cyber theme colors */
+    --cyber-dark-hsl: 251 41% 12%;
+    --cyber-darker-hsl: 251 41% 8%;
+    --cyber-purple-hsl: 262 59% 47%;
+    --cyber-purple-light-hsl: 262 59% 57%;
+    --cyber-gray-hsl: 220 9% 65%;
+    --cyber-white-hsl: 0 0% 100%;
+
+    /* Neon colors */
+    --neon-cyan-hsl: 180 100% 50%;
+    --neon-purple-hsl: 290 100% 50%;
+    --neon-pink-hsl: 320 100% 50%;
+    --matrix-green-hsl: 135 100% 50%;
+    --cyber-yellow-hsl: 60 100% 50%;
 
     /* Button theme variables */
-    --btn-default-bg: hsl(var(--cyber-purple-hsl));
-    --btn-default-text: rgb(229, 231, 235);
-    --btn-default-border: hsl(var(--cyber-purple-hsl));
-    --btn-default-hover-bg: hsl(var(--cyber-purple-light-hsl));
-    --btn-default-hover-border: hsl(var(--cyber-purple-light-hsl));
-    --btn-default-focus-ring: rgba(98, 71, 170, 0.4);
+    --btn-default-bg-hsl: var(--cyber-purple-hsl);
+    --btn-default-text-hsl: 220 23% 91%;
+    --btn-default-border-hsl: var(--cyber-purple-hsl);
+    --btn-default-hover-bg-hsl: var(--cyber-purple-light-hsl);
+    --btn-default-hover-border-hsl: var(--cyber-purple-light-hsl);
+    --btn-default-focus-ring-hsl: 262 59% 47% / 0.4;
 
-    --btn-destructive-bg: rgb(239, 68, 68);
-    --btn-destructive-text: rgb(255, 255, 255);
-    --btn-destructive-border: rgb(239, 68, 68);
-    --btn-destructive-hover-bg: rgb(220, 38, 38);
-    --btn-destructive-hover-border: rgb(220, 38, 38);
-    --btn-destructive-focus-ring: rgba(239, 68, 68, 0.4);
+    --btn-destructive-bg-hsl: 0 84% 60%;
+    --btn-destructive-text-hsl: 0 0% 100%;
+    --btn-destructive-border-hsl: 0 84% 60%;
+    --btn-destructive-hover-bg-hsl: 0 84% 50%;
+    --btn-destructive-hover-border-hsl: 0 84% 50%;
+    --btn-destructive-focus-ring-hsl: 0 84% 60% / 0.4;
 
-    --btn-outline-bg: transparent;
-    --btn-outline-text: rgb(229, 231, 235);
-    --btn-outline-border: hsl(var(--cyber-purple-hsl));
-    --btn-outline-hover-bg: rgba(98, 71, 170, 0.1);
-    --btn-outline-hover-border: hsl(var(--cyber-purple-light-hsl));
-    --btn-outline-focus-ring: rgba(98, 71, 170, 0.4);
+    --btn-outline-bg-hsl: 0 0% 0% / 0;
+    --btn-outline-text-hsl: 220 23% 91%;
+    --btn-outline-border-hsl: var(--cyber-purple-hsl);
+    --btn-outline-hover-bg-hsl: 262 59% 47% / 0.1;
+    --btn-outline-hover-border-hsl: var(--cyber-purple-light-hsl);
+    --btn-outline-focus-ring-hsl: 262 59% 47% / 0.4;
 
-    --btn-secondary-bg: rgb(42, 42, 45);
-    --btn-secondary-text: rgb(229, 231, 235);
-    --btn-secondary-border: rgb(42, 42, 45);
-    --btn-secondary-hover-bg: rgb(82, 82, 85);
-    --btn-secondary-hover-border: rgb(82, 82, 85);
-    --btn-secondary-focus-ring: rgba(82, 82, 85, 0.4);
+    --btn-secondary-bg-hsl: 240 4% 17%;
+    --btn-secondary-text-hsl: 220 23% 91%;
+    --btn-secondary-border-hsl: 240 4% 17%;
+    --btn-secondary-hover-bg-hsl: 240 2% 33%;
+    --btn-secondary-hover-border-hsl: 240 2% 33%;
+    --btn-secondary-focus-ring-hsl: 240 2% 33% / 0.4;
 
-    --btn-ghost-bg: transparent;
-    --btn-ghost-text: rgb(229, 231, 235);
-    --btn-ghost-border: transparent;
-    --btn-ghost-hover-bg: rgba(98, 71, 170, 0.1);
-    --btn-ghost-hover-border: transparent;
-    --btn-ghost-focus-ring: rgba(98, 71, 170, 0.4);
+    --btn-ghost-bg-hsl: 0 0% 0% / 0;
+    --btn-ghost-text-hsl: 220 23% 91%;
+    --btn-ghost-border-hsl: 0 0% 0% / 0;
+    --btn-ghost-hover-bg-hsl: 262 59% 47% / 0.1;
+    --btn-ghost-hover-border-hsl: 0 0% 0% / 0;
+    --btn-ghost-focus-ring-hsl: 262 59% 47% / 0.4;
 
     /* Badge theme variables */
-    --badge-default-border: hsl(var(--cyber-purple-hsl));
-    --badge-default-bg: transparent;
-    --badge-default-text: hsl(var(--cyber-purple-light-hsl));
-    --badge-default-hover: rgba(98, 71, 170, 0.1);
+    --badge-default-border-hsl: var(--cyber-purple-hsl);
+    --badge-default-bg-hsl: 0 0% 0% / 0;
+    --badge-default-text-hsl: var(--cyber-purple-light-hsl);
+    --badge-default-hover-hsl: 262 59% 47% / 0.1;
     
-    --badge-secondary-border: rgb(42, 42, 45);
-    --badge-secondary-bg: rgb(42, 42, 45);
-    --badge-secondary-text: rgb(229, 231, 235);
-    --badge-secondary-hover: rgb(82, 82, 85);
+    --badge-secondary-border-hsl: 240 4% 17%;
+    --badge-secondary-bg-hsl: 240 4% 17%;
+    --badge-secondary-text-hsl: 220 23% 91%;
+    --badge-secondary-hover-hsl: 240 2% 33%;
     
-    --badge-destructive-border: rgb(239, 68, 68);
-    --badge-destructive-bg: transparent;
-    --badge-destructive-text: rgb(239, 68, 68);
-    --badge-destructive-hover: rgba(239, 68, 68, 0.1);
+    --badge-destructive-border-hsl: 0 84% 60%;
+    --badge-destructive-bg-hsl: 0 0% 0% / 0;
+    --badge-destructive-text-hsl: 0 84% 60%;
+    --badge-destructive-hover-hsl: 0 84% 60% / 0.1;
     
-    --badge-success-border: rgb(34, 197, 94);
-    --badge-success-bg: transparent;
-    --badge-success-text: rgb(34, 197, 94);
-    --badge-success-hover: rgba(34, 197, 94, 0.1);
+    --badge-success-border-hsl: 142 76% 45%;
+    --badge-success-bg-hsl: 0 0% 0% / 0;
+    --badge-success-text-hsl: 142 76% 45%;
+    --badge-success-hover-hsl: 142 76% 45% / 0.1;
     
-    --badge-outline-border: hsl(var(--cyber-purple-hsl));
-    --badge-outline-bg: transparent;
-    --badge-outline-text: rgb(229, 231, 235);
-    --badge-outline-hover: rgba(98, 71, 170, 0.1);
+    --badge-outline-border-hsl: var(--cyber-purple-hsl);
+    --badge-outline-bg-hsl: 0 0% 0% / 0;
+    --badge-outline-text-hsl: 220 23% 91%;
+    --badge-outline-hover-hsl: 262 59% 47% / 0.1;
 
     /* Card theme variables */
-    --card-border: rgba(98, 71, 170, 0.2);
-    --card-bg: rgb(26, 23, 39);
-    --card-text: rgb(229, 231, 235);
-    --card-shadow: 0 0 30px -5px #2d1b69;
+    --card-border-hsl: 262 59% 47% / 0.2;
+    --card-bg-hsl: 251 41% 12%;
+    --card-text-hsl: 220 23% 91%;
+    --card-shadow-hsl: 262 59% 26% / 0.8;
+    --card-hover-shadow-hsl: 262 59% 47% / 0.5;
     
-    --card-header-border: rgba(98, 71, 170, 0.2);
-    --card-footer-border: rgba(98, 71, 170, 0.2);
+    --card-header-border-hsl: 262 59% 47% / 0.2;
+    --card-header-bg-hsl: var(--cyber-dark-hsl);
+    --card-header-text-hsl: var(--cyber-white-hsl);
     
-    --card-title-text: rgb(229, 231, 235);
-    --card-description-text: rgb(156, 163, 175);
+    --card-footer-border-hsl: 262 59% 47% / 0.2;
+    --card-footer-bg-hsl: var(--cyber-dark-hsl);
+    --card-footer-text-hsl: var(--cyber-gray-hsl);
+    
+    --card-title-text-hsl: 220 23% 91%;
+    --card-description-text-hsl: 220 9% 65%;
 
     /* Dialog theme variables */
-    --dialog-overlay-bg: rgba(0, 0, 0, 0.5);
-    --dialog-border: rgba(98, 71, 170, 0.5);
-    --dialog-bg: rgb(26, 23, 39);
-    --dialog-text: rgb(229, 231, 235);
-    --dialog-shadow: 0 0 30px -5px #2d1b69;
+    --dialog-overlay-bg-hsl: 0 0% 0% / 0.5;
+    --dialog-border-hsl: 262 59% 47% / 0.5;
+    --dialog-bg-hsl: 251 41% 12%;
+    --dialog-text-hsl: 220 23% 91%;
+    --dialog-shadow-hsl: 262 59% 26% / 0.8;
     
-    --dialog-title-text: rgb(229, 231, 235);
-    --dialog-description-text: rgb(156, 163, 175);
+    --dialog-title-text-hsl: 220 23% 91%;
+    --dialog-description-text-hsl: 220 9% 65%;
     
-    --dialog-close-text: rgb(156, 163, 175);
-    --dialog-close-hover: rgb(229, 231, 235);
-    --dialog-close-focus-ring: rgba(98, 71, 170, 0.4);
+    --dialog-close-text-hsl: 220 9% 65%;
+    --dialog-close-hover-hsl: 220 23% 91%;
+    --dialog-close-focus-ring-hsl: 262 59% 47% / 0.4;
 
     /* Input theme variables */
-    --input-border: rgba(98, 71, 170, 0.5);
-    --input-bg: rgba(26, 23, 39, 0.5);
-    --input-text: rgb(229, 231, 235);
-    --input-placeholder: rgb(156, 163, 175);
+    --input-border-hsl: 262 59% 47% / 0.5;
+    --input-bg-hsl: 251 41% 12% / 0.5;
+    --input-text-hsl: 220 23% 91%;
+    --input-placeholder-hsl: 220 9% 65%;
     
-    --input-hover-border: rgba(98, 71, 170, 0.8);
-    --input-focus-border: hsl(var(--cyber-purple-hsl));
-    --input-focus-ring: rgba(98, 71, 170, 0.4);
+    --input-hover-border-hsl: 262 59% 47% / 0.8;
+    --input-focus-border-hsl: var(--cyber-purple-hsl);
+    --input-focus-ring-hsl: 262 59% 47% / 0.4;
 
     /* Dropdown Menu theme variables */
-    --dropdown-border: rgba(45, 27, 105, 0.5);
-    --dropdown-bg: rgba(26, 23, 39, 0.9);
-    --dropdown-text: rgb(229, 231, 235);
-    --dropdown-shadow: 0 0 30px -5px #2d1b69;
-    --dropdown-z-index: 99999;
+    --dropdown-border-hsl: 262 59% 26% / 0.5;
+    --dropdown-bg-hsl: 251 41% 12% / 0.9;
+    --dropdown-text-hsl: 220 23% 91%;
+    --dropdown-shadow-hsl: 262 59% 26% / 0.8;
     
-    --dropdown-item-hover-bg: rgba(45, 27, 105, 0.1);
-    --dropdown-item-hover-text: hsl(var(--cyber-purple-light-hsl));
+    --dropdown-item-hover-bg-hsl: 262 59% 26% / 0.1;
+    --dropdown-item-hover-text-hsl: var(--cyber-purple-light-hsl);
     
-    --dropdown-separator-bg: rgba(45, 27, 105, 0.5);
+    --dropdown-separator-bg-hsl: 262 59% 26% / 0.5;
     
-    --dropdown-label-text: hsl(var(--cyber-purple-hsl));
-    --dropdown-shortcut-text: rgb(156, 163, 175);
+    --dropdown-label-text-hsl: var(--cyber-purple-hsl);
+    --dropdown-shortcut-text-hsl: 220 9% 65%;
     
-    --dropdown-sub-trigger-hover-bg: rgba(45, 27, 105, 0.1);
-    --dropdown-sub-trigger-hover-text: hsl(var(--cyber-purple-light-hsl));
+    --dropdown-sub-trigger-hover-bg-hsl: 262 59% 26% / 0.1;
+    --dropdown-sub-trigger-hover-text-hsl: var(--cyber-purple-light-hsl);
     
-    --dropdown-checkbox-indicator-bg: hsl(var(--cyber-purple-hsl));
-    --dropdown-radio-indicator-bg: hsl(var(--cyber-purple-hsl));
+    --dropdown-checkbox-indicator-bg-hsl: var(--cyber-purple-hsl);
+    --dropdown-radio-indicator-bg-hsl: var(--cyber-purple-hsl);
 
     /* Radio Group theme variables */
-    --radio-border: rgba(98, 71, 170, 0.5);
-    --radio-bg: rgba(26, 23, 39, 0.5);
-    --radio-text: rgb(229, 231, 235);
+    --radio-border-hsl: 262 59% 47% / 0.5;
+    --radio-bg-hsl: 251 41% 12% / 0.5;
+    --radio-text-hsl: 220 23% 91%;
     
-    --radio-hover-border: rgba(98, 71, 170, 0.8);
-    --radio-focus-border: hsl(var(--cyber-purple-hsl));
-    --radio-focus-ring: rgba(98, 71, 170, 0.4);
+    --radio-hover-border-hsl: 262 59% 47% / 0.8;
+    --radio-focus-border-hsl: var(--cyber-purple-hsl);
+    --radio-focus-ring-hsl: 262 59% 47% / 0.4;
     
-    --radio-indicator-bg: hsl(var(--cyber-purple-hsl));
+    --radio-indicator-bg-hsl: var(--cyber-purple-hsl);
 
     /* Switch theme variables */
-    --switch-border: rgba(98, 71, 170, 0.5);
-    --switch-bg-unchecked: rgba(26, 23, 39, 0.5);
-    --switch-bg-checked: hsl(var(--cyber-purple-hsl));
+    --switch-border-hsl: 262 59% 47% / 0.5;
+    --switch-bg-unchecked-hsl: 251 41% 12% / 0.5;
+    --switch-bg-checked-hsl: var(--cyber-purple-hsl);
     
-    --switch-thumb-bg: rgb(229, 231, 235);
+    --switch-thumb-bg-hsl: 220 23% 91%;
     
-    --switch-focus-ring: rgba(98, 71, 170, 0.4);
+    --switch-focus-ring-hsl: 262 59% 47% / 0.4;
 
     /* Skeleton theme variables */
-    --skeleton-bg: hsl(var(--cyber-dark-hsl));
-    --skeleton-border: hsl(var(--cyber-purple-hsl) / 0.2);
-    --skeleton-glow: hsl(var(--cyber-purple-hsl) / 0.05);
+    --skeleton-bg-hsl: var(--cyber-dark-hsl);
+    --skeleton-border-hsl: var(--cyber-purple-hsl) / 0.2;
+    --skeleton-glow-hsl: var(--cyber-purple-hsl) / 0.05;
 
     /* Tabs theme variables */
-    --tabs-list-border: hsl(var(--cyber-purple-hsl) / 0.3);
-    --tabs-list-bg: hsl(var(--cyber-dark-hsl) / 0.5);
-    --tabs-list-text: hsl(var(--cyber-gray-hsl));
+    --tabs-list-border-hsl: var(--cyber-purple-hsl) / 0.3;
+    --tabs-list-bg-hsl: var(--cyber-dark-hsl) / 0.5;
+    --tabs-list-text-hsl: var(--cyber-gray-hsl);
     
-    --tabs-trigger-hover-bg: hsl(var(--cyber-purple-hsl) / 0.1);
-    --tabs-trigger-hover-text: hsl(var(--cyber-white-hsl));
+    --tabs-trigger-hover-bg-hsl: var(--cyber-purple-hsl) / 0.1;
+    --tabs-trigger-hover-text-hsl: var(--cyber-white-hsl);
     
-    --tabs-trigger-active-bg: hsl(var(--cyber-purple-hsl));
-    --tabs-trigger-active-text: hsl(var(--cyber-white-hsl));
+    --tabs-trigger-active-bg-hsl: var(--cyber-purple-hsl);
+    --tabs-trigger-active-text-hsl: var(--cyber-white-hsl);
 
     /* Textarea theme variables */
-    --textarea-border: hsl(var(--cyber-purple-hsl) / 0.5);
-    --textarea-bg: hsl(var(--cyber-dark-hsl) / 0.5);
-    --textarea-text: hsl(var(--cyber-white-hsl));
-    --textarea-placeholder: hsl(var(--cyber-gray-hsl));
+    --textarea-border-hsl: var(--cyber-purple-hsl) / 0.5;
+    --textarea-bg-hsl: var(--cyber-dark-hsl) / 0.5;
+    --textarea-text-hsl: var(--cyber-white-hsl);
+    --textarea-placeholder-hsl: var(--cyber-gray-hsl);
     
-    --textarea-hover-border: hsl(var(--cyber-purple-hsl) / 0.8);
-    --textarea-focus-border: hsl(var(--cyber-purple-hsl));
-    --textarea-focus-ring: hsl(var(--cyber-purple-hsl) / 0.4);
+    --textarea-hover-border-hsl: var(--cyber-purple-hsl) / 0.8;
+    --textarea-focus-border-hsl: var(--cyber-purple-hsl);
+    --textarea-focus-ring-hsl: var(--cyber-purple-hsl) / 0.4;
 
     /* Avatar theme variables */
-    --avatar-fallback-bg: hsl(var(--cyber-dark-hsl) / 0.5);
-    --avatar-border: hsl(var(--cyber-purple-hsl) / 0.5);
-    --avatar-ring: hsl(var(--cyber-purple-hsl) / 0.4);
+    --avatar-fallback-bg-hsl: var(--cyber-dark-hsl) / 0.5;
+    --avatar-border-hsl: var(--cyber-purple-hsl) / 0.5;
+    --avatar-ring-hsl: var(--cyber-purple-hsl) / 0.4;
+
+    /* Mission theme variables */
+    --mission-participant-human-hsl: 320 100% 50%;  /* neon pink */
+    --mission-participant-agent-hsl: 290 100% 50%;  /* neon purple */
+    --mission-participant-any-hsl: 180 100% 65%;    /* bright cyan */
+
+    --mission-scale-solo-bg-hsl: 262 59% 26%;      /* dark purple */
+    --mission-scale-solo-text-hsl: 262 70% 70%;    /* light purple */
+    --mission-scale-party-bg-hsl: 262 59% 26%;     /* dark purple */
+    --mission-scale-party-text-hsl: 290 100% 65%;  /* bright purple */
+    --mission-scale-swarm-bg-hsl: 320 59% 26%;     /* dark pink */
+    --mission-scale-swarm-text-hsl: 320 100% 65%;  /* bright pink */
+
+    --mission-status-active-bg-hsl: 142 76% 45% / 0.2;
+    --mission-status-active-text-hsl: 142 69% 58%;
+    --mission-status-in-progress-bg-hsl: 217 91% 60% / 0.2;
+    --mission-status-in-progress-text-hsl: 213 94% 68%;
+    --mission-status-pending-bg-hsl: 45 93% 47% / 0.2;
+    --mission-status-pending-text-hsl: 48 96% 53%;
+    --mission-status-completed-bg-hsl: 271 68% 65% / 0.2;
+    --mission-status-completed-text-hsl: 271 83% 75%;
+    --mission-status-failed-bg-hsl: 0 84% 60% / 0.2;
+    --mission-status-failed-text-hsl: 0 91% 71%;
+
+    /* Accordion theme variables */
+    --accordion-border-hsl: var(--cyber-purple-hsl) / 0.3;
+    --accordion-border-hover-hsl: var(--cyber-purple-hsl);
+    --accordion-text-hsl: var(--cyber-gray-hsl);
+    --accordion-text-hover-hsl: var(--cyber-white-hsl);
+    --accordion-icon-hsl: var(--cyber-purple-hsl) / 0.5;
+    --accordion-icon-hover-hsl: var(--cyber-purple-hsl);
+    --accordion-content-hsl: var(--cyber-gray-hsl);
   }
 }
  
@@ -225,46 +257,45 @@
   
   html {
     @apply antialiased;
-    background: linear-gradient(to bottom, hsl(230 25% 5%), hsl(230 25% 2%));
+    background: linear-gradient(to bottom, hsl(var(--background-hsl)), hsl(var(--background-hsl)));
     min-height: 100vh;
   }
 
   body {
     @apply bg-transparent text-foreground;
-    text-shadow: 0 0 5px rgba(150, 255, 255, 0.3);
   }
 
   /* Terminal-style text selection */
   ::selection {
-    @apply bg-primary/30 text-foreground;
+    background: hsl(var(--primary-hsl) / 0.3);
+    color: hsl(var(--foreground-hsl));
   }
 }
 
 @layer components {
+  .text-glow {
+    text-shadow: 0 0 5px hsl(var(--primary-hsl) / 0.3);
+  }
+  
   /* Card with cyber borders and persistent glow */
   .cyber-card {
-    @apply relative overflow-hidden rounded-sm border border-[var(--card-border)] bg-[var(--card-bg)] p-4 mt-4;
-    transition: all 500ms ease-in-out;
-    box-shadow: 
-      0 0 0 1px theme('colors.cyber.purple'),
-      0 0 20px theme('colors.cyber.purple');
-    transform: scale(1);
+    @apply relative overflow-hidden rounded-sm p-4 mt-4;
+    border: 1px solid hsl(var(--cyber-purple-hsl) / 0.2);
+    background: hsl(var(--cyber-dark-hsl));
+    box-shadow: 0 0 35px hsl(var(--cyber-purple-hsl) / 0.3);
   }
 
   .cyber-card:hover {
-    box-shadow: 
-      0 0 0 1px theme('colors.cyber.purple'),
-      0 0 35px theme('colors.cyber.purple-light');
-    transform: scale(1.02);
+    box-shadow: 0 0 35px hsl(var(--cyber-purple-hsl) / 0.5);
   }
 
   /* Glowing text effect */
   .neon-text {
     @apply relative;
     text-shadow: 
-      0 0 5px theme('colors.primary.DEFAULT'),
-      0 0 10px theme('colors.primary.DEFAULT'),
-      0 0 20px theme('colors.primary.DEFAULT');
+      0 0 5px hsl(var(--primary-hsl)),
+      0 0 10px hsl(var(--primary-hsl)),
+      0 0 20px hsl(var(--primary-hsl));
   }
 
   /* Matrix-style scrollbar */
@@ -278,17 +309,24 @@
   }
 
   ::-webkit-scrollbar-thumb {
-    @apply rounded-full bg-cyber-purple/50;
+    background: hsl(var(--cyber-purple-hsl) / 0.5);
+    border-radius: 9999px;
     border: 2px solid transparent;
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    @apply bg-cyber-purple;
+    background: hsl(var(--cyber-purple-hsl));
   }
 
   /* Glowing focus ring */
   .focus-ring {
-    @apply focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 focus-visible:ring-offset-background;
+    @apply focus:outline-none;
+  }
+  .focus-ring:focus-visible {
+    outline: none;
+    box-shadow: 
+      0 0 0 2px hsl(var(--background-hsl)),
+      0 0 0 4px hsl(var(--primary-hsl) / 0.5);
   }
 }
 
@@ -311,27 +349,14 @@
 
   .glitch-effect::before {
     left: -2px;
-    text-shadow: 2px 0 theme('colors.accent.DEFAULT');
+    text-shadow: 2px 0 hsl(var(--accent-hsl));
     animation: glitch-anim-1 2s infinite linear alternate-reverse;
   }
 
   .glitch-effect::after {
     left: 2px;
-    text-shadow: -2px 0 theme('colors.primary.DEFAULT');
+    text-shadow: -2px 0 hsl(var(--primary-hsl));
     animation: glitch-anim-2 3s infinite linear alternate-reverse;
-  }
-
-  /* Cyber gradient text */
-  .cyber-gradient {
-    @apply bg-clip-text text-transparent;
-    background-image: linear-gradient(
-      90deg,
-      theme('colors.primary.DEFAULT'),
-      theme('colors.accent.DEFAULT'),
-      theme('colors.primary.DEFAULT')
-    );
-    background-size: 200% auto;
-    animation: cyber-gradient 3s linear infinite;
   }
 
   /* Terminal typing effect */

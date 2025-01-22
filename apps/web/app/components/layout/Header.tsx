@@ -14,7 +14,10 @@ export function Header() {
       <div className="max-w-[1800px] mx-auto px-6">
         <div className="flex h-[70px] items-center justify-between">
           <div className="flex items-center gap-8">
-            <Link href="/" className="text-xl font-bold text-primary">
+            <Link
+              href="/"
+              className="text-xl font-bold text-[#ff00ff] hover:text-[#ff00ff]/80 transition-colors duration-200"
+            >
               H1V3M1ND
             </Link>
             <nav className="hidden md:block">

@@ -6,13 +6,17 @@ export function Footer() {
       <div className="container mx-auto px-6 py-2 max-w-[1800px]">
         <div className="flex items-center justify-between">
           <div>
-            <h3 className="text-lg font-semibold text-primary">H1V3M1ND</h3>
+            <div className="flex items-center gap-2">
+              <h3 className="text-lg font-semibold text-[#ff00ff] hover:text-[#ff00ff]/80 transition-colors duration-200">
+                H1V3M1ND
+              </h3>
+            </div>
           </div>
           <div className="text-center text-sm text-gray-400">
             Made with ❤️ by{' '}
             <a
               href="https://x.com/project_89"
-              className="text-cyber-purple hover:text-cyber-purple/80 transition-colors"
+              className="text-cyber-purple hover:text-cyber-purple-light transition-colors"
               target="_blank"
               rel="noopener noreferrer"
             >
