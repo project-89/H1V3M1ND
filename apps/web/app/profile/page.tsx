@@ -6,15 +6,7 @@ import { ProfileStats } from '@/components/profile/ProfileStats';
 import { ProfileCapabilities } from '@/components/profile/ProfileCapabilities';
 import { ProfileAchievements } from '@/components/profile/ProfileAchievements';
 import { MissionHistory } from '@/components/profile/MissionHistory';
-import {
-  Mission,
-  MissionStatus,
-  MissionType,
-  ParticipantType,
-  MissionScale,
-  ROLE,
-  SingleParticipantMission,
-} from '@/lib/types';
+
 import {
   ProfileHeaderLoading,
   ProfileStatsLoading,
@@ -23,63 +15,115 @@ import {
   MissionHistoryLoading,
 } from '@/components/profile/loading';
 import { Fade, ErrorState, LoadingProgress } from '@H1V3M1ND/ui';
+import { ExtendedMission, ROLE } from '@/lib/types/missions';
+import { MissionType, ParticipantType } from '@/lib/types';
+import { MissionStatus } from '@/lib/types/missions';
+import { Achievement, AchievementRarity, AchievementType } from '@/lib/types/achievements';
+
+interface UserSkill {
+  id: string;
+  name: string;
+  description: string;
+  // Ratings and reputation built through completed missions
+  rating?: number;
+  completedMissions: number;
+  lastUsed?: Date;
+}
 
 // Sample data - replace with actual data fetching
 const sampleProfileData = {
   username: 'CyberAgent_42',
+  bio: 'Specializing in visual effects and motion design with expertise in After Effects and Cinema 4D.',
   stats: {
     completedMissions: 12,
     successRate: 92,
     totalStaked: 25000,
     reputation: 850,
-    rank: 5,
   },
-  capabilities: [
-    { name: 'Neural Networks', level: 8, category: 'ai' as const },
-    { name: 'Smart Contracts', level: 7, category: 'development' as const },
-    { name: 'Penetration Testing', level: 6, category: 'security' as const },
-    { name: 'Distributed Systems', level: 7, category: 'network' as const },
-    { name: 'Data Analysis', level: 5, category: 'ai' as const },
-    { name: 'Protocol Design', level: 6, category: 'development' as const },
-  ],
-  achievements: [
+  skills: [
     {
       id: '1',
-      title: 'Neural Network Master',
-      description: 'Successfully trained 10 advanced neural networks with exceptional accuracy.',
-      type: 'skill' as const,
-      rarity: 'legendary' as const,
-      earnedAt: Date.now() - 604800000, // 1 week ago
+      name: 'Motion Design',
+      description:
+        'Expert in creating fluid animations and transitions using After Effects and Cinema 4D',
+      rating: 4.8,
+      completedMissions: 8,
+      lastUsed: new Date(Date.now() - 86400000), // 1 day ago
     },
     {
       id: '2',
-      title: 'Security Sentinel',
-      description: 'Identified and patched critical vulnerabilities in blockchain protocols.',
-      type: 'milestone' as const,
-      rarity: 'epic' as const,
-      earnedAt: Date.now() - 1209600000, // 2 weeks ago
+      name: 'Visual Effects',
+      description: 'Specializing in particle systems and environmental effects for digital content',
+      rating: 4.5,
+      completedMissions: 6,
+      lastUsed: new Date(Date.now() - 172800000), // 2 days ago
     },
     {
       id: '3',
-      title: 'First Mission Complete',
-      description: 'Successfully completed your first mission in record time.',
-      type: 'milestone' as const,
-      rarity: 'common' as const,
-      earnedAt: Date.now() - 2592000000, // 1 month ago
+      name: '3D Modeling',
+      description: 'Creating detailed 3D assets and environments in Cinema 4D and Blender',
+      rating: 4.2,
+      completedMissions: 4,
+      lastUsed: new Date(Date.now() - 432000000), // 5 days ago
     },
-  ],
+  ] as UserSkill[],
+  achievements: [
+    {
+      id: '1',
+      title: 'First Mission Complete',
+      description: 'Successfully completed your first mission in the network.',
+      type: AchievementType.Milestone,
+      rarity: AchievementRarity.Common,
+      imageUrl: '/achievements/first-mission.png',
+      unlockedAt: new Date(Date.now() - 2592000000), // 30 days ago
+      rewards: {
+        xp: 100,
+        tokens: 50,
+      },
+    },
+    {
+      id: '2',
+      title: 'Rising Star',
+      description: 'Complete 5 missions with a rating of 4.5 or higher.',
+      type: AchievementType.Progress,
+      rarity: AchievementRarity.Rare,
+      imageUrl: '/achievements/rising-star.png',
+      unlockedAt: new Date(Date.now() - 604800000), // 7 days ago
+      progress: {
+        current: 3,
+        target: 5,
+      },
+      rewards: {
+        xp: 500,
+        tokens: 200,
+        badges: ['quality-focused'],
+      },
+    },
+    {
+      id: '3',
+      title: 'VFX Master',
+      description: 'Achieve a 4.8+ rating in Visual Effects skills.',
+      type: AchievementType.Skill,
+      rarity: AchievementRarity.Epic,
+      imageUrl: '/achievements/vfx-master.png',
+      unlockedAt: new Date(Date.now() - 86400000), // 1 day ago
+      rewards: {
+        xp: 1000,
+        tokens: 500,
+        badges: ['vfx-expert'],
+      },
+    },
+  ] as Achievement[],
   activeMissions: [
     {
       id: '1',
       type: MissionType.Single,
-      title: 'Neural Network Training',
-      description:
-        'Train a specialized neural network for pattern recognition in encrypted data streams.',
-      participantType: ParticipantType.Agent,
-      scale: MissionScale.Solo,
+      title: 'VFX Enhancement',
+      description: 'Create particle effects and environmental enhancements for promotional video.',
+      participantType: ParticipantType.Human,
       status: MissionStatus.Active,
       requirements: {
-        capabilities: ['Neural Networks', 'Pattern Recognition'],
+        capabilities: ['Visual Effects', 'Motion Design'],
         minimumRank: ROLE.AGENT_SENIOR,
       },
       baseRequirements: {
@@ -91,20 +135,24 @@ const sampleProfileData = {
       escrowAddress: '0x1234...5678',
       createdBy: '0xabcd...efgh',
       failureConditions: [],
-    } as SingleParticipantMission,
-  ],
+      duration: 72,
+      reward: 1000,
+      xpGained: 500,
+      teamSize: 1,
+      completedAt: Date.now() + 86400000 * 3, // Expected completion date
+    },
+  ] as ExtendedMission[],
   completedMissions: [
     {
       id: '2',
       type: MissionType.Single,
-      title: 'Security Protocol Audit',
-      description: 'Conduct a thorough security audit of a new blockchain protocol.',
+      title: '3D Asset Creation',
+      description: 'Design and model 3D assets for virtual environment.',
       participantType: ParticipantType.Human,
-      scale: MissionScale.Party,
       status: MissionStatus.Completed,
       requirements: {
-        capabilities: ['Security Auditing', 'Blockchain'],
-        minimumRank: ROLE.AGENT_MASTER,
+        capabilities: ['3D Modeling', 'Visual Design'],
+        minimumRank: ROLE.AGENT_FIELD,
       },
       baseRequirements: {
         timeLimit: 48,
@@ -115,8 +163,13 @@ const sampleProfileData = {
       escrowAddress: '0x9876...4321',
       createdBy: '0xijkl...mnop',
       failureConditions: [],
-    } as SingleParticipantMission,
-  ],
+      duration: 45,
+      reward: 2000,
+      xpGained: 750,
+      teamSize: 1,
+      completedAt: Date.now() - 86400000,
+    },
+  ] as ExtendedMission[],
   totalEarned: 15000,
 };
 
@@ -161,10 +214,10 @@ export default function ProfilePage() {
       ) : (
         <div className="container mx-auto px-4 py-8 space-y-8">
           <Fade show={!isLoading} className="space-y-8">
-            <ProfileHeader username={data.username} stats={data.stats} />
+            <ProfileHeader username={data.username} bio={data.bio} stats={data.stats} />
             <ProfileStats stats={data.stats} />
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-              <ProfileCapabilities capabilities={data.capabilities} />
+              <ProfileCapabilities skills={data.skills} />
               <ProfileAchievements achievements={data.achievements} />
             </div>
             <MissionHistory

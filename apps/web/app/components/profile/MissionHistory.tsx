@@ -1,13 +1,27 @@
 'use client';
 
 import { Tabs, TabsContent, TabsList, TabsTrigger, Badge } from '@H1V3M1ND/ui';
+import { Button } from '@H1V3M1ND/ui';
+import { Clock, Award, Coins, Star, Users, Calendar } from 'lucide-react';
+import { cn } from '@/lib/utils';
 
-import { Mission, MissionStatus } from '@/lib/types';
-import { Clock, Target, Award } from 'lucide-react';
+import { MissionStatus, SingleParticipantMission, MultiParticipantMission } from '@/lib/types';
+
+type BaseMission = SingleParticipantMission | MultiParticipantMission;
+
+interface MissionHistoryDetails {
+  duration: number;
+  reward: number;
+  xpGained: number;
+  teamSize: number;
+  completedAt: number;
+}
+
+type ExtendedMission = BaseMission & MissionHistoryDetails;
 
 interface MissionHistoryProps {
-  activeMissions: Mission[];
-  completedMissions: Mission[];
+  activeMissions: ExtendedMission[];
+  completedMissions: ExtendedMission[];
   totalEarned: number;
 }
 
@@ -39,27 +53,66 @@ export function MissionHistory({
     }
   };
 
-  const MissionCard = ({ mission }: { mission: Mission }) => (
-    <div className="bg-cyber-dark border border-cyber-purple/50 rounded-lg p-4 hover:border-cyber-purple transition-colors">
-      <div className="flex justify-between items-start mb-2">
-        <h3 className="text-lg font-semibold text-white">{mission.title}</h3>
-        <Badge variant="outline" className={getStatusColor(mission.status)}>
+  const MissionCard = ({ mission }: { mission: ExtendedMission }) => (
+    <div className="bg-cyber-dark border border-cyber-purple/30 rounded-lg p-4 hover:border-cyber-purple transition-colors">
+      <div className="flex items-center justify-between mb-2">
+        <h3 className="text-lg font-semibold text-cyber-white">{mission.title}</h3>
+        <Badge variant="outline" className={cn('text-sm', getStatusColor(mission.status))}>
           {mission.status}
         </Badge>
       </div>
-      <p className="text-gray-400 text-sm mb-4 line-clamp-2">{mission.description}</p>
-      <div className="grid grid-cols-3 gap-2 text-sm">
-        <div className="flex items-center space-x-1 text-gray-400">
-          <Clock className="w-4 h-4" />
-          <span>{mission.baseRequirements.timeLimit}h</span>
+
+      <p className="text-cyber-gray mb-4">{mission.description}</p>
+
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div>
+          <p className="text-sm text-cyber-gray mb-1">Duration</p>
+          <div className="flex items-center gap-1">
+            <Clock className="w-4 h-4 text-cyber-purple" />
+            <span className="text-cyber-white">{mission.duration} hours</span>
+          </div>
         </div>
-        <div className="flex items-center space-x-1 text-gray-400">
-          <Target className="w-4 h-4" />
-          <span>{mission.baseRequirements.stakeAmount} Project89</span>
+
+        <div>
+          <p className="text-sm text-cyber-gray mb-1">Reward</p>
+          <div className="flex items-center gap-1">
+            <Coins className="w-4 h-4 text-neon-pink" />
+            <span className="text-cyber-white">{mission.reward} Project89</span>
+          </div>
         </div>
-        <div className="flex items-center space-x-1 text-gray-400">
-          <Award className="w-4 h-4" />
-          <span>{formatDate(mission.createdAt)}</span>
+
+        <div>
+          <p className="text-sm text-cyber-gray mb-1">XP Gained</p>
+          <div className="flex items-center gap-1">
+            <Star className="w-4 h-4 text-neon-purple" />
+            <span className="text-cyber-white">+{mission.xpGained}</span>
+          </div>
+        </div>
+
+        <div>
+          <p className="text-sm text-cyber-gray mb-1">Team Size</p>
+          <div className="flex items-center gap-1">
+            <Users className="w-4 h-4 text-neon-cyan" />
+            <span className="text-cyber-white">{mission.teamSize} members</span>
+          </div>
+        </div>
+      </div>
+
+      <div className="mt-4 pt-4 border-t border-cyber-purple/20">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <Calendar className="w-4 h-4 text-cyber-gray" />
+            <span className="text-sm text-cyber-gray">
+              Completed on {new Date(mission.completedAt).toLocaleDateString()}
+            </span>
+          </div>
+          <Button
+            variant="outline"
+            size="sm"
+            className="text-cyber-purple hover:text-cyber-purple-light hover:bg-cyber-purple/10"
+          >
+            View Details
+          </Button>
         </div>
       </div>
     </div>

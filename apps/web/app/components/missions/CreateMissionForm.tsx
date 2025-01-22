@@ -129,14 +129,14 @@ export function CreateMissionForm({ onSubmit, isSubmitting = false }: CreateMiss
     <form onSubmit={handleSubmit} className="space-y-6">
       <Card className="bg-cyber-darker border-cyber-purple">
         <CardHeader>
-          <h2 className="text-2xl font-bold text-glow-pink">Create New Mission</h2>
-          <p className="text-gray-400">Define the parameters for your new mission</p>
+          <h2 className="text-2xl font-bold text-neon-pink">Create New Mission</h2>
+          <p className="text-cyber-gray">Define the parameters for your new mission</p>
         </CardHeader>
 
         <CardContent className="space-y-4">
           {/* Basic Info */}
           <div className="space-y-2">
-            <label className="text-sm text-gray-400">Mission Title</label>
+            <label className="text-sm text-cyber-gray">Mission Title</label>
             <Input
               value={formData.title}
               onChange={(e) => handleFieldChange('title', e.target.value)}
@@ -148,9 +148,9 @@ export function CreateMissionForm({ onSubmit, isSubmitting = false }: CreateMiss
           </div>
 
           <div className="space-y-2">
-            <label className="text-sm text-gray-400">Description</label>
+            <label className="text-sm text-cyber-gray">Description</label>
             <textarea
-              className={`w-full h-24 rounded-md bg-cyber-dark border border-cyber-purple-light focus:border-neon-pink text-gray-200 p-2 text-sm ${
+              className={`w-full h-24 rounded-md bg-cyber-dark border border-cyber-purple-light focus:border-neon-pink text-cyber-white p-2 text-sm ${
                 errors.description ? 'border-red-500' : ''
               }`}
               value={formData.description}
@@ -166,9 +166,9 @@ export function CreateMissionForm({ onSubmit, isSubmitting = false }: CreateMiss
           {/* Mission Parameters */}
           <div className="grid grid-cols-2 gap-4">
             <div className="space-y-2">
-              <label className="text-sm text-gray-400">Participant Type</label>
+              <label className="text-sm text-cyber-gray">Participant Type</label>
               <select
-                className={`w-full rounded-md bg-cyber-dark border border-cyber-purple-light focus:border-neon-pink text-gray-200 p-2 text-sm ${
+                className={`w-full rounded-md bg-cyber-dark border border-cyber-purple-light focus:border-neon-pink text-cyber-white p-2 text-sm ${
                   errors.participantType ? 'border-red-500' : ''
                 }`}
                 value={formData.participantType}
@@ -184,9 +184,9 @@ export function CreateMissionForm({ onSubmit, isSubmitting = false }: CreateMiss
             </div>
 
             <div className="space-y-2">
-              <label className="text-sm text-gray-400">Scale</label>
+              <label className="text-sm text-cyber-gray">Scale</label>
               <select
-                className={`w-full rounded-md bg-cyber-dark border border-cyber-purple-light focus:border-neon-pink text-gray-200 p-2 text-sm ${
+                className={`w-full rounded-md bg-cyber-dark border border-cyber-purple-light focus:border-neon-pink text-cyber-white p-2 text-sm ${
                   errors.scale ? 'border-red-500' : ''
                 }`}
                 value={formData.scale}
@@ -203,7 +203,7 @@ export function CreateMissionForm({ onSubmit, isSubmitting = false }: CreateMiss
           {/* Requirements */}
           <div className="grid grid-cols-2 gap-4">
             <div className="space-y-2">
-              <label className="text-sm text-gray-400 flex items-center">
+              <label className="text-sm text-cyber-gray flex items-center">
                 <Clock className="mr-2 h-4 w-4 text-neon-pink" />
                 Time Limit (hours)
               </label>
@@ -219,7 +219,7 @@ export function CreateMissionForm({ onSubmit, isSubmitting = false }: CreateMiss
             </div>
 
             <div className="space-y-2">
-              <label className="text-sm text-gray-400 flex items-center">
+              <label className="text-sm text-cyber-gray flex items-center">
                 <Coins className="mr-2 h-4 w-4 text-cyber-purple-light" />
                 Stake Amount (Project89)
               </label>
@@ -239,7 +239,7 @@ export function CreateMissionForm({ onSubmit, isSubmitting = false }: CreateMiss
 
           {/* Capabilities */}
           <div className="space-y-2">
-            <label className="text-sm text-gray-400">Required Capabilities</label>
+            <label className="text-sm text-cyber-gray">Required Capabilities</label>
             <Input
               value={capability}
               onChange={(e) => setCapability(e.target.value)}
@@ -266,7 +266,7 @@ export function CreateMissionForm({ onSubmit, isSubmitting = false }: CreateMiss
 
           {formData.participantType !== 'agent' && (
             <div className="space-y-2">
-              <label className="text-sm text-gray-400 flex items-center">
+              <label className="text-sm text-cyber-gray flex items-center">
                 <Users className="mr-2 h-4 w-4 text-neon-purple" />
                 Minimum Rank
               </label>

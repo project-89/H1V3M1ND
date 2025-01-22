@@ -41,7 +41,7 @@ export function EvidenceHistory({ evidence }: EvidenceHistoryProps) {
   if (evidence.length === 0) {
     return (
       <div className="text-center p-8 bg-cyber-dark/30 rounded-lg border border-cyber-purple/20">
-        <p className="text-gray-400">No evidence submitted yet</p>
+        <p className="text-cyber-gray">No evidence submitted yet</p>
       </div>
     );
   }
@@ -78,7 +78,7 @@ export function EvidenceHistory({ evidence }: EvidenceHistoryProps) {
             </div>
           </div>
 
-          <div className="flex justify-between items-center text-sm text-gray-400">
+          <div className="flex justify-between items-center text-sm text-cyber-gray">
             <span>
               Submitted {new Date(item.submittedAt).toLocaleDateString()} at{' '}
               {new Date(item.submittedAt).toLocaleTimeString()}

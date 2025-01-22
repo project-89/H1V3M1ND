@@ -11,37 +11,43 @@ export interface MissionCardProps {
 const getParticipantTypeColor = (type: ParticipantType) => {
   switch (type) {
     case ParticipantType.Human:
-      return 'text-[hsl(var(--mission-participant-human-hsl))] border-[hsl(var(--mission-participant-human-hsl))]';
+      return 'text-neon-pink border-neon-pink';
     case ParticipantType.Agent:
-      return 'text-[hsl(var(--mission-participant-agent-hsl))] border-[hsl(var(--mission-participant-agent-hsl))]';
+      return 'text-neon-purple border-neon-purple';
+    case ParticipantType.Any:
+      return 'text-neon-cyan border-neon-cyan';
     default:
-      return 'text-[hsl(var(--mission-participant-any-hsl))] border-[hsl(var(--mission-participant-any-hsl))]';
+      return '';
   }
 };
 
 const getScaleColor = (scale: MissionScale) => {
   switch (scale) {
     case MissionScale.Solo:
-      return 'bg-[hsl(var(--mission-scale-solo-bg-hsl))] text-[hsl(var(--mission-scale-solo-text-hsl))]';
+      return 'bg-cyber-dark text-cyber-purple-light';
     case MissionScale.Party:
-      return 'bg-[hsl(var(--mission-scale-party-bg-hsl))] text-[hsl(var(--mission-scale-party-text-hsl))]';
+      return 'bg-cyber-dark text-neon-purple';
     case MissionScale.Swarm:
-      return 'bg-[hsl(var(--mission-scale-swarm-bg-hsl))] text-[hsl(var(--mission-scale-swarm-text-hsl))]';
+      return 'bg-cyber-dark text-neon-pink';
+    default:
+      return '';
   }
 };
 
 const getStatusColor = (status: MissionStatus) => {
   switch (status) {
     case MissionStatus.Active:
-      return 'bg-[hsl(var(--mission-status-active-bg-hsl))] text-[hsl(var(--mission-status-active-text-hsl))]';
+      return 'bg-cyber-dark text-neon-cyan';
     case MissionStatus.InProgress:
-      return 'bg-[hsl(var(--mission-status-in-progress-bg-hsl))] text-[hsl(var(--mission-status-in-progress-text-hsl))]';
+      return 'bg-cyber-dark text-neon-purple';
     case MissionStatus.PendingValidation:
-      return 'bg-[hsl(var(--mission-status-pending-bg-hsl))] text-[hsl(var(--mission-status-pending-text-hsl))]';
+      return 'bg-cyber-dark text-cyber-yellow';
     case MissionStatus.Completed:
-      return 'bg-[hsl(var(--mission-status-completed-bg-hsl))] text-[hsl(var(--mission-status-completed-text-hsl))]';
+      return 'bg-cyber-dark text-matrix-green';
+    case MissionStatus.Failed:
+      return 'bg-cyber-dark text-neon-pink';
     default:
-      return 'bg-[hsl(var(--mission-status-failed-bg-hsl))] text-[hsl(var(--mission-status-failed-text-hsl))]';
+      return '';
   }
 };
 
@@ -75,41 +81,36 @@ export function MissionCard({ mission, onClick }: MissionCardProps) {
           </Badge>
           <Badge className={`px-2 py-1 ${getStatusColor(mission.status)}`}>{mission.status}</Badge>
         </div>
-        <h3 className="text-lg font-bold text-[hsl(var(--neon-pink-hsl))]">{mission.title}</h3>
+        <h3 className="text-lg font-bold text-neon-pink">{mission.title}</h3>
       </CardHeader>
 
       <CardContent className="space-y-4 flex-1">
-        <p className="text-sm text-[hsl(var(--cyber-gray-hsl))] line-clamp-2">
-          {mission.description}
-        </p>
+        <p className="text-sm text-cyber-gray line-clamp-2">{mission.description}</p>
 
         <div className="flex items-center space-x-2">
           <Badge className={`px-2 py-1 ${getScaleColor(scale)}`}>{scale}</Badge>
           {mission.baseRequirements.timeLimit && (
-            <Badge
-              variant="outline"
-              className="px-2 py-1 text-[hsl(var(--neon-pink-hsl))] border-[hsl(var(--neon-pink-hsl))]"
-            >
+            <Badge variant="outline" className="px-2 py-1 text-neon-pink border-neon-pink">
               {mission.baseRequirements.timeLimit}h
             </Badge>
           )}
         </div>
       </CardContent>
 
-      <CardFooter className="border-t border-[hsl(var(--cyber-purple-hsl)/0.3)] bg-[hsl(var(--cyber-dark-hsl))] mt-4 py-4">
+      <CardFooter className="border-t border-cyber-purple/30 bg-cyber-dark mt-4 py-4">
         <div className="flex items-center gap-4 text-sm w-full justify-center">
-          <div>
-            <span className="text-[hsl(var(--cyber-gray-hsl))]">Reward: </span>
-            <span className="text-[hsl(var(--neon-pink-hsl))] font-bold">1000 Project89</span>
+          <div className="flex items-center gap-1">
+            <span className="text-cyber-gray">Reward: </span>
+            <span className="text-neon-pink font-bold">1000 Project89</span>
           </div>
-          <div>
-            <span className="text-[hsl(var(--cyber-gray-hsl))]">XP: </span>
-            <span className="text-[hsl(var(--neon-purple-hsl))] font-bold">+500</span>
+          <div className="flex items-center gap-1">
+            <span className="text-cyber-gray">XP: </span>
+            <span className="text-neon-purple font-bold">+500</span>
           </div>
           {mission.baseRequirements.stakeAmount && (
-            <div className="ml-auto">
-              <span className="text-[hsl(var(--cyber-gray-hsl))]">Stake: </span>
-              <span className="text-[hsl(var(--cyber-purple-light-hsl))]">
+            <div className="flex items-center gap-1 ml-auto">
+              <span className="text-cyber-gray">Stake: </span>
+              <span className="text-cyber-purple-light">
                 {mission.baseRequirements.stakeAmount} Project89
               </span>
             </div>

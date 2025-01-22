@@ -71,7 +71,7 @@ export function FilterBar({ onFilterChange }: FilterBarProps) {
           <DropdownMenuTrigger asChild>
             <Button
               variant="outline"
-              className="border-cyber-purple-light hover:border-cyber-pink h-9 focus:border-cyber-pink focus:outline-none transition-colors duration-100"
+              className="border-cyber-purple-light hover:border-cyber-pink h-9 focus:border-cyber-pink focus:outline-none transition-colors duration-100 text-neon-pink"
             >
               <div className="flex items-center gap-2">
                 <span>{filters.participantType || 'Participant Type'}</span>
@@ -112,7 +112,7 @@ export function FilterBar({ onFilterChange }: FilterBarProps) {
           <DropdownMenuTrigger asChild>
             <Button
               variant="outline"
-              className="border-cyber-purple-light hover:border-cyber-pink h-9 focus:border-cyber-pink focus:outline-none transition-colors duration-100"
+              className="border-cyber-purple-light hover:border-cyber-pink h-9 focus:border-cyber-pink focus:outline-none transition-colors duration-100 text-neon-pink"
             >
               <div className="flex items-center gap-2">
                 <span>{filters.scale || 'Scale'}</span>
@@ -153,7 +153,7 @@ export function FilterBar({ onFilterChange }: FilterBarProps) {
           <DropdownMenuTrigger asChild>
             <Button
               variant="outline"
-              className="border-cyber-purple-light hover:border-cyber-pink h-9 focus:border-cyber-pink focus:outline-none transition-colors duration-100"
+              className="border-cyber-purple-light hover:border-cyber-pink h-9 focus:border-cyber-pink focus:outline-none transition-colors duration-100 text-neon-pink"
             >
               <div className="flex items-center gap-2">
                 <span>{filters.status || 'Status'}</span>
@@ -200,7 +200,7 @@ export function FilterBar({ onFilterChange }: FilterBarProps) {
           <DropdownMenuTrigger asChild>
             <Button
               variant="outline"
-              className="border-cyber-purple-light hover:border-cyber-pink h-9 focus:border-cyber-pink focus:outline-none transition-colors duration-100"
+              className="border-cyber-purple-light hover:border-cyber-pink h-9 focus:border-cyber-pink focus:outline-none transition-colors duration-100 text-neon-pink"
             >
               <div className="flex items-center gap-2">
                 <Clock size={16} />
@@ -244,7 +244,7 @@ export function FilterBar({ onFilterChange }: FilterBarProps) {
           <DropdownMenuTrigger asChild>
             <Button
               variant="outline"
-              className="border-cyber-purple-light hover:border-cyber-pink h-9 focus:border-cyber-pink focus:outline-none transition-colors duration-100"
+              className="border-cyber-purple-light hover:border-cyber-pink h-9 focus:border-cyber-pink focus:outline-none transition-colors duration-100 text-neon-pink"
             >
               <div className="flex items-center gap-2">
                 <Coins size={16} />

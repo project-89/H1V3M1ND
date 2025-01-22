@@ -1,52 +1,46 @@
 'use client';
 
-import { Trophy, Star, Target, Zap } from 'lucide-react';
-import { Badge } from '@H1V3M1ND/ui';
-
-interface Achievement {
-  id: string;
-  title: string;
-  description: string;
-  type: 'milestone' | 'skill' | 'special' | 'challenge';
-  rarity: 'common' | 'rare' | 'epic' | 'legendary';
-  earnedAt: number;
-}
+import { Badge, Progress } from '@H1V3M1ND/ui';
+import { Trophy, Star, Target, Sparkles } from 'lucide-react';
+import { Achievement, AchievementRarity, AchievementType } from '@/lib/types/achievements';
 
 interface ProfileAchievementsProps {
   achievements: Achievement[];
 }
 
 export function ProfileAchievements({ achievements }: ProfileAchievementsProps) {
-  const getAchievementIcon = (type: Achievement['type']) => {
+  const getTypeIcon = (type: AchievementType) => {
     switch (type) {
-      case 'milestone':
+      case AchievementType.Milestone:
         return Trophy;
-      case 'skill':
-        return Star;
-      case 'special':
-        return Zap;
-      case 'challenge':
+      case AchievementType.Progress:
         return Target;
+      case AchievementType.Skill:
+        return Star;
+      case AchievementType.Special:
+        return Sparkles;
       default:
         return Trophy;
     }
   };
 
-  const getRarityColor = (rarity: Achievement['rarity']) => {
+  const getRarityColor = (rarity: AchievementRarity) => {
     switch (rarity) {
-      case 'legendary':
-        return 'bg-neon-pink/20 text-neon-pink border-neon-pink/50';
-      case 'epic':
-        return 'bg-cyber-purple/20 text-cyber-purple border-cyber-purple/50';
-      case 'rare':
-        return 'bg-blue-500/20 text-blue-400 border-blue-400/50';
+      case AchievementRarity.Legendary:
+        return 'border-matrix-green text-matrix-green';
+      case AchievementRarity.Epic:
+        return 'border-neon-purple text-neon-purple';
+      case AchievementRarity.Rare:
+        return 'border-neon-pink text-neon-pink';
+      case AchievementRarity.Common:
+        return 'border-cyber-purple text-cyber-purple-light';
       default:
-        return 'bg-gray-500/20 text-gray-400 border-gray-400/50';
+        return 'border-cyber-purple text-cyber-purple-light';
     }
   };
 
-  const formatDate = (timestamp: number) => {
-    return new Date(timestamp).toLocaleDateString('en-US', {
+  const formatDate = (date: Date) => {
+    return new Date(date).toLocaleDateString('en-US', {
       month: 'short',
       day: 'numeric',
       year: 'numeric',
@@ -54,30 +48,42 @@ export function ProfileAchievements({ achievements }: ProfileAchievementsProps) 
   };
 
   return (
-    <div className="bg-cyber-dark border border-cyber-purple/50 rounded-lg p-6">
-      <h2 className="text-xl font-semibold text-white mb-4">Achievements</h2>
-      <div className="grid grid-cols-1 gap-4">
+    <div className="bg-cyber-dark border border-cyber-purple/30 rounded-lg p-6">
+      <h3 className="text-lg font-semibold text-cyber-white mb-4">Achievements</h3>
+      <div className="space-y-4">
         {achievements.map((achievement) => {
-          const Icon = getAchievementIcon(achievement.type);
+          const Icon = getTypeIcon(achievement.type);
           return (
-            <div
-              key={achievement.id}
-              className="flex items-start space-x-4 p-4 border border-cyber-purple/20 rounded-lg bg-black/20"
-            >
-              <div className="flex-shrink-0">
-                <Icon className="w-6 h-6 text-cyber-purple-light" />
-              </div>
-              <div className="flex-grow">
-                <div className="flex items-center justify-between mb-1">
-                  <h3 className="text-lg font-semibold text-white">{achievement.title}</h3>
-                  <Badge variant="outline" className={getRarityColor(achievement.rarity)}>
-                    {achievement.rarity.charAt(0).toUpperCase() + achievement.rarity.slice(1)}
-                  </Badge>
+            <div key={achievement.id} className="space-y-2">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                  <Icon className="w-4 h-4 text-cyber-purple" />
+                  <span className="text-cyber-white">{achievement.title}</span>
                 </div>
-                <p className="text-gray-400 text-sm mb-2">{achievement.description}</p>
-                <p className="text-xs text-gray-500">
-                  Earned on {formatDate(achievement.earnedAt)}
-                </p>
+                <div className="flex items-center gap-2">
+                  <Badge variant="outline" className={getRarityColor(achievement.rarity)}>
+                    {achievement.rarity}
+                  </Badge>
+                  {achievement.rewards?.tokens && (
+                    <Badge
+                      variant="outline"
+                      className="border-cyber-purple text-cyber-purple-light"
+                    >
+                      +{achievement.rewards.tokens} tokens
+                    </Badge>
+                  )}
+                </div>
+              </div>
+              {achievement.progress && (
+                <Progress
+                  value={(achievement.progress.current / achievement.progress.target) * 100}
+                />
+              )}
+              <div className="flex justify-between items-center text-sm">
+                <p className="text-cyber-gray">{achievement.description}</p>
+                <span className="text-cyber-gray text-xs">
+                  Unlocked: {formatDate(achievement.unlockedAt)}
+                </span>
               </div>
             </div>
           );

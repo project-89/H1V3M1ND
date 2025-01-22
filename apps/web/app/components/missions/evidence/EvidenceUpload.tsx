@@ -101,8 +101,8 @@ export function EvidenceUpload({
         <p className="text-lg font-medium mb-2">
           {isDragActive ? 'Drop the files here' : 'Drag & drop evidence files here'}
         </p>
-        <p className="text-sm text-gray-500">or click to select files</p>
-        <p className="text-xs text-gray-400 mt-2">
+        <p className="text-sm text-cyber-gray">or click to select files</p>
+        <p className="text-xs text-cyber-gray mt-2">
           Supported files: Images, PDFs, Text files (max {maxFiles} files)
         </p>
       </div>

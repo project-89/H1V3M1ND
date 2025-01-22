@@ -162,9 +162,7 @@ export default function MissionsPage() {
     return (
       <div className="container mx-auto px-4 py-8">
         <div className="flex justify-center items-center h-64">
-          <div className="animate-pulse text-[hsl(var(--cyber-purple-hsl))]">
-            Loading missions...
-          </div>
+          <div className="animate-pulse text-cyber-purple">Loading missions...</div>
         </div>
       </div>
     );
@@ -177,10 +175,8 @@ export default function MissionsPage() {
           <div className="container mx-auto px-4">
             <div className="flex items-center justify-between my-6">
               <div>
-                <h1 className="text-3xl font-bold mb-1 text-[hsl(var(--neon-pink-hsl))]">
-                  Available Missions
-                </h1>
-                <p className="text-[hsl(var(--cyber-gray-hsl))]">
+                <h1 className="text-3xl font-bold mb-1 text-neon-pink">Available Missions</h1>
+                <p className="text-cyber-gray">
                   Find and accept missions that match your capabilities
                 </p>
               </div>
@@ -188,7 +184,7 @@ export default function MissionsPage() {
                 variant="default"
                 size="default"
                 onClick={handleCreateMissionClick}
-                className="shadow-none hover:shadow-none border-2 bg-[hsl(var(--cyber-purple-hsl)/0.8)] border-[hsl(var(--cyber-purple-hsl))] hover:bg-[hsl(var(--cyber-purple-hsl)/0.6)] transition-colors duration-200 px-4 py-3 text-lg h-auto"
+                className="shadow-none hover:shadow-none border-2 bg-cyber-purple/80 border-cyber-purple hover:bg-cyber-purple/60 transition-colors duration-200 px-4 py-3 text-lg h-auto"
               >
                 <div className="flex items-center gap-3">
                   <Plus className="h-6 w-6" />
@@ -206,13 +202,11 @@ export default function MissionsPage() {
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 pb-8">
                 {filteredMissions.length === 0 ? (
                   <div className="col-span-full flex flex-col items-center justify-center p-8 text-center">
-                    <div className="rounded-full bg-[hsl(var(--cyber-darker-hsl))] p-4 mb-4">
-                      <Terminal className="h-8 w-8 text-[hsl(var(--neon-pink-hsl))] animate-pulse" />
+                    <div className="rounded-full bg-cyber-darker p-4 mb-4">
+                      <Terminal className="h-8 w-8 text-neon-pink animate-pulse" />
                     </div>
-                    <h3 className="text-xl font-bold text-[hsl(var(--neon-pink-hsl))] mb-2">
-                      No Missions Found
-                    </h3>
-                    <p className="text-[hsl(var(--cyber-gray-hsl))] max-w-md">
+                    <h3 className="text-xl font-bold text-neon-pink mb-2">No Missions Found</h3>
+                    <p className="text-cyber-gray max-w-md">
                       No missions match your current filters. Try adjusting your search criteria or
                       check back later for new opportunities.
                     </p>

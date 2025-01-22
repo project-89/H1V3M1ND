@@ -48,8 +48,8 @@ export function MissionProgress({ mission }: MissionProgressProps) {
       {/* Header */}
       <div className="flex items-start justify-between">
         <div>
-          <h2 className="text-xl font-semibold text-white mb-2">{mission.title}</h2>
-          <p className="text-gray-400">{mission.description}</p>
+          <h2 className="text-xl font-semibold text-cyber-white mb-2">{mission.title}</h2>
+          <p className="text-cyber-gray">{mission.description}</p>
         </div>
         <Badge variant="outline" className={getStatusColor(mission.status)}>
           {mission.status}
@@ -58,7 +58,7 @@ export function MissionProgress({ mission }: MissionProgressProps) {
 
       {/* Progress Bar */}
       <div className="space-y-2">
-        <div className="flex justify-between text-sm text-gray-400">
+        <div className="flex justify-between text-sm text-cyber-gray">
           <span>Progress</span>
           <span>{Math.round(progress)}%</span>
         </div>
@@ -78,9 +78,9 @@ export function MissionProgress({ mission }: MissionProgressProps) {
         <div className="bg-black/20 rounded-lg p-4 border border-cyber-purple/30">
           <div className="flex items-center space-x-2 mb-2">
             <Clock className={`w-4 h-4 ${isUrgent ? 'text-red-400' : 'text-cyber-purple-light'}`} />
-            <span className="text-gray-400">Time Remaining</span>
+            <span className="text-cyber-gray">Time Remaining</span>
           </div>
-          <p className={`text-xl font-bold ${isUrgent ? 'text-red-400' : 'text-white'}`}>
+          <p className={`text-xl font-bold ${isUrgent ? 'text-red-400' : 'text-cyber-white'}`}>
             {hoursLeft}h {minutesLeft}m
           </p>
           {isUrgent && (
@@ -95,9 +95,9 @@ export function MissionProgress({ mission }: MissionProgressProps) {
         <div className="bg-black/20 rounded-lg p-4 border border-cyber-purple/30">
           <div className="flex items-center space-x-2 mb-2">
             <Target className="w-4 h-4 text-cyber-purple-light" />
-            <span className="text-gray-400">Stake Amount</span>
+            <span className="text-cyber-gray">Stake Amount</span>
           </div>
-          <p className="text-xl font-bold text-white">
+          <p className="text-xl font-bold text-cyber-white">
             {mission.baseRequirements.stakeAmount} Project89
           </p>
         </div>
@@ -109,22 +109,22 @@ export function MissionProgress({ mission }: MissionProgressProps) {
         <div className="space-y-6">
           <div className="flex items-center space-x-4 relative">
             <div className="w-8 h-8 rounded-full bg-cyber-purple flex items-center justify-center z-10">
-              <Timer className="w-4 h-4 text-white" />
+              <Timer className="w-4 h-4 text-cyber-white" />
             </div>
             <div>
-              <p className="text-white font-medium">Mission Started</p>
-              <p className="text-sm text-gray-400">
+              <p className="text-cyber-white font-medium">Mission Started</p>
+              <p className="text-sm text-cyber-gray">
                 {new Date(mission.createdAt).toLocaleDateString()}
               </p>
             </div>
           </div>
           <div className="flex items-center space-x-4 relative">
             <div className="w-8 h-8 rounded-full bg-cyber-purple/50 flex items-center justify-center z-10">
-              <CheckCircle2 className="w-4 h-4 text-white/70" />
+              <CheckCircle2 className="w-4 h-4 text-cyber-white/70" />
             </div>
             <div>
-              <p className="text-white/70 font-medium">Mission Deadline</p>
-              <p className="text-sm text-gray-400">
+              <p className="text-cyber-white/70 font-medium">Mission Deadline</p>
+              <p className="text-sm text-cyber-gray">
                 {new Date(mission.expiryDate).toLocaleDateString()}
               </p>
             </div>

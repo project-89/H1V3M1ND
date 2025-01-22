@@ -113,17 +113,17 @@ export function MissionDetailsDialog({ mission, isOpen, onClose }: MissionDetail
             </Badge>
             <Badge className="bg-cyber-purple/20 text-cyber-purple-light">{mission.status}</Badge>
           </div>
-          <DialogTitle className="text-2xl font-bold text-glow-pink">{mission.title}</DialogTitle>
+          <DialogTitle className="text-2xl font-bold text-neon-pink">{mission.title}</DialogTitle>
         </DialogHeader>
 
         <div className="space-y-6 py-4">
-          <p className="text-gray-300">{mission.description}</p>
+          <p className="text-cyber-gray">{mission.description}</p>
 
           <div className="space-y-4">
             <h4 className="text-lg font-semibold text-cyber-purple-light">Requirements</h4>
             <div className="grid gap-3">
               {getRequirementsList(mission).map((req: string, index: number) => (
-                <div key={index} className="flex items-center gap-2 text-gray-300">
+                <div key={index} className="flex items-center gap-2 text-cyber-gray">
                   {req.startsWith('-') ? (
                     <span className="ml-6">{req.substring(2)}</span>
                   ) : (
@@ -147,7 +147,7 @@ export function MissionDetailsDialog({ mission, isOpen, onClose }: MissionDetail
             <h4 className="text-lg font-semibold text-cyber-purple-light">Failure Conditions</h4>
             <div className="space-y-3">
               {mission.failureConditions.map((condition: FailureCondition) => (
-                <div key={condition.id} className="flex items-start gap-3 text-gray-300">
+                <div key={condition.id} className="flex items-start gap-3 text-cyber-gray">
                   {getSeverityIcon(condition.severity)}
                   <div className="flex-1 space-y-1">
                     <p>{condition.description}</p>

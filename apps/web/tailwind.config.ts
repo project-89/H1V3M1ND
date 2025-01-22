@@ -53,18 +53,21 @@ const config: Config = {
           foreground: 'hsl(var(--card-foreground))',
         },
         neon: {
-          pink: '#ff2ecc',
-          purple: '#9d4edd',
-          blue: '#2b2d42',
+          pink: 'hsl(320, 100%, 59%)', // Bright neon pink
+          purple: 'hsl(262, 59%, 47%)', // Vibrant neon purple
+          cyan: 'hsl(180, 100%, 65%)', // Bright cyan
         },
         cyber: {
-          black: '#13111C',
-          darker: '#0c0a14',
-          dark: '#1a1727',
-          purple: '#2d1b69',
-          'purple-light': '#6247aa',
-          pink: '#ff2ecc',
-          'pink-dark': '#d431ab',
+          black: 'hsl(251, 25%, 9%)', // Deep cyber black
+          darker: 'hsl(251, 41%, 6%)', // Darker background
+          dark: 'hsl(251, 41%, 12%)', // Dark background
+          purple: 'hsl(262, 59%, 26%)', // Deep cyber purple
+          'purple-light': 'hsl(262, 45%, 47%)', // Lighter cyber purple
+          gray: 'hsl(220, 13%, 91%)', // Cyber gray
+          yellow: 'hsl(45, 100%, 65%)', // Cyber yellow
+        },
+        matrix: {
+          green: 'hsl(120, 100%, 45%)', // Matrix green
         },
       },
       borderRadius: {

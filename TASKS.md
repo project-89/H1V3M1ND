@@ -259,20 +259,63 @@
   - [ ] Handle profile loading states
   - [ ] Profile validation
 
-### Profile System
-- [ ] Profile data management
-  - [ ] Agent profile creation & verification
-  - [ ] Capability system
-  - [ ] Mission history tracking
-  - [ ] Reputation calculation
-- [ ] Achievement system
-  - [ ] Achievement triggers
-  - [ ] Progress tracking
-  - [ ] Reward distribution
-- [ ] IPFS Integration
-  - [ ] Evidence storage
-  - [ ] Mission data backup
-  - [ ] Profile metadata
+### Profile System 🔥
+- [ ] Profile Types & Store
+  - [ ] Define profile interfaces (UserProfile, Capabilities, Stats)
+  - [ ] Create profile Zustand store
+  - [ ] Add profile actions (update, fetch, cache)
+  - [ ] Add profile validation logic
+  - [ ] Implement profile persistence
+
+- [ ] Public Profile View (`/profile/:id`)
+  - [ ] Create profile layout with sections
+    - [ ] Header with avatar and basic info
+    - [ ] Stats display (missions, success rate, rewards)
+    - [ ] Capabilities/Skills list
+    - [ ] Mission history
+  - [ ] Add loading states
+  - [ ] Add error handling
+  - [ ] Implement responsive design
+  - [ ] Add animations/transitions
+
+- [ ] Profile Settings (`/profile/settings`)
+  - [ ] Create settings layout
+    - [ ] Profile picture upload/change
+    - [ ] Basic information form
+      - [ ] Username
+      - [ ] Bio
+      - [ ] Contact info
+    - [ ] Capabilities management
+      - [ ] Add/remove capabilities
+      - [ ] Skill level selection
+      - [ ] Specializations
+    - [ ] Preferences section
+  - [ ] Form validation
+  - [ ] Success/error notifications
+  - [ ] Unsaved changes warning
+  - [ ] Auto-save functionality
+
+- [ ] Profile Features
+  - [ ] Achievement badges system
+  - [ ] Skill verification system
+  - [ ] Mission stats visualization
+  - [ ] Profile sharing functionality
+  - [ ] Export profile data
+  - [ ] Privacy settings
+
+- [ ] Profile API Integration
+  - [ ] Profile fetch endpoint
+  - [ ] Profile update endpoint
+  - [ ] Avatar upload endpoint
+  - [ ] Stats calculation endpoints
+  - [ ] Verification endpoints
+
+- [ ] Testing & Optimization
+  - [ ] Unit tests for profile logic
+  - [ ] Integration tests for forms
+  - [ ] Performance optimization
+  - [ ] Accessibility testing
+  - [ ] Cross-browser testing
 
 ### Authentication
 - [ ] Web3 Authentication

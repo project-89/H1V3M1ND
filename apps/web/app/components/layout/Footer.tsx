@@ -7,12 +7,12 @@ export function Footer() {
         <div className="flex items-center justify-between">
           <div>
             <div className="flex items-center gap-2">
-              <h3 className="text-lg font-semibold text-[#ff00ff] hover:text-[#ff00ff]/80 transition-colors duration-200">
+              <h3 className="text-lg font-semibold text-neon-pink hover:text-neon-pink/80 transition-colors duration-200">
                 H1V3M1ND
               </h3>
             </div>
           </div>
-          <div className="text-center text-sm text-gray-400">
+          <div className="text-center text-sm text-cyber-gray">
             Made with ❤️ by{' '}
             <a
               href="https://x.com/project_89"
@@ -26,14 +26,14 @@ export function Footer() {
           <div className="flex items-center gap-4">
             <a
               href="/docs"
-              className="text-gray-400 hover:text-cyber-purple transition-colors"
+              className="text-cyber-gray hover:text-cyber-purple transition-colors"
               title="Documentation"
             >
               <Book className="h-5 w-5" />
             </a>
             <a
               href="https://github.com/oneirocom/H1V3M1ND"
-              className="text-gray-400 hover:text-cyber-purple transition-colors"
+              className="text-cyber-gray hover:text-cyber-purple transition-colors"
               target="_blank"
               rel="noopener noreferrer"
               title="GitHub"
@@ -42,7 +42,7 @@ export function Footer() {
             </a>
             <a
               href="https://discord.gg/teE2HxnV"
-              className="text-gray-400 hover:text-cyber-purple transition-colors"
+              className="text-cyber-gray hover:text-cyber-purple transition-colors"
               target="_blank"
               rel="noopener noreferrer"
               title="Discord"
@@ -51,7 +51,7 @@ export function Footer() {
             </a>
             <a
               href="https://x.com/project_89"
-              className="text-gray-400 hover:text-cyber-purple transition-colors"
+              className="text-cyber-gray hover:text-cyber-purple transition-colors"
               target="_blank"
               rel="noopener noreferrer"
               title="X (Twitter)"

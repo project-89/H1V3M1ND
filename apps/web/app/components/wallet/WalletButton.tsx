@@ -78,7 +78,7 @@ export function WalletButton() {
         align="end"
         sideOffset={8}
       >
-        <DropdownMenuLabel className="text-gray-400">Wallet</DropdownMenuLabel>
+        <DropdownMenuLabel className="text-cyber-gray">Wallet</DropdownMenuLabel>
         <DropdownMenuSeparator className="bg-cyber-purple/20" />
         <div className="px-2 py-1.5 flex items-center gap-2 text-sm">
           <Coins className="w-4 h-4 text-cyber-purple" />
