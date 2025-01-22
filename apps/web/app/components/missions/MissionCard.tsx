@@ -74,7 +74,7 @@ export function MissionCard({ mission, onClick }: MissionCardProps) {
 
   return (
     <Card
-      className="cyber-card group cursor-pointer overflow-hidden h-full flex flex-col pb-0 pl-0 pr-0 hover:border-neon-pink"
+      className="cyber-card group cursor-pointer overflow-hidden h-full flex flex-col pb-0 pl-0 pr-0 hover:border-card-hover-border"
       onClick={onClick}
     >
       <CardHeader className="space-y-2">

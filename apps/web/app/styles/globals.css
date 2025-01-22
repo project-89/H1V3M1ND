@@ -5,8 +5,6 @@
 @layer base {
   /* Site-specific styles */
   html {
-    @apply antialiased;
-    background: linear-gradient(to bottom, hsl(230 25% 5%), hsl(230 25% 2%));
     min-height: 100vh;
   }
 

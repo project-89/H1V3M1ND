@@ -49,16 +49,16 @@ export function FilterBar({ onFilterChange }: FilterBarProps) {
   };
 
   return (
-    <div className="sticky top-0 z-10 flex flex-wrap items-center justify-between gap-4 p-4 bg-cyber-darker border border-cyber-purple rounded-lg backdrop-blur-md">
+    <div className="sticky top-0 z-10 flex flex-wrap items-center justify-between gap-4 p-4 bg-cyber-darker border border-cyber-purple-light rounded-lg backdrop-blur-md shadow-[0_0_35px_hsl(var(--cyber-purple-hsl)/0.3)]">
       {/* Search Input */}
       <div className="relative flex-grow max-w-md">
         <Search
-          className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"
+          className="absolute left-3 top-1/2 z-10 transform -translate-y-1/2 text-neon-pink"
           size={18}
         />
         <Input
           placeholder="Search missions..."
-          className="pl-10 bg-cyber-dark border-cyber-purple-light focus:border-cyber-pink"
+          className="pl-10 bg-cyber-dark text-neon-pink border-cyber-purple/20 hover:border-neon-pink focus:border-cyber-purple focus:ring-2 focus:ring-inset focus:ring-card-hover-border/30 transition-colors duration-300 placeholder:text-neon-pink/80 focus:ring-neon-purple"
           value={filters.search}
           onChange={(e) => updateFilters({ search: e.target.value })}
         />
