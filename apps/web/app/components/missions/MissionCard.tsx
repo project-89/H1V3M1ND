@@ -107,18 +107,18 @@ export function MissionCard({ mission, onClick }: MissionCardProps) {
       </CardContent>
 
       <CardFooter className="border-t border-cyber-purple/30 bg-cyber-dark mt-4 py-4">
-        <div className="flex items-center gap-4 text-sm w-full justify-center">
-          <div className="flex items-center gap-1">
-            <span className="text-cyber-gray">Reward: </span>
+        <div className="grid grid-cols-3 gap-4 text-sm w-full">
+          <div className="flex flex-col items-center text-center">
+            <span className="text-cyber-gray mb-1">Reward</span>
             <span className="text-neon-pink font-bold">1000 Project89</span>
           </div>
-          <div className="flex items-center gap-1">
-            <span className="text-cyber-gray">XP: </span>
+          <div className="flex flex-col items-center text-center">
+            <span className="text-cyber-gray mb-1">XP</span>
             <span className="text-neon-purple font-bold">+500</span>
           </div>
           {mission.baseRequirements.stakeAmount && (
-            <div className="flex items-center gap-1 ml-auto">
-              <span className="text-cyber-gray">Stake: </span>
+            <div className="flex flex-col items-center text-center">
+              <span className="text-cyber-gray mb-1">Stake</span>
               <span className="text-cyber-purple-light">
                 {mission.baseRequirements.stakeAmount} Project89
               </span>

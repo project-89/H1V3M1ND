@@ -1,4 +1,4 @@
-import { Inter } from 'next/font/google';
+import { Orbitron, JetBrains_Mono } from 'next/font/google';
 import './styles/globals.css';
 import './styles/grid-background.css';
 
@@ -6,12 +6,22 @@ import { Toaster } from 'sonner';
 import { Header } from './components/layout/Header';
 import { Footer } from './components/layout/Footer';
 
-const inter = Inter({ subsets: ['latin'] });
+const orbitron = Orbitron({
+  subsets: ['latin'],
+  variable: '--font-orbitron',
+  display: 'swap',
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ['latin'],
+  variable: '--font-jetbrains',
+  display: 'swap',
+});
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className="dark h-full">
-      <body className={`${inter.className} h-full`}>
+    <html lang="en" className={`${orbitron.variable} ${jetbrainsMono.variable} dark h-full`}>
+      <body className="h-full font-mono">
         <div className="grid-background" />
         <div className="flex flex-col min-h-screen pt-[72px]">
           <Header />
@@ -28,6 +38,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               background: 'hsl(var(--cyber-darker-hsl))',
               border: '1px solid hsl(var(--cyber-purple-hsl))',
               color: 'hsl(var(--cyber-white-hsl))',
+              fontFamily: 'inherit',
             },
           }}
         />

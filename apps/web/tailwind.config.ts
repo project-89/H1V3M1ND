@@ -18,6 +18,11 @@ const config: Config = {
       },
     },
     extend: {
+      fontFamily: {
+        sans: ['var(--font-orbitron)', 'system-ui', 'sans-serif'],
+        orbitron: ['var(--font-orbitron)', 'system-ui', 'sans-serif'],
+        mono: ['var(--font-jetbrains)', 'JetBrains Mono', 'monospace'],
+      },
       colors: {
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
