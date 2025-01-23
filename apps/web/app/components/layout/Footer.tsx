@@ -8,7 +8,7 @@ export function Footer() {
           <div>
             <div className="flex items-center gap-2">
               <h3 className="text-lg font-semibold text-neon-pink hover:text-neon-pink/80 transition-colors duration-200">
-                H1V3M1ND
+                H1V3 M1ND
               </h3>
             </div>
           </div>
