@@ -174,8 +174,8 @@ export default function MissionsPage() {
         <div className="fixed top-[6%] pt-4 left-0 right-0 bg-gradient-to-b from-black via-black/75 to-transparent z-[10]">
           <div className="container mx-auto px-4">
             <div className="flex items-center justify-between my-6">
-              <div>
-                <h1 className="text-3xl font-bold mb-1 text-neon-pink">Available Missions</h1>
+              <div className="ml-4 my-2">
+                <h1 className="text-3xl font-bold mb-1 text-cyber-orange">Available Missions</h1>
                 <p className="text-cyber-gray">
                   Find and accept missions that match your capabilities
                 </p>
@@ -184,9 +184,9 @@ export default function MissionsPage() {
                 variant="default"
                 size="default"
                 onClick={handleCreateMissionClick}
-                className="shadow-none hover:shadow-none border-2 bg-cyber-purple/80 border-cyber-purple hover:bg-cyber-purple/60 transition-colors duration-200 px-4 py-3 text-lg h-auto"
+                className="shadow-none hover:shadow-none border-2 bg-cyber-purple border-cyber-purple hover:bg-cyber-purple/70 hover:border-neon-pink/50 hover:text-neon-pink/50 transition-colors duration-200 px-4 py-3 text-md h-auto"
               >
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-3 text-neon-pink">
                   <Plus className="h-6 w-6" />
                   Create Mission
                 </div>

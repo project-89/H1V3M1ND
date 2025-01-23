@@ -65,6 +65,7 @@ const config: Config = {
           'purple-light': 'hsl(262, 45%, 47%)', // Lighter cyber purple
           gray: 'hsl(220, 13%, 91%)', // Cyber gray
           yellow: 'hsl(45, 100%, 65%)', // Cyber yellow
+          orange: 'hsl(33, 100%, 50%)', // Cyber orange
         },
         matrix: {
           green: 'hsl(120, 100%, 45%)', // Matrix green
