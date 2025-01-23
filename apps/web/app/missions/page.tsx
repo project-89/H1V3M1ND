@@ -184,9 +184,9 @@ export default function MissionsPage() {
                 variant="default"
                 size="default"
                 onClick={handleCreateMissionClick}
-                className="shadow-none hover:shadow-none border-2 bg-cyber-purple border-neon-purple/80 hover:bg-cyber-purple/70 hover:border-neon-purple/80 hover:text-neon-pink/50 transition-colors duration-200 px-4 py-3 text-md h-auto"
+                className="shadow-none hover:shadow-none border-2 bg-neon-purple border-neon-purple/70 hover:bg-cyber-purple/70 hover:border-neon-purple/80 transition-colors duration-200 px-4 py-3 text-md h-auto"
               >
-                <div className="flex items-center gap-3 text-neon-pink">
+                <div className="flex items-center gap-3 text-neon-pink hover:text-cyber-pink/80">
                   <Plus className="h-6 w-6" />
                   Create Mission
                 </div>
