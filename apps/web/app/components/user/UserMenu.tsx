@@ -49,14 +49,18 @@ export function UserMenu() {
   return (
     <DropdownMenu open={isOpen} onOpenChange={setIsOpen}>
       <DropdownMenuTrigger asChild>
-        <Button variant="outline" size="sm" className="relative h-8 w-8 rounded-full">
-          <Avatar className="h-8 w-8">
+        <Button
+          variant="ghost"
+          size="sm"
+          className="relative h-10 w-10 rounded-full p-0 transition-colors duration-200"
+        >
+          <Avatar className="h-full w-full transition-colors duration-200">
             <AvatarImage
               src={isConnected ? nftAvatar || '/89.jpg' : undefined}
               alt={profile?.username || 'User'}
               className={isLoadingNFT ? 'opacity-50' : ''}
             />
-            <AvatarFallback className="bg-cyber-purple text-neon-pink pt-0.5  hover:bg-cyber-purple/80">
+            <AvatarFallback className="bg-cyber-purple text-neon-pink hover:bg-cyber-purple/70 transition-colors duration-200 border-2 ring-1 border-cyber-purple-light">
               {profile?.username?.[0] ?? 'U'}
             </AvatarFallback>
           </Avatar>
