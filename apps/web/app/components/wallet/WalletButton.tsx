@@ -43,21 +43,19 @@ export function WalletButton() {
   if (!isConnected) {
     return (
       <Button
-        variant="default"
+        variant="outline"
         size="sm"
         onClick={handleConnect}
         disabled={isLoading}
         data-wallet-button="true"
-        className="shadow-none hover:shadow-none bg-cyber-purple hover:bg-cyber-purple-light transition-colors duration-200"
+        className="border-neon-purple hover:border-neon-purple text-neon-pink hover:text-neon-pink transition-colors duration-200 bg-cyber-dark/50 hover:bg-cyber-purple"
       >
         {isLoading ? (
-          <div className="flex items-center gap-2">
-            <Loader2 className="h-4 w-4 animate-spin" />
-            <span>Connecting...</span>
-          </div>
+          <Loader2 className="h-4 w-4 animate-spin mr-2" />
         ) : (
-          'Connect Wallet'
+          <Coins className="h-4 w-4 mr-2" />
         )}
+        Connect Wallet
       </Button>
     );
   }
@@ -68,28 +66,28 @@ export function WalletButton() {
         <Button
           variant="outline"
           size="sm"
-          className="shadow-none hover:shadow-none bg-cyber-purple border border-cyber-purple hover:bg-cyber-purple-light transition-colors duration-200"
+          className="border-cyber-purple hover:border-neon-purple text-neon-pink hover:text-neon-pink transition-colors duration-200 bg-cyber-purple hover:bg-cyber-dark font-mono"
         >
-          {`${publicKey?.slice(0, 6)}...${publicKey?.slice(-4)}`}
+          <Coins className="h-4 w-4 mr-2" />
+          {publicKey?.slice(0, 6)}...{publicKey?.slice(-4)}
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent
-        className="w-56 bg-cyber-dark border border-cyber-purple hover:shadow-cyber-lg mt-6 Z-[11]"
         align="end"
-        sideOffset={8}
+        className="bg-cyber-dark border-cyber-purple-light w-56 z-10 mt-6"
       >
         <DropdownMenuLabel className="text-cyber-gray">Wallet</DropdownMenuLabel>
-        <DropdownMenuSeparator className="bg-cyber-purple/20" />
-        <div className="px-2 py-1.5 flex items-center gap-2 text-sm">
-          <Coins className="w-4 h-4 text-cyber-purple" />
-          <span>{balance} Project89</span>
-        </div>
+        <DropdownMenuSeparator className="bg-cyber-purple" />
+        <DropdownMenuItem className="text-sm cursor-default">
+          <Coins className="w-4 h-4 text-neon-cyan" />
+          <span className="text-neon-cyan ml-2">{balance} Project89</span>
+        </DropdownMenuItem>
         <DropdownMenuItem
-          className="text-red-400 hover:text-red-300 hover:bg-red-500/10"
+          className="group cursor-pointer text-neon-pink/70 transition-colors duration-200 hover:!text-neon-pink focus:!text-neon-pink hover:bg-cyber-purple focus:bg-cyber-purple"
           onClick={handleDisconnect}
         >
-          <LogOut className="w-4 h-4" />
-          <span>Disconnect</span>
+          <LogOut className="h-4 w-4 mr-2 text-neon-pink/70 transition-colors duration-200 group-hover:!text-neon-pink" />
+          Disconnect
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
