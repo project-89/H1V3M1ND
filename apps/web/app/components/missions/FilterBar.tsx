@@ -58,7 +58,7 @@ export function FilterBar({ onFilterChange }: FilterBarProps) {
         />
         <Input
           placeholder="Search missions..."
-          className="pl-10 bg-cyber-dark text-neon-pink border-cyber-purple/20 hover:border-neon-pink focus:border-cyber-purple focus:ring-2 focus:ring-inset focus:ring-card-hover-border/30 transition-colors duration-300 placeholder:text-neon-pink/80 focus:ring-neon-purple"
+          className="pl-10 bg-cyber-dark text-neon-pink border-cyber-purple-light hover:border-cyber-pink hover:ring-2 hover:ring-inset hover:ring-neon-purple/60 focus:border-cyber-pink focus:ring-2 focus:ring-inset focus:ring-neon-purple/80 transition-all duration-100 placeholder:text-neon-pink/80"
           value={filters.search}
           onChange={(e) => updateFilters({ search: e.target.value })}
         />
@@ -71,7 +71,7 @@ export function FilterBar({ onFilterChange }: FilterBarProps) {
           <DropdownMenuTrigger asChild>
             <Button
               variant="outline"
-              className="border-cyber-purple-light hover:border-cyber-pink h-9 focus:border-cyber-pink focus:outline-none transition-colors duration-100 text-neon-pink"
+              className="border-cyber-purple-light hover:border-cyber-pink h-9 focus:border-cyber-pink focus:outline-none transition-colors duration-100 text-neon-pink hover:bg-cyber-purple/70"
             >
               <div className="flex items-center gap-2">
                 <span>{filters.participantType || 'Participant Type'}</span>
@@ -79,28 +79,28 @@ export function FilterBar({ onFilterChange }: FilterBarProps) {
               </div>
             </Button>
           </DropdownMenuTrigger>
-          <DropdownMenuContent className="bg-cyber-dark border-cyber-purple w-40 mt-2">
+          <DropdownMenuContent className="bg-cyber-dark border-cyber-purple-light w-40 mt-6">
             <DropdownMenuItem
               onClick={() => updateFilters({ participantType: undefined })}
-              className="hover:bg-cyber-purple/70 hover:text-white"
+              className="text-neon-pink data-[highlighted]:bg-cyber-purple/70 data-[highlighted]:text-neon-pink"
             >
               All
             </DropdownMenuItem>
             <DropdownMenuItem
               onClick={() => updateFilters({ participantType: ParticipantType.Human })}
-              className="hover:bg-cyber-purple/70 hover:text-white"
+              className="text-neon-pink data-[highlighted]:bg-cyber-purple/70 data-[highlighted]:text-neon-pink"
             >
               Human
             </DropdownMenuItem>
             <DropdownMenuItem
               onClick={() => updateFilters({ participantType: ParticipantType.Agent })}
-              className="hover:bg-cyber-purple/70 hover:text-white"
+              className="text-neon-pink data-[highlighted]:bg-cyber-purple/70 data-[highlighted]:text-neon-pink"
             >
               Agent
             </DropdownMenuItem>
             <DropdownMenuItem
               onClick={() => updateFilters({ participantType: ParticipantType.Any })}
-              className="hover:bg-cyber-purple/70 hover:text-white"
+              className="text-neon-pink data-[highlighted]:bg-cyber-purple/70 data-[highlighted]:text-neon-pink"
             >
               Any
             </DropdownMenuItem>
@@ -112,7 +112,7 @@ export function FilterBar({ onFilterChange }: FilterBarProps) {
           <DropdownMenuTrigger asChild>
             <Button
               variant="outline"
-              className="border-cyber-purple-light hover:border-cyber-pink h-9 focus:border-cyber-pink focus:outline-none transition-colors duration-100 text-neon-pink"
+              className="border-cyber-purple-light hover:border-cyber-pink h-9 focus:border-cyber-pink focus:outline-none transition-colors duration-100 text-neon-pink hover:bg-cyber-purple/70 "
             >
               <div className="flex items-center gap-2">
                 <span>{filters.scale || 'Scale'}</span>
@@ -120,28 +120,28 @@ export function FilterBar({ onFilterChange }: FilterBarProps) {
               </div>
             </Button>
           </DropdownMenuTrigger>
-          <DropdownMenuContent className="bg-cyber-dark border-cyber-purple w-20 mt-2">
+          <DropdownMenuContent className="bg-cyber-dark border-cyber-purple-light w-20 mt-6">
             <DropdownMenuItem
               onClick={() => updateFilters({ scale: undefined })}
-              className="hover:bg-cyber-purple/70 hover:text-white"
+              className="text-neon-pink data-[highlighted]:bg-cyber-purple/70 data-[highlighted]:text-neon-pink"
             >
               All
             </DropdownMenuItem>
             <DropdownMenuItem
               onClick={() => updateFilters({ scale: MissionScale.Solo })}
-              className="hover:bg-cyber-purple/70 hover:text-white"
+              className="text-neon-pink data-[highlighted]:bg-cyber-purple/70 data-[highlighted]:text-neon-pink"
             >
               Solo
             </DropdownMenuItem>
             <DropdownMenuItem
               onClick={() => updateFilters({ scale: MissionScale.Party })}
-              className="hover:bg-cyber-purple/70 hover:text-white"
+              className="text-neon-pink data-[highlighted]:bg-cyber-purple/70 data-[highlighted]:text-neon-pink"
             >
               Party
             </DropdownMenuItem>
             <DropdownMenuItem
               onClick={() => updateFilters({ scale: MissionScale.Swarm })}
-              className="hover:bg-cyber-purple/70 hover:text-white"
+              className="text-neon-pink data-[highlighted]:bg-cyber-purple/70 data-[highlighted]:text-neon-pink"
             >
               Swarm
             </DropdownMenuItem>
@@ -153,7 +153,7 @@ export function FilterBar({ onFilterChange }: FilterBarProps) {
           <DropdownMenuTrigger asChild>
             <Button
               variant="outline"
-              className="border-cyber-purple-light hover:border-cyber-pink h-9 focus:border-cyber-pink focus:outline-none transition-colors duration-100 text-neon-pink"
+              className="border-cyber-purple-light hover:border-cyber-pink h-9 focus:border-cyber-pink focus:outline-none transition-colors duration-100 text-neon-pink hover:bg-cyber-purple/70"
             >
               <div className="flex items-center gap-2">
                 <span>{filters.status || 'Status'}</span>
@@ -161,34 +161,34 @@ export function FilterBar({ onFilterChange }: FilterBarProps) {
               </div>
             </Button>
           </DropdownMenuTrigger>
-          <DropdownMenuContent className="bg-cyber-dark border-cyber-purple w-24 mt-2">
+          <DropdownMenuContent className="bg-cyber-dark border-cyber-purple-light w-24 mt-6">
             <DropdownMenuItem
               onClick={() => updateFilters({ status: undefined })}
-              className="hover:bg-cyber-purple/70 hover:text-white"
+              className="text-neon-pink data-[highlighted]:bg-cyber-purple/70 data-[highlighted]:text-neon-pink"
             >
               All
             </DropdownMenuItem>
             <DropdownMenuItem
               onClick={() => updateFilters({ status: MissionStatus.Active })}
-              className="hover:bg-cyber-purple/70 hover:text-white"
+              className="text-neon-pink data-[highlighted]:bg-cyber-purple/70 data-[highlighted]:text-neon-pink"
             >
               Active
             </DropdownMenuItem>
             <DropdownMenuItem
               onClick={() => updateFilters({ status: MissionStatus.InProgress })}
-              className="hover:bg-cyber-purple/70 hover:text-white"
+              className="text-neon-pink data-[highlighted]:bg-cyber-purple/70 data-[highlighted]:text-neon-pink"
             >
               In Progress
             </DropdownMenuItem>
             <DropdownMenuItem
               onClick={() => updateFilters({ status: MissionStatus.PendingValidation })}
-              className="hover:bg-cyber-purple/70 hover:text-white"
+              className="text-neon-pink data-[highlighted]:bg-cyber-purple/70 data-[highlighted]:text-neon-pink"
             >
               Pending Validation
             </DropdownMenuItem>
             <DropdownMenuItem
               onClick={() => updateFilters({ status: MissionStatus.Completed })}
-              className="hover:bg-cyber-purple/70 hover:text-white"
+              className="text-neon-pink data-[highlighted]:bg-cyber-purple/70 data-[highlighted]:text-neon-pink"
             >
               Completed
             </DropdownMenuItem>
@@ -200,7 +200,7 @@ export function FilterBar({ onFilterChange }: FilterBarProps) {
           <DropdownMenuTrigger asChild>
             <Button
               variant="outline"
-              className="border-cyber-purple-light hover:border-cyber-pink h-9 focus:border-cyber-pink focus:outline-none transition-colors duration-100 text-neon-pink"
+              className="border-cyber-purple-light hover:border-cyber-pink h-9 focus:border-cyber-pink focus:outline-none transition-colors duration-100 text-neon-pink hover:bg-cyber-purple/70"
             >
               <div className="flex items-center gap-2">
                 <Clock size={16} />
@@ -211,28 +211,28 @@ export function FilterBar({ onFilterChange }: FilterBarProps) {
               </div>
             </Button>
           </DropdownMenuTrigger>
-          <DropdownMenuContent className="bg-cyber-dark border-cyber-purple w-40 mt-2">
+          <DropdownMenuContent className="bg-cyber-dark border-cyber-purple-light w-40 mt-6">
             <DropdownMenuItem
               onClick={() => updateFilters({ timeRange: undefined })}
-              className="hover:bg-cyber-purple/70 hover:text-white"
+              className="text-neon-pink data-[highlighted]:bg-cyber-purple/70 data-[highlighted]:text-neon-pink"
             >
               All
             </DropdownMenuItem>
             <DropdownMenuItem
               onClick={() => updateFilters({ timeRange: TimeRange.Short })}
-              className="hover:bg-cyber-purple/70 hover:text-white"
+              className="text-neon-pink data-[highlighted]:bg-cyber-purple/70 data-[highlighted]:text-neon-pink"
             >
               {TIME_RANGE_LABELS[TimeRange.Short]}
             </DropdownMenuItem>
             <DropdownMenuItem
               onClick={() => updateFilters({ timeRange: TimeRange.Medium })}
-              className="hover:bg-cyber-purple/70 hover:text-white"
+              className="text-neon-pink data-[highlighted]:bg-cyber-purple/70 data-[highlighted]:text-neon-pink"
             >
               {TIME_RANGE_LABELS[TimeRange.Medium]}
             </DropdownMenuItem>
             <DropdownMenuItem
               onClick={() => updateFilters({ timeRange: TimeRange.Long })}
-              className="hover:bg-cyber-purple/70 hover:text-white"
+              className="text-neon-pink data-[highlighted]:bg-cyber-purple/70 data-[highlighted]:text-neon-pink"
             >
               {TIME_RANGE_LABELS[TimeRange.Long]}
             </DropdownMenuItem>
@@ -244,7 +244,7 @@ export function FilterBar({ onFilterChange }: FilterBarProps) {
           <DropdownMenuTrigger asChild>
             <Button
               variant="outline"
-              className="border-cyber-purple-light hover:border-cyber-pink h-9 focus:border-cyber-pink focus:outline-none transition-colors duration-100 text-neon-pink"
+              className="border-cyber-purple-light hover:border-cyber-pink h-9 focus:border-cyber-pink focus:outline-none transition-colors duration-100 text-neon-pink hover:bg-cyber-purple/70"
             >
               <div className="flex items-center gap-2">
                 <Coins size={16} />
@@ -255,28 +255,28 @@ export function FilterBar({ onFilterChange }: FilterBarProps) {
               </div>
             </Button>
           </DropdownMenuTrigger>
-          <DropdownMenuContent className="bg-cyber-dark border-cyber-purple w-40 mt-2">
+          <DropdownMenuContent className="bg-cyber-dark border-cyber-purple-light w-40 mt-6">
             <DropdownMenuItem
               onClick={() => updateFilters({ stakeRange: undefined })}
-              className="hover:bg-cyber-purple/70 hover:text-white"
+              className="text-neon-pink data-[highlighted]:bg-cyber-purple/70 data-[highlighted]:text-neon-pink"
             >
               All
             </DropdownMenuItem>
             <DropdownMenuItem
               onClick={() => updateFilters({ stakeRange: StakeRange.Low })}
-              className="hover:bg-cyber-purple/70 hover:text-white"
+              className="text-neon-pink data-[highlighted]:bg-cyber-purple/70 data-[highlighted]:text-neon-pink"
             >
               {STAKE_RANGE_LABELS[StakeRange.Low]}
             </DropdownMenuItem>
             <DropdownMenuItem
               onClick={() => updateFilters({ stakeRange: StakeRange.Medium })}
-              className="hover:bg-cyber-purple/70 hover:text-white"
+              className="text-neon-pink data-[highlighted]:bg-cyber-purple/70 data-[highlighted]:text-neon-pink"
             >
               {STAKE_RANGE_LABELS[StakeRange.Medium]}
             </DropdownMenuItem>
             <DropdownMenuItem
               onClick={() => updateFilters({ stakeRange: StakeRange.High })}
-              className="hover:bg-cyber-purple/70 hover:text-white"
+              className="text-neon-pink data-[highlighted]:bg-cyber-purple/70 data-[highlighted]:text-neon-pink"
             >
               {STAKE_RANGE_LABELS[StakeRange.High]}
             </DropdownMenuItem>
