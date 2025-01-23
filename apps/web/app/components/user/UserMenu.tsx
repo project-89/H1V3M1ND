@@ -9,7 +9,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@H1V3M1ND/ui';
-import { Settings, User, LogOut } from 'lucide-react';
+import { Settings, User } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { Avatar, AvatarImage, AvatarFallback } from '@H1V3M1ND/ui';
 import { Button } from '@H1V3M1ND/ui';
@@ -24,6 +24,12 @@ export function UserMenu() {
   const { isConnected, publicKey } = useWalletStore();
   const [nftAvatar, setNftAvatar] = useState<string | null>(null);
   const [isLoadingNFT, setIsLoadingNFT] = useState(false);
+
+  // TODO: Replace with actual fingerprint integration
+  const [fingerprintId, setFingerprintId] = useState<string | null>('mock-fingerprint-id');
+  const [userRole, setUserRole] = useState<'agent-initiate' | 'agent-field'>(
+    isConnected ? 'agent-field' : 'agent-initiate'
+  );
 
   useEffect(() => {
     const checkForNFT = async () => {
@@ -46,6 +52,17 @@ export function UserMenu() {
     checkForNFT();
   }, [isConnected, publicKey]);
 
+  // Update role when wallet connection changes
+  useEffect(() => {
+    setUserRole(isConnected ? 'agent-field' : 'agent-initiate');
+  }, [isConnected]);
+
+  const getMenuLabel = () => {
+    if (!fingerprintId) return 'Initializing...';
+    if (isConnected && profile?.username) return profile.username;
+    return profile?.username || 'Agent Initiate';
+  };
+
   return (
     <DropdownMenu open={isOpen} onOpenChange={setIsOpen}>
       <DropdownMenuTrigger asChild>
@@ -57,11 +74,11 @@ export function UserMenu() {
           <Avatar className="h-full w-full transition-colors duration-200">
             <AvatarImage
               src={isConnected ? nftAvatar || '/89.jpg' : undefined}
-              alt={profile?.username || 'User'}
+              alt={getMenuLabel()}
               className={isLoadingNFT ? 'opacity-50' : ''}
             />
             <AvatarFallback className="bg-cyber-purple text-neon-pink hover:bg-cyber-purple/70 transition-colors duration-200 border-2 ring-1 border-cyber-purple-light">
-              {profile?.username?.[0] ?? 'U'}
+              {profile?.username?.[0] ?? 'A'}
             </AvatarFallback>
           </Avatar>
         </Button>
@@ -71,7 +88,7 @@ export function UserMenu() {
         align="end"
       >
         <DropdownMenuLabel className="text-cyber-orange px-3 py-2">
-          {profile?.username ?? 'My Account'}
+          {getMenuLabel()}
         </DropdownMenuLabel>
         <DropdownMenuSeparator className="bg-cyber-purple-light" />
         <DropdownMenuItem
