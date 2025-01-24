@@ -134,9 +134,9 @@
     --dialog-title-text-hsl: 220 23% 91%;
     --dialog-description-text-hsl: 220 9% 65%;
     
-    --dialog-close-text-hsl: 220 9% 65%;
-    --dialog-close-hover-hsl: 220 23% 91%;
-    --dialog-close-focus-ring-hsl: 262 59% 47% / 0.4;
+    --dialog-close-text-hsl: var(--cyber-purple-light-hsl);
+    --dialog-close-hover-hsl: var(--cyber-purple-light-hsl) / 0.8;
+    --dialog-close-focus-ring-hsl: var(--cyber-purple-light-hsl) / 0.4;
 
     /* Input theme variables */
     --input-border-hsl: 262 59% 47% / 0.5;
@@ -292,14 +292,10 @@
 
   .cyber-card:hover {
     border-color: hsl(var(--card-hover-border-hsl));
+    transform: scale(1.02);
     box-shadow: 
       0 0 25px hsl(var(--card-hover-shadow-hsl)),
       0 0 10px hsl(var(--card-hover-glow-hsl) / 0.3);
-    transform: scale(1.02);
-    transition: 
-      border-color 0.15s ease-out,
-      transform 0.3s ease-in-out,
-      box-shadow 0.3s ease-in-out;
   }
 
   /* Glowing text effect */

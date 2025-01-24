@@ -20,8 +20,10 @@ export enum MissionScale {
 }
 
 export enum MissionStatus {
+  Available = 'available',
+  PendingStake = 'pending_stake',
   Active = 'active',
-  InProgress = 'in-progress',
+  InProgress = 'in_progress',
   PendingValidation = 'pending_validation',
   InValidation = 'in_validation',
   Completed = 'completed',
@@ -46,10 +48,10 @@ export enum StakeRange {
   High = 'high', // > 2000 Project89
 }
 
-export enum FailureConditionSeverity {
-  Low = 'low',
-  Medium = 'medium',
-  High = 'high',
+export enum FailureConditionType {
+  Critical = 'Critical',
+  Standard = 'Standard',
+  Warning = 'Warning',
 }
 
 export enum FailureConditionCategory {
@@ -63,7 +65,7 @@ export enum FailureConditionCategory {
 export interface FailureCondition {
   id: string;
   description: string;
-  severity: FailureConditionSeverity;
+  type: FailureConditionType;
   category: FailureConditionCategory;
 }
 
@@ -89,8 +91,20 @@ interface BaseMission {
   failureConditions: FailureCondition[];
 }
 
+export interface Objective {
+  task: string;
+  details: string;
+  completed?: boolean;
+  verifiedAt?: number;
+}
+
+export interface Capability {
+  name: string;
+  description: string;
+}
+
 export interface SingleParticipantRequirements {
-  capabilities: string[];
+  objectives: Objective[];
   minimumRank: ROLE;
   categorySpecificRanks?: Record<string, ROLE>;
   preferredAgent?: string;
@@ -108,7 +122,7 @@ export interface TeamComposition {
 export interface MultiParticipantRequirements {
   minParticipants: number;
   maxParticipants: number;
-  capabilities: string[];
+  objectives: Objective[];
   composition: TeamComposition;
 }
 

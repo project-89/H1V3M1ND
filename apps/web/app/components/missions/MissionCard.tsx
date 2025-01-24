@@ -6,6 +6,7 @@ import { ParticipantType, MissionScale, MissionStatus, Mission, MissionType } fr
 export interface MissionCardProps {
   mission: Mission;
   onClick?: () => void;
+  className?: string;
 }
 
 const getParticipantTypeColor = (type: ParticipantType) => {
@@ -35,19 +36,64 @@ const getScaleColor = (scale: MissionScale) => {
 };
 
 const getStatusColor = (status: MissionStatus) => {
+  const statusStyle = getMissionStatusStyle(status);
+  return statusStyle.className || '';
+};
+
+const getMissionStatusStyle = (status: MissionStatus) => {
   switch (status) {
+    case MissionStatus.Available:
+      return {
+        variant: 'outline' as const,
+        className: 'border-matrix-green text-matrix-green',
+        label: 'Available',
+      };
+    case MissionStatus.PendingStake:
+      return {
+        variant: 'outline' as const,
+        className: 'border-cyber-orange text-cyber-orange',
+        label: 'Awaiting Stake',
+      };
     case MissionStatus.Active:
-      return 'bg-cyber-dark text-neon-cyan';
+      return {
+        variant: 'outline' as const,
+        className: 'border-cyber-yellow text-cyber-yellow',
+        label: 'Active',
+      };
     case MissionStatus.InProgress:
-      return 'bg-cyber-dark text-neon-purple';
+      return {
+        variant: 'outline' as const,
+        className: 'border-cyber-yellow/70 text-cyber-yellow/70',
+        label: 'In Progress',
+      };
     case MissionStatus.PendingValidation:
-      return 'bg-cyber-dark text-cyber-yellow';
+      return {
+        variant: 'outline' as const,
+        className: 'border-cyber-purple text-cyber-purple',
+        label: 'Pending Validation',
+      };
+    case MissionStatus.InValidation:
+      return {
+        variant: 'outline' as const,
+        className: 'border-cyber-purple-light text-cyber-purple-light',
+        label: 'Under Review',
+      };
     case MissionStatus.Completed:
-      return 'bg-cyber-dark text-matrix-green';
+      return {
+        variant: 'outline' as const,
+        className: 'border-neon-cyan text-neon-cyan',
+        label: 'Completed',
+      };
     case MissionStatus.Failed:
-      return 'bg-cyber-dark text-neon-pink';
+      return { variant: 'destructive' as const, label: 'Failed' };
+    case MissionStatus.Expired:
+      return { variant: 'destructive' as const, className: 'opacity-70', label: 'Expired' };
     default:
-      return '';
+      return {
+        variant: 'outline' as const,
+        className: 'border-cyber-gray text-cyber-gray',
+        label: status,
+      };
   }
 };
 
@@ -68,13 +114,14 @@ const getParticipantType = (mission: Mission): ParticipantType => {
   return ParticipantType.Any;
 };
 
-export function MissionCard({ mission, onClick }: MissionCardProps) {
+export function MissionCard({ mission, onClick, className }: MissionCardProps) {
   const scale = getMissionScale(mission);
   const participantType = getParticipantType(mission);
+  const statusStyle = getMissionStatusStyle(mission.status);
 
   return (
     <Card
-      className="cyber-card group cursor-pointer overflow-hidden h-full flex flex-col pb-0 pl-0 pr-0 hover:border-card-hover-border"
+      className={`cyber-card transform transition-transform cursor-pointer ${className}`}
       onClick={onClick}
     >
       <CardHeader className="space-y-2">
@@ -85,7 +132,12 @@ export function MissionCard({ mission, onClick }: MissionCardProps) {
           >
             {participantType}
           </Badge>
-          <Badge className={`px-2 py-1 ${getStatusColor(mission.status)}`}>{mission.status}</Badge>
+          <Badge
+            variant={statusStyle.variant}
+            className={`px-2 py-1 ${statusStyle.className || ''}`}
+          >
+            {statusStyle.label}
+          </Badge>
         </div>
         <h3 className="text-lg font-bold text-neon-pink">{mission.title}</h3>
       </CardHeader>
