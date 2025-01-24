@@ -1,3 +1,5 @@
+import { Objective } from '../types';
+
 export enum MissionType {
   Single = 'single',
   Multi = 'multi',
@@ -28,6 +30,17 @@ export enum ROLE {
   ADMIN = 'admin',
 }
 
+export enum VerificationType {
+  AutoGPS = 'auto_gps',
+  ManualGPS = 'manual_gps',
+  Photo = 'photo',
+  Video = 'video',
+  MultiPhoto = 'multi_photo',
+  Document = 'document',
+  Code = 'code',
+  Manual = 'manual',
+}
+
 interface BaseRequirements {
   timeLimit: number; // in hours
   stakeAmount: number; // in Project89 tokens
@@ -53,6 +66,7 @@ export interface SingleParticipantRequirements {
   categorySpecificRanks?: Record<string, ROLE>;
   preferredAgent?: string;
   specialRequirements?: string[];
+  objectives?: Objective[];
 }
 
 export interface TeamComposition {
@@ -81,12 +95,61 @@ export interface MultiParticipantMission extends BaseMission {
   requirements: MultiParticipantRequirements;
 }
 
+export interface VerificationRequirement {
+  type: VerificationType;
+  description: string;
+  required: boolean;
+  autoVerify?: boolean;
+  metadata?: {
+    minPhotos?: number;
+    maxPhotos?: number;
+    maxVideoLength?: number;
+    allowedFileTypes?: string[];
+    gpsCoordinates?: {
+      latitude: number;
+      longitude: number;
+      radius: number; // in meters
+    };
+  };
+}
+
+export interface MissionObjective {
+  id: string;
+  task: string;
+  details: string;
+  verification?: VerificationRequirement;
+  completed?: boolean;
+  verifiedAt?: number;
+  verificationData?: {
+    type: VerificationType;
+    data: any; // URLs, coordinates, etc.
+    verifiedBy?: string;
+    verificationNotes?: string;
+  };
+}
+
+export interface FailureRecord {
+  condition: any; // TODO: Update with proper type
+  occurredAt: number;
+  details: string;
+  disputed?: boolean;
+  disputeDetails?: string;
+  disputeStatus?: 'pending' | 'accepted' | 'rejected';
+}
+
 export interface MissionHistoryDetails {
   duration: number;
   reward: number;
   xpGained: number;
   teamSize: number;
   completedAt: number;
+  objectives: MissionObjective[];
+  failureRecords?: FailureRecord[];
+  tokenPayout?: {
+    amount: number;
+    txHash: string;
+    timestamp: number;
+  };
 }
 
 export type Mission = SingleParticipantMission | MultiParticipantMission;
