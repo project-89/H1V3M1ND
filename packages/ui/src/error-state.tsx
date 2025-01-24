@@ -29,7 +29,11 @@ export function ErrorState({
       <h3 className="text-xl font-bold text-red-500 mb-2">{title}</h3>
       <p className="text-gray-400 max-w-md mb-4">{message}</p>
       {onRetry && (
-        <Button onClick={onRetry} variant="outline">
+        <Button
+          onClick={onRetry}
+          variant="outline"
+          className="border-cyber-purple-light text-neon-pink hover:text-neon-pink/80 hover:bg-cyber-purple"
+        >
           Try Again
         </Button>
       )}
