@@ -33,9 +33,9 @@ export function ProfileAchievements({ achievements }: ProfileAchievementsProps) 
       case AchievementRarity.Rare:
         return 'border-neon-pink text-neon-pink';
       case AchievementRarity.Common:
-        return 'border-cyber-purple text-cyber-purple-light';
+        return 'border-cyber-purple-light text-cyber-purple-light';
       default:
-        return 'border-cyber-purple text-cyber-purple-light';
+        return 'border-cyber-purple-light text-cyber-purple-light';
     }
   };
 
@@ -48,17 +48,20 @@ export function ProfileAchievements({ achievements }: ProfileAchievementsProps) 
   };
 
   return (
-    <div className="bg-cyber-dark border border-cyber-purple/30 rounded-lg p-6">
-      <h3 className="text-lg font-semibold text-cyber-white mb-4">Achievements</h3>
-      <div className="space-y-4">
+    <div className="bg-cyber-black border-2 border-cyber-purple-light rounded-lg p-6">
+      <h3 className="text-2xl font-bold text-neon-pink mb-6">Achievements</h3>
+      <div className="space-y-6">
         {achievements.map((achievement) => {
           const Icon = getTypeIcon(achievement.type);
           return (
-            <div key={achievement.id} className="space-y-2">
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-2">
-                  <Icon className="w-4 h-4 text-cyber-purple" />
-                  <span className="text-cyber-white">{achievement.title}</span>
+            <div
+              key={achievement.id}
+              className="bg-cyber-dark/80 border border-cyber-purple/30 rounded-lg p-4 hover:border-cyber-purple transition-colors"
+            >
+              <div className="flex items-center justify-between mb-4">
+                <div className="flex items-center gap-3">
+                  <Icon className="w-5 h-5 text-neon-cyan" />
+                  <span className="text-lg font-medium text-neon-cyan">{achievement.title}</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <Badge variant="outline" className={getRarityColor(achievement.rarity)}>
@@ -67,7 +70,7 @@ export function ProfileAchievements({ achievements }: ProfileAchievementsProps) 
                   {achievement.rewards?.tokens && (
                     <Badge
                       variant="outline"
-                      className="border-cyber-purple text-cyber-purple-light"
+                      className="border-cyber-purple-light text-cyber-purple-light"
                     >
                       +{achievement.rewards.tokens} tokens
                     </Badge>
@@ -75,13 +78,16 @@ export function ProfileAchievements({ achievements }: ProfileAchievementsProps) 
                 </div>
               </div>
               {achievement.progress && (
-                <Progress
-                  value={(achievement.progress.current / achievement.progress.target) * 100}
-                />
+                <div className="mb-3">
+                  <Progress
+                    value={(achievement.progress.current / achievement.progress.target) * 100}
+                    className="[--progress-bg:theme(colors.cyber.black)] [--progress-indicator-from:theme(colors.neon.cyan)] [--progress-indicator-via:theme(colors.neon.pink)] [--progress-indicator-to:theme(colors.neon.pink)] h-2"
+                  />
+                </div>
               )}
-              <div className="flex justify-between items-center text-sm">
-                <p className="text-cyber-gray">{achievement.description}</p>
-                <span className="text-cyber-gray text-xs">
+              <div className="flex justify-between items-center">
+                <p className="text-cyber-gray text-sm">{achievement.description}</p>
+                <span className="text-cyber-gray text-xs whitespace-nowrap ml-4">
                   Unlocked: {formatDate(achievement.unlockedAt)}
                 </span>
               </div>

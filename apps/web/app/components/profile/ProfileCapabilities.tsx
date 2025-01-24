@@ -18,11 +18,11 @@ interface ProfileCapabilitiesProps {
 
 export function ProfileCapabilities({ skills }: ProfileCapabilitiesProps) {
   const getRatingColor = (rating?: number) => {
-    if (!rating) return 'border-cyber-purple text-cyber-purple-light';
+    if (!rating) return 'border-cyber-purple-light text-cyber-purple-light';
     if (rating >= 4.5) return 'border-matrix-green text-matrix-green';
     if (rating >= 4.0) return 'border-neon-purple text-neon-purple';
     if (rating >= 3.5) return 'border-neon-pink text-neon-pink';
-    return 'border-cyber-purple text-cyber-purple-light';
+    return 'border-cyber-purple-light text-cyber-purple-light';
   };
 
   const formatLastUsed = (date?: Date) => {
@@ -38,29 +38,40 @@ export function ProfileCapabilities({ skills }: ProfileCapabilitiesProps) {
   };
 
   return (
-    <div className="bg-cyber-dark border border-cyber-purple/30 rounded-lg p-6">
-      <h3 className="text-lg font-semibold text-cyber-white mb-4">Skills & Expertise</h3>
-      <div className="space-y-4">
+    <div className="bg-cyber-black border-2 border-cyber-purple-light rounded-lg p-6">
+      <h3 className="text-2xl font-bold text-neon-pink mb-6">Skills & Expertise</h3>
+      <div className="space-y-6">
         {skills.map((skill) => (
-          <div key={skill.id} className="space-y-2">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-2">
-                <Star className="w-4 h-4 text-cyber-purple" />
-                <span className="text-cyber-white">{skill.name}</span>
+          <div
+            key={skill.id}
+            className="bg-cyber-dark/80 border border-cyber-purple/30 rounded-lg p-4 hover:border-cyber-purple transition-colors"
+          >
+            <div className="flex items-center justify-between mb-4">
+              <div className="flex items-center gap-3">
+                <Star className="w-5 h-5 text-neon-cyan" />
+                <span className="text-lg font-medium text-neon-cyan">{skill.name}</span>
               </div>
               <div className="flex items-center gap-2">
                 <Badge variant="outline" className={getRatingColor(skill.rating)}>
                   {skill.rating ? `${skill.rating.toFixed(1)}★` : 'Unrated'}
                 </Badge>
-                <Badge variant="outline" className="border-cyber-purple text-cyber-purple-light">
+                <Badge
+                  variant="outline"
+                  className="border-cyber-purple-light text-cyber-purple-light"
+                >
                   {skill.completedMissions} missions
                 </Badge>
               </div>
             </div>
-            <Progress value={((skill.rating || 0) / 5) * 100} />
-            <div className="flex justify-between items-center text-sm">
-              <p className="text-cyber-gray">{skill.description}</p>
-              <span className="text-cyber-gray text-xs">
+            <div className="mb-3">
+              <Progress
+                value={((skill.rating || 0) / 5) * 100}
+                className="[--progress-bg:theme(colors.cyber.black)] [--progress-indicator-from:theme(colors.neon.cyan)] [--progress-indicator-via:theme(colors.neon.pink)] [--progress-indicator-to:theme(colors.neon.pink)] h-2"
+              />
+            </div>
+            <div className="flex justify-between items-center">
+              <p className="text-cyber-gray text-sm">{skill.description}</p>
+              <span className="text-cyber-gray text-xs whitespace-nowrap ml-4">
                 Last used: {formatLastUsed(skill.lastUsed)}
               </span>
             </div>

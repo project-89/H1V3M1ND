@@ -64,3 +64,13 @@ export interface UserProfile {
     showStats: boolean;
   };
 }
+
+export interface UserSkill {
+  id: string;
+  name: string;
+  description: string;
+  // Ratings and reputation built through completed missions
+  rating?: number;
+  completedMissions: number;
+  lastUsed?: Date;
+}

@@ -1,58 +1,64 @@
 'use client';
 
-import { Award, Clock, Target, TrendingUp } from 'lucide-react';
-import { Progress } from '@H1V3M1ND/ui';
+import { Award, Clock, Target, Star } from 'lucide-react';
+
+import { cn } from '@/lib/utils';
 
 interface ProfileStatsProps {
   stats: {
     completedMissions: number;
     successRate: number;
     totalStaked: number;
-    reputation: number;
   };
 }
 
 export function ProfileStats({ stats }: ProfileStatsProps) {
   const statItems = [
     {
-      label: 'Completed Missions',
-      value: stats.completedMissions,
+      label: 'Agent Experience',
+      value: '2,450', // This should come from actual XP data
+      subValue: 'Level 3 Agent', // Should be calculated from XP
       icon: Award,
-      color: 'text-cyber-purple-light',
+      color: 'text-neon-pink',
     },
     {
-      label: 'Success Rate',
-      value: `${stats.successRate}%`,
-      icon: TrendingUp,
-      color: 'text-neon-pink',
+      label: 'Completed Missions',
+      value: stats.completedMissions,
+      subValue: `${stats.successRate}% Success Rate`,
+      icon: Target,
+      color: 'text-neon-cyan',
     },
     {
       label: 'Total Staked',
-      value: `${stats.totalStaked} Project89`,
-      icon: Target,
-      color: 'text-cyber-purple',
+      value: `${stats.totalStaked}`,
+      subValue: 'Project89 Tokens',
+      icon: Star,
+      color: 'text-matrix-green',
     },
     {
-      label: 'Reputation',
-      value: stats.reputation,
+      label: 'Active Time',
+      value: '142h',
+      subValue: 'Last 30 days',
       icon: Clock,
-      color: 'text-neon-pink',
+      color: 'text-neon-purple',
     },
   ];
 
   return (
-    <div className="space-y-6">
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-        {statItems.map((item, index) => (
-          <div key={index} className="bg-cyber-dark border border-cyber-purple/30 rounded-lg p-4">
-            <div className="flex items-center gap-2 text-cyber-gray mb-2">
-              <item.icon className={`w-4 h-4 ${item.color}`} />
-              <span>{item.label}</span>
-            </div>
-            <p className="text-2xl font-bold text-cyber-white">{item.value}</p>
+    <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+      {statItems.map((item, index) => (
+        <div
+          key={index}
+          className="bg-cyber-black rounded-lg p-6 border-2 border-cyber-purple-light hover:bg-cyber-black/80 transition-colors"
+        >
+          <div className="flex items-center space-x-3 mb-3">
+            <item.icon className={`w-5 h-5 ${item.color}`} />
+            <span className="text-cyber-gray">{item.label}</span>
           </div>
-        ))}
-      </div>
+          <p className={cn('text-2xl font-bold', item.color)}>{item.value}</p>
+          <p className="text-sm text-cyber-gray">{item.subValue}</p>
+        </div>
+      ))}
     </div>
   );
 }

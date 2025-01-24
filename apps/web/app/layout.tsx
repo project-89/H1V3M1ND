@@ -25,7 +25,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <div className="grid-background" />
         <div className="flex flex-col min-h-screen pt-[72px]">
           <Header />
-          <main className="flex-1 container mx-auto px-4 py-8 mb-[180px]">{children}</main>
+          <main className="flex-1 container mx-auto px-4 py-8 mb-8">{children}</main>
           <div className="fixed bottom-0 left-0 right-0 z-10">
             <Footer />
           </div>

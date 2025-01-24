@@ -29,53 +29,22 @@ export function ProfileHeader({ username, bio, avatarUrl, stats }: ProfileHeader
   };
 
   return (
-    <div className="bg-cyber-dark border border-cyber-purple rounded-lg p-6 mb-8">
-      <div className="flex items-start justify-between">
-        <div className="flex items-center space-x-4">
-          <Avatar className="w-20 h-20 border-2 border-cyber-purple">
+    <div className="bg-cyber-dark/80 border-2 border-cyber-purple-light rounded-lg p-8 relative overflow-hidden">
+      <div className="absolute inset-0 bg-gradient-to-br from-cyber-purple/10 to-neon-pink/5 pointer-events-none" />
+
+      <div className="relative flex items-start justify-between">
+        <div className="flex items-center space-x-6">
+          <Avatar className="w-24 h-24 border-2 border-neon-cyan ring-2 ring-neon-cyan/20">
             <AvatarImage src={avatarUrl} alt={username} />
-            <AvatarFallback className="bg-cyber-dark text-cyber-purple">
+            <AvatarFallback className="bg-cyber-dark text-neon-cyan">
               {username?.charAt(0).toUpperCase() || 'U'}
             </AvatarFallback>
           </Avatar>
 
           <div>
-            <h2 className="text-2xl font-bold text-cyber-white mb-1">{username}</h2>
-            {bio && <p className="text-cyber-gray mb-2">{bio}</p>}
-            <div className="flex items-center space-x-2">
-              <Star className="w-4 h-4 text-cyber-purple-light" />
-              <span className="text-cyber-gray">Reputation: {stats.reputation}</span>
-            </div>
+            <h2 className="text-3xl font-bold text-neon-pink mb-2">{username}</h2>
+            {bio && <p className="text-cyber-gray mb-4 max-w-2xl">{bio}</p>}
           </div>
-        </div>
-      </div>
-
-      <div className="grid grid-cols-3 gap-4 mt-6">
-        <div className="bg-cyber-dark border border-cyber-purple/30 rounded-lg p-4">
-          <div className="flex items-center space-x-2 mb-2">
-            <Award className="w-4 h-4 text-cyber-purple-light" />
-            <span className="text-cyber-gray">Completed Missions</span>
-          </div>
-          <p className="text-2xl font-bold text-cyber-white">{stats.completedMissions}</p>
-          <p className="text-sm text-cyber-gray">Success Rate: {stats.successRate}%</p>
-        </div>
-
-        <div className="bg-cyber-dark border border-cyber-purple/30 rounded-lg p-4">
-          <div className="flex items-center space-x-2 mb-2">
-            <Clock className="w-4 h-4 text-cyber-purple-light" />
-            <span className="text-cyber-gray">Active Time</span>
-          </div>
-          <p className="text-2xl font-bold text-cyber-white">142h</p>
-          <p className="text-sm text-cyber-gray">Last 30 days</p>
-        </div>
-
-        <div className="bg-cyber-dark border border-cyber-purple/30 rounded-lg p-4">
-          <div className="flex items-center space-x-2 mb-2">
-            <Wallet className="w-4 h-4 text-cyber-purple-light" />
-            <span className="text-cyber-gray">Total Staked</span>
-          </div>
-          <p className="text-2xl font-bold text-cyber-white">{stats.totalStaked}</p>
-          <p className="text-sm text-cyber-gray">Project89 Tokens</p>
         </div>
       </div>
     </div>
