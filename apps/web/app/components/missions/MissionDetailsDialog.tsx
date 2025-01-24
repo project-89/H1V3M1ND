@@ -223,7 +223,7 @@ export function MissionDetailsDialog({ mission, isOpen, onClose }: MissionDetail
           </div>
         </div>
 
-        <DialogFooter className="border-t border-cyber-purple-light pt-4 flex gap-2 mt-auto px-4">
+        <DialogFooter className="border-t border-cyber-purple-light pt-6 flex gap-2 px-4">
           <Button
             variant="outline"
             onClick={onClose}
