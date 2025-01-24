@@ -4,6 +4,7 @@ import { Achievement } from '@/lib/types/achievements';
 import { MissionStatus, MissionType, ParticipantType, ROLE } from '@/lib/types/missions';
 import { ExtendedMission } from '@/lib/types/missions';
 import { UserSkill } from '../types/profile';
+import { VerificationType, MissionObjective, FailureRecord } from '@/lib/types/missions';
 
 // Sample data - replace with actual data fetching
 export const profileData = {
@@ -97,10 +98,67 @@ export const profileData = {
       description: 'Create particle effects and environmental enhancements for promotional video.',
       participantType: ParticipantType.Human,
       status: MissionStatus.Active,
+      failureConditions: [
+        {
+          id: 'fc1',
+          description: 'Missing required visual effects elements specified in brief',
+          type: 'Critical',
+          category: 'Technical',
+          severity: 'High',
+        },
+        {
+          id: 'fc2',
+          description: 'Delivery after specified deadline',
+          type: 'Critical',
+          category: 'Performance',
+          severity: 'High',
+        },
+        {
+          id: 'fc3',
+          description: 'Final output resolution below 4K standard',
+          type: 'Standard',
+          category: 'Technical',
+          severity: 'Medium',
+        },
+      ],
       requirements: {
         capabilities: ['Visual Effects', 'Motion Design'],
         minimumRank: ROLE.AGENT_SENIOR,
+        objectives: [
+          {
+            task: 'Create particle system for energy effects',
+            details: 'Design and implement dynamic particle system for energy flow visualization',
+            completed: false,
+          },
+          {
+            task: 'Environmental atmosphere enhancements',
+            details: 'Add volumetric lighting and atmospheric effects to enhance scene depth',
+            completed: false,
+          },
+          {
+            task: 'Final composition and color grading',
+            details: 'Combine all elements and apply color grading according to style guide',
+            completed: false,
+          },
+        ],
       },
+      objectives: [
+        {
+          task: 'Create particle system for energy effects',
+          details: 'Design and implement dynamic particle system for energy flow visualization',
+          completed: false,
+        },
+        {
+          task: 'Environmental atmosphere enhancements',
+          details: 'Add volumetric lighting and atmospheric effects to enhance scene depth',
+          completed: false,
+        },
+        {
+          task: 'Final composition and color grading',
+          details: 'Combine all elements and apply color grading according to style guide',
+          completed: false,
+        },
+      ],
       baseRequirements: {
         timeLimit: 72,
         stakeAmount: 1000,
@@ -109,7 +167,6 @@ export const profileData = {
       expiryDate: Date.now() + 86400000 * 3,
       escrowAddress: '0x1234...5678',
       createdBy: '0xabcd...efgh',
-      failureConditions: [],
       duration: 72,
       reward: 1000,
       xpGained: 500,
@@ -125,10 +182,54 @@ export const profileData = {
       description: 'Design and model 3D assets for virtual environment.',
       participantType: ParticipantType.Human,
       status: MissionStatus.Completed,
+      failureConditions: [
+        {
+          id: 'fc1',
+          description: 'Model topology does not meet optimization requirements',
+          type: 'Critical',
+          category: 'Technical',
+          severity: 'High',
+        },
+        {
+          id: 'fc2',
+          description: 'Assets not compatible with target engine',
+          type: 'Critical',
+          category: 'Technical',
+          severity: 'High',
+        },
+      ],
       requirements: {
         capabilities: ['3D Modeling', 'Visual Design'],
         minimumRank: ROLE.AGENT_FIELD,
+        objectives: [
+          {
+            task: 'Create base 3D models',
+            details: 'Model core assets following provided concept art',
+            completed: true,
+            verifiedAt: Date.now() - 95400000,
+          },
+          {
+            task: 'UV unwrapping and texturing',
+            details: 'Create efficient UV layouts and apply textures',
+            completed: true,
+            verifiedAt: Date.now() - 90000000,
+          },
+        ],
       },
+      objectives: [
+        {
+          task: 'Create base 3D models',
+          details: 'Model core assets following provided concept art',
+          completed: true,
+          verifiedAt: Date.now() - 95400000,
+        },
+        {
+          task: 'UV unwrapping and texturing',
+          details: 'Create efficient UV layouts and apply textures',
+          completed: true,
+          verifiedAt: Date.now() - 90000000,
+        },
+      ],
       baseRequirements: {
         timeLimit: 48,
         stakeAmount: 2000,
@@ -137,7 +238,6 @@ export const profileData = {
       expiryDate: Date.now() - 86400000,
       escrowAddress: '0x9876...4321',
       createdBy: '0xijkl...mnop',
-      failureConditions: [],
       duration: 45,
       reward: 2000,
       xpGained: 750,
