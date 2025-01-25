@@ -30,9 +30,9 @@ export default function ProfilePage() {
       await new Promise((resolve) => setTimeout(resolve, 2000));
 
       // Simulate random error (1 in 4 chance)
-      if (Math.random() < 0.25) {
-        throw new Error('Failed to load profile data');
-      }
+      // if (Math.random() < 0.25) {
+      //   throw new Error('Failed to load profile data');
+      // }
 
       setData(sampleProfileData);
     } catch (err) {

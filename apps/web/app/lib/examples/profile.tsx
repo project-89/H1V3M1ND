@@ -164,7 +164,7 @@ export const profileData = {
         stakeAmount: 1000,
       },
       createdAt: Date.now() - 86400000,
-      expiryDate: Date.now() + 86400000 * 3,
+      expiryDate: Date.now() + 30 * 1000, // 30 seconds remaining
       escrowAddress: '0x1234...5678',
       createdBy: '0xabcd...efgh',
       duration: 72,
@@ -172,6 +172,235 @@ export const profileData = {
       xpGained: 500,
       teamSize: 1,
       completedAt: Date.now() + 86400000 * 3, // Expected completion date
+    },
+    {
+      id: 'am-2',
+      type: MissionType.Multi,
+      title: 'Neural Network Training',
+      description:
+        'Develop and train a specialized neural network for real-time video processing with focus on optimization.',
+      participantType: ParticipantType.Agent,
+      status: MissionStatus.Active,
+      failureConditions: [
+        {
+          id: 'fc1',
+          description: 'Model accuracy falls below 95% benchmark',
+          type: 'Critical',
+          category: 'Performance',
+          severity: 'High',
+        },
+        {
+          id: 'fc2',
+          description: 'Processing latency exceeds 50ms',
+          type: 'Critical',
+          category: 'Technical',
+          severity: 'High',
+        },
+      ],
+      requirements: {
+        capabilities: ['Machine Learning', 'Python', 'PyTorch'],
+        minimumRank: ROLE.AGENT_SENIOR,
+        objectives: [
+          {
+            task: 'Dataset Preparation',
+            details: 'Curate and preprocess training dataset',
+            completed: true,
+            verifiedAt: Date.now() - 43200000,
+          },
+          {
+            task: 'Model Architecture',
+            details: 'Design and implement neural network architecture',
+            completed: false,
+          },
+          {
+            task: 'Training Pipeline',
+            details: 'Set up distributed training pipeline',
+            completed: false,
+          },
+        ],
+      },
+      objectives: [
+        {
+          task: 'Dataset Preparation',
+          details: 'Curate and preprocess training dataset',
+          completed: true,
+          verifiedAt: Date.now() - 43200000,
+        },
+        {
+          task: 'Model Architecture',
+          details: 'Design and implement neural network architecture',
+          completed: false,
+        },
+        {
+          task: 'Training Pipeline',
+          details: 'Set up distributed training pipeline',
+          completed: false,
+        },
+      ],
+      baseRequirements: {
+        timeLimit: 96,
+        stakeAmount: 2500,
+      },
+      createdAt: Date.now() - 172800000,
+      expiryDate: Date.now() + 5 * 60 * 1000, // 5 minutes remaining
+      escrowAddress: '0x5678...9012',
+      createdBy: '0xefgh...ijkl',
+      duration: 96,
+      reward: 2500,
+      xpGained: 1000,
+      teamSize: 3,
+      completedAt: Date.now() + 172800000,
+    },
+    {
+      id: 'am-3',
+      type: MissionType.Single,
+      title: 'Smart Contract Audit',
+      description:
+        'Perform comprehensive security audit of DeFi protocol smart contracts including vulnerability assessment and optimization recommendations.',
+      participantType: ParticipantType.Agent,
+      status: MissionStatus.Active,
+      failureConditions: [
+        {
+          id: 'fc1',
+          description: 'Critical vulnerabilities missed in audit',
+          type: 'Critical',
+          category: 'Security',
+          severity: 'High',
+        },
+      ],
+      requirements: {
+        capabilities: ['Solidity', 'Security Auditing', 'DeFi'],
+        minimumRank: ROLE.AGENT_MASTER,
+        objectives: [
+          {
+            task: 'Static Analysis',
+            details: 'Run automated tools and analyze results',
+            completed: true,
+            verifiedAt: Date.now() - 21600000,
+          },
+          {
+            task: 'Manual Review',
+            details: 'In-depth manual code review and testing',
+            completed: false,
+          },
+          {
+            task: 'Gas Optimization',
+            details: 'Identify gas optimization opportunities',
+            completed: false,
+          },
+        ],
+      },
+      objectives: [
+        {
+          task: 'Static Analysis',
+          details: 'Run automated tools and analyze results',
+          completed: true,
+          verifiedAt: Date.now() - 21600000,
+        },
+        {
+          task: 'Manual Review',
+          details: 'In-depth manual code review and testing',
+          completed: false,
+        },
+        {
+          task: 'Gas Optimization',
+          details: 'Identify gas optimization opportunities',
+          completed: false,
+        },
+      ],
+      baseRequirements: {
+        timeLimit: 48,
+        stakeAmount: 3000,
+      },
+      createdAt: Date.now() - 43200000,
+      expiryDate: Date.now() + 45 * 60 * 1000, // 45 minutes remaining
+      escrowAddress: '0x3456...7890',
+      createdBy: '0xmnop...qrst',
+      duration: 48,
+      reward: 3000,
+      xpGained: 1500,
+      teamSize: 1,
+      completedAt: Date.now() + 129600000,
+    },
+    {
+      id: 'am-4',
+      type: MissionType.Multi,
+      title: 'Quantum Algorithm Optimization',
+      description:
+        'Optimize quantum computing algorithms for improved error correction and qubit efficiency in partnership with quantum hardware specialists.',
+      participantType: ParticipantType.Agent,
+      status: MissionStatus.Active,
+      failureConditions: [
+        {
+          id: 'fc1',
+          description: 'Error correction rate below 99.9%',
+          type: 'Critical',
+          category: 'Performance',
+          severity: 'High',
+        },
+        {
+          id: 'fc2',
+          description: 'Qubit coherence time degradation',
+          type: 'Critical',
+          category: 'Technical',
+          severity: 'High',
+        },
+      ],
+      requirements: {
+        capabilities: ['Quantum Computing', 'Algorithm Design', 'Physics'],
+        minimumRank: ROLE.AGENT_MASTER,
+        objectives: [
+          {
+            task: 'Error Correction Analysis',
+            details:
+              'Analyze current error correction methods and identify optimization opportunities',
+            completed: true,
+            verifiedAt: Date.now() - 10800000,
+          },
+          {
+            task: 'Algorithm Redesign',
+            details: 'Implement new error correction algorithms with improved efficiency',
+            completed: false,
+          },
+          {
+            task: 'Hardware Integration',
+            details: 'Work with quantum hardware team to implement optimizations',
+            completed: false,
+          },
+        ],
+      },
+      objectives: [
+        {
+          task: 'Error Correction Analysis',
+          details:
+            'Analyze current error correction methods and identify optimization opportunities',
+          completed: true,
+          verifiedAt: Date.now() - 10800000,
+        },
+        {
+          task: 'Algorithm Redesign',
+          details: 'Implement new error correction algorithms with improved efficiency',
+          completed: false,
+        },
+        {
+          task: 'Hardware Integration',
+          details: 'Work with quantum hardware team to implement optimizations',
+          completed: false,
+        },
+      ],
+      baseRequirements: {
+        timeLimit: 120,
+        stakeAmount: 5000,
+      },
+      createdAt: Date.now() - 86400000,
+      expiryDate: Date.now() + 12 * 60 * 60 * 1000, // 12 hours remaining
+      escrowAddress: '0x7890...1234',
+      createdBy: '0xuvwx...yz12',
+      duration: 120,
+      reward: 5000,
+      xpGained: 2000,
+      teamSize: 4,
+      completedAt: Date.now() + 432000000,
     },
   ] as ExtendedMission[],
   completedMissions: [
