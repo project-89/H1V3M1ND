@@ -33,7 +33,7 @@ import {
   MissionObjective,
   FailureRecord,
   VerificationRequirement,
-} from '@/lib/types/missions';
+} from '@H1V3M1ND/types';
 
 interface MissionHistoryDialogProps {
   mission: ExtendedMission;

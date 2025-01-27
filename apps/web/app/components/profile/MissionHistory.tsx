@@ -19,8 +19,7 @@ import {
 import { cn } from '@/lib/utils';
 import { useRouter } from 'next/navigation';
 
-import { MissionStatus, ExtendedMission } from '@/lib/types/missions';
-import { Mission, Objective } from '@/lib/types';
+import { MissionStatus, ExtendedMission, Mission, Objective } from '@H1V3M1ND/types';
 
 interface MissionHistoryProps {
   activeMissions: ExtendedMission[];

@@ -5,7 +5,7 @@ import {
   SingleParticipantMission,
   MissionType,
   MultiParticipantMission,
-} from '@/lib/types';
+} from '@H1V3M1ND/types';
 import { sampleMissions } from '@/lib/examples/missions';
 
 interface MissionStore {

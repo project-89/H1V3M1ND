@@ -1,6 +1,6 @@
 'use client';
 
-import { MissionType, SingleParticipantMission, MultiParticipantMission } from '@/lib/types';
+import { MissionType, SingleParticipantMission, MultiParticipantMission } from '@H1V3M1ND/types';
 
 import { SingleParticipantProgress } from './SingleParticipantProgress';
 import { MultiParticipantProgress } from './MultiParticipantProgress';

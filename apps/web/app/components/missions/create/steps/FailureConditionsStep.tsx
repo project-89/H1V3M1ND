@@ -6,9 +6,9 @@ import { Input, Label, Button, RadioGroup, RadioGroupItem } from '@H1V3M1ND/ui';
 import {
   Mission,
   FailureCondition,
-  FailureConditionSeverity,
+  FailureConditionType,
   FailureConditionCategory,
-} from '@/lib/types';
+} from '@H1V3M1ND/types';
 
 interface FailureConditionsStepProps {
   data: Partial<Mission>;
@@ -17,17 +17,18 @@ interface FailureConditionsStepProps {
 
 export function FailureConditionsStep({ data, onUpdate }: FailureConditionsStepProps) {
   const [newCondition, setNewCondition] = useState<Partial<FailureCondition>>({
-    severity: FailureConditionSeverity.Medium,
+    description: '',
+    type: FailureConditionType.Standard,
     category: FailureConditionCategory.Performance,
   });
 
   const handleAddCondition = () => {
-    if (!newCondition.description?.trim()) return;
+    if (!newCondition.description) return;
 
     const condition: FailureCondition = {
-      id: Math.random().toString(36).substring(7),
+      id: `${Date.now()}`,
       description: newCondition.description,
-      severity: newCondition.severity || FailureConditionSeverity.Medium,
+      type: newCondition.type || FailureConditionType.Standard,
       category: newCondition.category || FailureConditionCategory.Performance,
     };
 
@@ -37,7 +38,8 @@ export function FailureConditionsStep({ data, onUpdate }: FailureConditionsStepP
     });
 
     setNewCondition({
-      severity: FailureConditionSeverity.Medium,
+      description: '',
+      type: FailureConditionType.Standard,
       category: FailureConditionCategory.Performance,
     });
   };
@@ -49,17 +51,27 @@ export function FailureConditionsStep({ data, onUpdate }: FailureConditionsStepP
     });
   };
 
-  const getSeverityColor = (severity: FailureConditionSeverity) => {
-    switch (severity) {
-      case FailureConditionSeverity.Low:
-        return 'text-yellow-400';
-      case FailureConditionSeverity.Medium:
-        return 'text-orange-400';
-      case FailureConditionSeverity.High:
-        return 'text-red-400';
+  const getTypeColor = (type: FailureConditionType) => {
+    switch (type) {
+      case FailureConditionType.Warning:
+        return 'text-yellow-500';
+      case FailureConditionType.Standard:
+        return 'text-blue-500';
+      case FailureConditionType.Critical:
+        return 'text-red-500';
       default:
-        return 'text-gray-400';
+        return 'text-gray-500';
     }
+  };
+
+  const handleInputChange = (
+    field: keyof FailureCondition,
+    value: string | FailureConditionType | FailureConditionCategory
+  ) => {
+    setNewCondition({
+      ...newCondition,
+      [field]: value,
+    });
   };
 
   return (
@@ -74,7 +86,7 @@ export function FailureConditionsStep({ data, onUpdate }: FailureConditionsStepP
           <Input
             id="description"
             value={newCondition.description || ''}
-            onChange={(e) => setNewCondition({ ...newCondition, description: e.target.value })}
+            onChange={(e) => handleInputChange('description', e.target.value)}
             placeholder="Describe the failure condition..."
             className="bg-cyber-dark border-cyber-purple"
           />
@@ -82,25 +94,20 @@ export function FailureConditionsStep({ data, onUpdate }: FailureConditionsStepP
 
         <div className="grid grid-cols-2 gap-4">
           <div className="space-y-2">
-            <Label className="text-cyber-purple-light">Severity</Label>
+            <Label className="text-cyber-purple-light">Type</Label>
             <RadioGroup
-              value={newCondition.severity}
-              onValueChange={(value) =>
-                setNewCondition({
-                  ...newCondition,
-                  severity: value as FailureConditionSeverity,
-                })
-              }
+              value={newCondition.type}
+              onValueChange={(value) => handleInputChange('type', value as FailureConditionType)}
               className="flex flex-col space-y-1"
             >
-              {Object.values(FailureConditionSeverity).map((severity) => (
-                <div key={severity} className="flex items-center space-x-2">
-                  <RadioGroupItem value={severity} id={`severity-${severity}`} />
+              {Object.values(FailureConditionType).map((type) => (
+                <div key={type} className="flex items-center space-x-2">
+                  <RadioGroupItem value={type} id={`type-${type}`} />
                   <Label
-                    htmlFor={`severity-${severity}`}
-                    className={getSeverityColor(severity as FailureConditionSeverity)}
+                    htmlFor={`type-${type}`}
+                    className={getTypeColor(type as FailureConditionType)}
                   >
-                    {severity}
+                    {type}
                   </Label>
                 </div>
               ))}
@@ -112,10 +119,7 @@ export function FailureConditionsStep({ data, onUpdate }: FailureConditionsStepP
             <RadioGroup
               value={newCondition.category}
               onValueChange={(value) =>
-                setNewCondition({
-                  ...newCondition,
-                  category: value as FailureConditionCategory,
-                })
+                handleInputChange('category', value as FailureConditionCategory)
               }
               className="flex flex-col space-y-1"
             >
@@ -153,7 +157,7 @@ export function FailureConditionsStep({ data, onUpdate }: FailureConditionsStepP
             <div className="space-y-1">
               <p className="text-white">{condition.description}</p>
               <div className="flex space-x-4 text-sm">
-                <span className={getSeverityColor(condition.severity)}>{condition.severity}</span>
+                <span className={getTypeColor(condition.type)}>{condition.type}</span>
                 <span className="text-gray-400">{condition.category}</span>
               </div>
             </div>

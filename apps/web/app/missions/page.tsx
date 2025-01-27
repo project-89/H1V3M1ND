@@ -20,7 +20,7 @@ import {
   SingleParticipantMission,
   MultiParticipantMission,
   MissionStatus,
-} from '@/lib/types';
+} from '@H1V3M1ND/types';
 
 function filterMissions(missions: Mission[], filters: FilterState): Mission[] {
   return missions.filter((mission) => {

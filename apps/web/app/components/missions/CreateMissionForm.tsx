@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { Button, Input, Badge, Card, CardContent, CardFooter, CardHeader } from '@H1V3M1ND/ui';
-import { ParticipantType, MissionScale } from '@/lib/types';
+import { ParticipantType, MissionScale } from '@H1V3M1ND/types';
 import { Clock, Coins, Users } from 'lucide-react';
 import { z } from 'zod';
 import { toast } from 'sonner';

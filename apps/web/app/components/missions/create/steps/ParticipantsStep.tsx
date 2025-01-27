@@ -7,7 +7,7 @@ import {
   SingleParticipantMission,
   MultiParticipantMission,
   ROLE,
-} from '@/lib/types';
+} from '@H1V3M1ND/types';
 
 interface ParticipantsStepProps {
   data: Partial<Mission>;
@@ -28,6 +28,7 @@ export function ParticipantsStep({ data, onUpdate }: ParticipantsStepProps) {
         ...data.requirements,
         capabilities: data.requirements?.capabilities || [],
         minimumRank: data.requirements?.minimumRank || ROLE.AGENT_INITIATE,
+        objectives: data.requirements?.objectives || [],
         [field]: value,
       },
     };
@@ -45,6 +46,7 @@ export function ParticipantsStep({ data, onUpdate }: ParticipantsStepProps) {
         minParticipants: currentData.requirements?.minParticipants || 2,
         maxParticipants: currentData.requirements?.maxParticipants || 5,
         capabilities: currentData.requirements?.capabilities || [],
+        objectives: currentData.requirements?.objectives || [],
         composition: {
           ...currentData.requirements?.composition,
           [field]: value,

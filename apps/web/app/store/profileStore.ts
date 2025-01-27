@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { UserProfile, SkillLevel, SpecializationType } from '@/lib/types/profile';
+import { UserProfile, SkillLevel, SpecializationType } from '@H1V3M1ND/types';
 
 // Stub profile for development
 const stubProfile: UserProfile = {

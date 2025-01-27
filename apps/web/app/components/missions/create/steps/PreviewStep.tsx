@@ -6,144 +6,87 @@ import {
   MissionType,
   SingleParticipantMission,
   MultiParticipantMission,
-  FailureConditionSeverity,
-} from '@/lib/types';
+  FailureConditionType,
+} from '@H1V3M1ND/types';
 
 interface PreviewStepProps {
-  data: Partial<Mission>;
+  data: Partial<SingleParticipantMission | MultiParticipantMission>;
 }
 
 export function PreviewStep({ data }: PreviewStepProps) {
-  const getSeverityColor = (severity: FailureConditionSeverity) => {
-    switch (severity) {
-      case FailureConditionSeverity.Low:
-        return 'bg-yellow-400/10 text-yellow-400 border-yellow-400/50';
-      case FailureConditionSeverity.Medium:
-        return 'bg-orange-400/10 text-orange-400 border-orange-400/50';
-      case FailureConditionSeverity.High:
-        return 'bg-red-400/10 text-red-400 border-red-400/50';
+  const getTypeColor = (type: FailureConditionType) => {
+    switch (type) {
+      case FailureConditionType.Warning:
+        return 'bg-yellow-500';
+      case FailureConditionType.Standard:
+        return 'bg-blue-500';
+      case FailureConditionType.Critical:
+        return 'bg-red-500';
       default:
-        return 'bg-gray-400/10 text-gray-400 border-gray-400/50';
+        return 'bg-gray-500';
     }
   };
 
   return (
-    <div className="space-y-8">
-      <section className="space-y-4">
-        <h3 className="text-lg font-semibold text-cyber-purple-light">Basic Information</h3>
-        <div className="bg-cyber-dark rounded-lg p-4 border border-cyber-purple space-y-2">
-          <h4 className="text-xl font-bold text-white">{data.title}</h4>
-          <p className="text-gray-300">{data.description}</p>
-          <div className="flex space-x-2">
-            <Badge variant="outline">
-              {data.type === MissionType.Single ? 'Single Agent' : 'Multi Agent'}
-            </Badge>
-            {data.type === MissionType.Single &&
-              (data as Partial<SingleParticipantMission>).participantType && (
-                <Badge variant="outline">
-                  {(data as Partial<SingleParticipantMission>).participantType}
+    <div className="space-y-6">
+      <div>
+        <h3 className="text-lg font-semibold">Mission Overview</h3>
+        <div className="mt-2 space-y-2">
+          <p>
+            <span className="font-medium">Title:</span> {data.title}
+          </p>
+          <p>
+            <span className="font-medium">Description:</span> {data.description}
+          </p>
+          <p>
+            <span className="font-medium">Type:</span>{' '}
+            {data.type === MissionType.Single ? 'Single Participant' : 'Multi Participant'}
+          </p>
+        </div>
+      </div>
+
+      <div>
+        <h3 className="text-lg font-semibold">Requirements</h3>
+        <div className="mt-2 space-y-2">
+          <p>
+            <span className="font-medium">Time Limit:</span> {data.baseRequirements?.timeLimit}{' '}
+            hours
+          </p>
+          <p>
+            <span className="font-medium">Stake Amount:</span> {data.baseRequirements?.stakeAmount}{' '}
+            tokens
+          </p>
+        </div>
+      </div>
+
+      <div>
+        <h3 className="text-lg font-semibold">Objectives</h3>
+        <div className="mt-2 space-y-2">
+          {data.requirements?.objectives?.map((objective, index) => (
+            <div key={index} className="rounded-md border border-gray-200 p-3">
+              <p className="font-medium">{objective.task}</p>
+              <p className="text-sm text-gray-600">{objective.details}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div>
+        <h3 className="text-lg font-semibold">Failure Conditions</h3>
+        <div className="mt-2 space-y-2">
+          {data.failureConditions?.map((condition, index) => (
+            <div key={index} className="rounded-md border border-gray-200 p-3">
+              <p>{condition.description}</p>
+              <div className="mt-2 flex gap-2">
+                <Badge variant="outline" className={getTypeColor(condition.type)}>
+                  {condition.type}
                 </Badge>
-              )}
-          </div>
-        </div>
-      </section>
-
-      <section className="space-y-4">
-        <h3 className="text-lg font-semibold text-cyber-purple-light">Requirements</h3>
-        <div className="bg-cyber-dark rounded-lg p-4 border border-cyber-purple space-y-4">
-          <div className="grid grid-cols-2 gap-4">
-            <div>
-              <p className="text-gray-400">Time Limit</p>
-              <p className="text-white">{data.baseRequirements?.timeLimit} hours</p>
-            </div>
-            <div>
-              <p className="text-gray-400">Stake Amount</p>
-              <p className="text-white">{data.baseRequirements?.stakeAmount} Project89</p>
-            </div>
-          </div>
-
-          {data.type === MissionType.Single ? (
-            <div className="space-y-2">
-              <p className="text-gray-400">Minimum Rank</p>
-              <p className="text-white">
-                {(data as Partial<SingleParticipantMission>).requirements?.minimumRank || 'None'}
-              </p>
-              {(data as Partial<SingleParticipantMission>).requirements?.preferredAgent && (
-                <>
-                  <p className="text-gray-400 mt-4">Preferred Agent Profile</p>
-                  <p className="text-white">
-                    {(data as Partial<SingleParticipantMission>).requirements?.preferredAgent}
-                  </p>
-                </>
-              )}
-            </div>
-          ) : (
-            <div className="space-y-2">
-              <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <p className="text-gray-400">Min Participants</p>
-                  <p className="text-white">
-                    {(data as Partial<MultiParticipantMission>).requirements?.minParticipants}
-                  </p>
-                </div>
-                <div>
-                  <p className="text-gray-400">Max Participants</p>
-                  <p className="text-white">
-                    {(data as Partial<MultiParticipantMission>).requirements?.maxParticipants}
-                  </p>
-                </div>
-              </div>
-              {(data as Partial<MultiParticipantMission>).requirements?.composition
-                ?.teamStructure && (
-                <>
-                  <p className="text-gray-400 mt-4">Team Structure</p>
-                  <p className="text-white">
-                    {
-                      (data as Partial<MultiParticipantMission>).requirements?.composition
-                        ?.teamStructure
-                    }
-                  </p>
-                </>
-              )}
-            </div>
-          )}
-
-          {data.requirements?.capabilities && data.requirements.capabilities.length > 0 && (
-            <div className="space-y-2">
-              <p className="text-gray-400">Required Capabilities</p>
-              <div className="flex flex-wrap gap-2">
-                {data.requirements.capabilities.map((cap) => (
-                  <Badge key={cap} variant="outline">
-                    {cap}
-                  </Badge>
-                ))}
-              </div>
-            </div>
-          )}
-        </div>
-      </section>
-
-      <section className="space-y-4">
-        <h3 className="text-lg font-semibold text-cyber-purple-light">Failure Conditions</h3>
-        <div className="bg-cyber-dark rounded-lg p-4 border border-cyber-purple space-y-4">
-          {data.failureConditions?.map((condition) => (
-            <div
-              key={condition.id}
-              className="flex items-start justify-between p-3 rounded border bg-black/20"
-            >
-              <div className="space-y-1">
-                <p className="text-white">{condition.description}</p>
-                <div className="flex space-x-2">
-                  <Badge variant="outline" className={getSeverityColor(condition.severity)}>
-                    {condition.severity}
-                  </Badge>
-                  <Badge variant="outline">{condition.category}</Badge>
-                </div>
+                <Badge variant="outline">{condition.category}</Badge>
               </div>
             </div>
           ))}
         </div>
-      </section>
+      </div>
     </div>
   );
 }

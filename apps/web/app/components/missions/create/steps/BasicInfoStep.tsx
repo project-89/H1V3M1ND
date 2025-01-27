@@ -6,7 +6,7 @@ import {
   MissionType,
   SingleParticipantMission,
   MultiParticipantMission,
-} from '@/lib/types';
+} from '@H1V3M1ND/types';
 
 interface BasicInfoStepProps {
   data: Partial<Mission>;

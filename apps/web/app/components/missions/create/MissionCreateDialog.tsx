@@ -10,7 +10,7 @@ import {
   DialogFooter,
   Button,
 } from '@H1V3M1ND/ui';
-import { Mission, MissionType, MultiParticipantMission } from '@/lib/types';
+import { Mission, MissionType, MultiParticipantMission } from '@H1V3M1ND/types';
 import { BasicInfoStep } from './steps/BasicInfoStep';
 import { RequirementsStep } from './steps/RequirementsStep';
 import { ParticipantsStep } from './steps/ParticipantsStep';

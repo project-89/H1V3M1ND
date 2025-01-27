@@ -5,8 +5,8 @@ import {
   MissionType,
   SingleParticipantMission,
   MultiParticipantMission,
-  FailureConditionSeverity,
-} from '@/lib/types';
+  FailureConditionType,
+} from '@H1V3M1ND/types';
 
 interface PreviewStepProps {
   data: Partial<SingleParticipantMission | MultiParticipantMission>;
@@ -15,14 +15,14 @@ interface PreviewStepProps {
 export function PreviewStep({ data }: PreviewStepProps) {
   const isSingleParticipant = data.type === MissionType.Single;
 
-  const getSeverityColor = (severity: FailureConditionSeverity) => {
-    switch (severity) {
-      case FailureConditionSeverity.High:
-        return 'bg-red-500/20 text-red-400 border-red-400/50';
-      case FailureConditionSeverity.Medium:
+  const getTypeColor = (type: FailureConditionType) => {
+    switch (type) {
+      case FailureConditionType.Warning:
         return 'bg-yellow-500/20 text-yellow-400 border-yellow-400/50';
-      case FailureConditionSeverity.Low:
+      case FailureConditionType.Standard:
         return 'bg-blue-500/20 text-blue-400 border-blue-400/50';
+      case FailureConditionType.Critical:
+        return 'bg-red-500/20 text-red-400 border-red-400/50';
       default:
         return 'bg-gray-500/20 text-gray-400 border-gray-400/50';
     }
@@ -129,8 +129,8 @@ export function PreviewStep({ data }: PreviewStepProps) {
               >
                 <div className="flex items-center justify-between">
                   <p className="text-cyber-white">{condition.description}</p>
-                  <Badge variant="outline" className={getSeverityColor(condition.severity)}>
-                    {condition.severity}
+                  <Badge variant="outline" className={getTypeColor(condition.type)}>
+                    {condition.type}
                   </Badge>
                 </div>
               </div>

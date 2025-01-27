@@ -10,7 +10,7 @@ import {
   MultiParticipantMission,
   ROLE,
   TeamComposition,
-} from '@/lib/types';
+} from '@H1V3M1ND/types';
 
 interface RequirementsStepProps {
   data: Partial<Mission>;
@@ -71,37 +71,37 @@ export function RequirementsStep({ data, onUpdate }: RequirementsStepProps) {
   const addCapability = () => {
     if (!newCapability.trim()) return;
 
-    const currentCapabilities = data.requirements?.capabilities || [];
-    const updatedCapabilities = [...currentCapabilities, newCapability.trim()];
+    const updatedCapabilities = [...(data.requirements?.capabilities || []), newCapability.trim()];
 
     if (data.type === MissionType.Single) {
-      const updatedData: Partial<SingleParticipantMission> = {
+      onUpdate({
         ...data,
         type: MissionType.Single,
         requirements: {
           ...(data as Partial<SingleParticipantMission>).requirements,
           capabilities: updatedCapabilities,
           minimumRank:
-            (data as Partial<SingleParticipantMission>).requirements?.minimumRank || ROLE.USER,
+            (data as Partial<SingleParticipantMission>).requirements?.minimumRank ||
+            ROLE.AGENT_INITIATE,
+          objectives: (data as Partial<SingleParticipantMission>).requirements?.objectives || [],
         },
-      };
-      onUpdate(updatedData);
+      });
     } else {
-      const updatedData: Partial<MultiParticipantMission> = {
+      const currentData = data as Partial<MultiParticipantMission>;
+      onUpdate({
         ...data,
         type: MissionType.Multi,
         requirements: {
-          ...(data as Partial<MultiParticipantMission>).requirements,
+          ...currentData.requirements,
           capabilities: updatedCapabilities,
-          minParticipants:
-            (data as Partial<MultiParticipantMission>).requirements?.minParticipants || 2,
-          maxParticipants:
-            (data as Partial<MultiParticipantMission>).requirements?.maxParticipants || 5,
-          composition: (data as Partial<MultiParticipantMission>).requirements?.composition || {},
+          minParticipants: currentData.requirements?.minParticipants || 2,
+          maxParticipants: currentData.requirements?.maxParticipants || 5,
+          objectives: currentData.requirements?.objectives || [],
+          composition: currentData.requirements?.composition || {},
         },
-      };
-      onUpdate(updatedData);
+      });
     }
+
     setNewCapability('');
   };
 
@@ -111,52 +111,48 @@ export function RequirementsStep({ data, onUpdate }: RequirementsStepProps) {
     );
 
     if (data.type === MissionType.Single) {
-      const updatedData: Partial<SingleParticipantMission> = {
+      onUpdate({
         ...data,
         type: MissionType.Single,
         requirements: {
           ...(data as Partial<SingleParticipantMission>).requirements,
           capabilities: updatedCapabilities,
           minimumRank:
-            (data as Partial<SingleParticipantMission>).requirements?.minimumRank || ROLE.USER,
+            (data as Partial<SingleParticipantMission>).requirements?.minimumRank ||
+            ROLE.AGENT_INITIATE,
+          objectives: (data as Partial<SingleParticipantMission>).requirements?.objectives || [],
         },
-      };
-      onUpdate(updatedData);
+      });
     } else {
-      const updatedData: Partial<MultiParticipantMission> = {
+      const currentData = data as Partial<MultiParticipantMission>;
+      onUpdate({
         ...data,
         type: MissionType.Multi,
         requirements: {
-          ...(data as Partial<MultiParticipantMission>).requirements,
+          ...currentData.requirements,
           capabilities: updatedCapabilities,
-          minParticipants:
-            (data as Partial<MultiParticipantMission>).requirements?.minParticipants || 2,
-          maxParticipants:
-            (data as Partial<MultiParticipantMission>).requirements?.maxParticipants || 5,
-          composition: (data as Partial<MultiParticipantMission>).requirements?.composition || {},
+          minParticipants: currentData.requirements?.minParticipants || 2,
+          maxParticipants: currentData.requirements?.maxParticipants || 5,
+          objectives: currentData.requirements?.objectives || [],
+          composition: currentData.requirements?.composition || {},
         },
-      };
-      onUpdate(updatedData);
+      });
     }
   };
 
   const handleMinimumRankChange = (value: string) => {
     if (data.type !== MissionType.Single) return;
 
-    const numValue = parseInt(value) || 0;
-    const error = validateField('minimumRank', numValue);
-    setErrors((prev) => ({ ...prev, minimumRank: error }));
-
-    const updatedData: Partial<SingleParticipantMission> = {
+    onUpdate({
       ...data,
       type: MissionType.Single,
       requirements: {
         ...(data as Partial<SingleParticipantMission>).requirements,
         capabilities: (data as Partial<SingleParticipantMission>).requirements?.capabilities || [],
         minimumRank: ROLE.USER, // TODO: Convert number to ROLE enum
+        objectives: (data as Partial<SingleParticipantMission>).requirements?.objectives || [],
       },
-    };
-    onUpdate(updatedData);
+    });
   };
 
   const handleParticipantsChange = (
@@ -165,25 +161,25 @@ export function RequirementsStep({ data, onUpdate }: RequirementsStepProps) {
   ) => {
     if (data.type !== MissionType.Multi) return;
 
-    const numValue = parseInt(value) || 2;
-    const error = validateField(field, numValue);
-    setErrors((prev) => ({ ...prev, [field]: error }));
-
     const currentData = data as Partial<MultiParticipantMission>;
-    const updatedData: Partial<MultiParticipantMission> = {
+    onUpdate({
       ...data,
       type: MissionType.Multi,
       requirements: {
         ...currentData.requirements,
         capabilities: currentData.requirements?.capabilities || [],
+        objectives: currentData.requirements?.objectives || [],
         minParticipants:
-          field === 'minParticipants' ? numValue : currentData.requirements?.minParticipants || 2,
+          field === 'minParticipants'
+            ? parseInt(value) || 2
+            : currentData.requirements?.minParticipants || 2,
         maxParticipants:
-          field === 'maxParticipants' ? numValue : currentData.requirements?.maxParticipants || 5,
+          field === 'maxParticipants'
+            ? parseInt(value) || 5
+            : currentData.requirements?.maxParticipants || 5,
         composition: currentData.requirements?.composition || {},
       },
-    };
-    onUpdate(updatedData);
+    });
   };
 
   return (

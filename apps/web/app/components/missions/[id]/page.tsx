@@ -7,7 +7,7 @@ import { Clock, Coins, Users, ArrowLeft } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { formatDate } from '@/lib/utils/date';
 import { getMissionTimeColor, calculateTimeRemaining } from '@/lib/utils/mission';
-import { ExtendedMission, MissionStatus, VerificationRequirement } from '@/lib/types/missions';
+import { ExtendedMission, MissionStatus } from '@/lib/types/missions';
 import { VerificationUpload } from '@/components/missions/verification/VerificationUpload';
 
 export default function MissionPage() {

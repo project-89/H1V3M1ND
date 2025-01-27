@@ -1,7 +1,7 @@
 'use client';
 
 import { Clock, Target, AlertTriangle, CheckCircle2, Timer } from 'lucide-react';
-import { Mission, MissionStatus } from '@/lib/types';
+import { Mission, MissionStatus } from '@H1V3M1ND/types';
 import { Badge } from '@H1V3M1ND/ui';
 
 interface MissionProgressProps {

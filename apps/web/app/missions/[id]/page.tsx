@@ -9,7 +9,7 @@ import {
   MissionStatus,
   MultiParticipantRequirements,
   SingleParticipantRequirements,
-} from '@/lib/types/missions';
+} from '@H1V3M1ND/types';
 import { VerificationUpload } from '@/components/missions/verification/VerificationUpload';
 import { getMissionTimeColor } from '@/lib/utils/mission';
 

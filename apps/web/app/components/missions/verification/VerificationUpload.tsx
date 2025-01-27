@@ -3,7 +3,7 @@
 import { useState, useRef } from 'react';
 import { Button } from '@H1V3M1ND/ui';
 import { Camera, Video, MapPin, Upload } from 'lucide-react';
-import { VerificationRequirement, VerificationType } from '@/lib/types/missions';
+import { VerificationRequirement, VerificationType } from '@H1V3M1ND/types';
 
 interface VerificationUploadProps {
   verification: VerificationRequirement;

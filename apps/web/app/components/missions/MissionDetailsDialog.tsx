@@ -25,9 +25,9 @@ import {
   MissionType,
   FailureCondition,
   FailureConditionType,
-  FailureConditionCategory as Category,
+  FailureConditionCategory,
   MissionStatus,
-} from '@/lib/types';
+} from '@H1V3M1ND/types';
 import { cn } from '@/lib/utils';
 import { getMissionStatusStyle } from '@/lib/utils/mission';
 
@@ -40,6 +40,32 @@ export interface MissionDetailsDialogProps {
 export function MissionDetailsDialog({ mission, isOpen, onClose }: MissionDetailsDialogProps) {
   const [isAccepting, setIsAccepting] = useState(false);
   const statusStyle = getMissionStatusStyle(mission.status as MissionStatus);
+
+  const getFailureIcon = (type: FailureConditionType) => {
+    switch (type) {
+      case FailureConditionType.Critical:
+        return AlertOctagon;
+      case FailureConditionType.Standard:
+        return AlertCircle;
+      case FailureConditionType.Warning:
+        return AlertTriangle;
+      default:
+        return AlertTriangle;
+    }
+  };
+
+  const getFailureTypeStyle = (type: FailureConditionType) => {
+    switch (type) {
+      case FailureConditionType.Critical:
+        return 'border-red-500 text-red-500 whitespace-nowrap';
+      case FailureConditionType.Standard:
+        return 'border-yellow-500 text-yellow-500 whitespace-nowrap';
+      case FailureConditionType.Warning:
+        return 'border-blue-500 text-blue-500 whitespace-nowrap';
+      default:
+        return 'border-gray-500 text-gray-500 whitespace-nowrap';
+    }
+  };
 
   const handleAcceptMission = async () => {
     setIsAccepting(true);
@@ -124,14 +150,7 @@ export function MissionDetailsDialog({ mission, isOpen, onClose }: MissionDetail
                   key={condition.id}
                   className="flex items-start gap-3 bg-cyber-dark/50 rounded-md p-3"
                 >
-                  <Badge
-                    variant="outline"
-                    className={
-                      condition.type === FailureConditionType.Critical
-                        ? 'border-red-500 text-red-500 whitespace-nowrap'
-                        : 'border-cyber-yellow text-cyber-yellow whitespace-nowrap'
-                    }
-                  >
+                  <Badge variant="outline" className={getFailureTypeStyle(condition.type)}>
                     {condition.type === FailureConditionType.Critical
                       ? 'Mission Failure'
                       : condition.type === FailureConditionType.Standard

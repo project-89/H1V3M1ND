@@ -2,7 +2,7 @@
 
 import { Badge, Progress } from '@H1V3M1ND/ui';
 import { Trophy, Star, Target, Sparkles } from 'lucide-react';
-import { Achievement, AchievementRarity, AchievementType } from '@/lib/types/achievements';
+import { Achievement, AchievementRarity, AchievementType } from '@H1V3M1ND/types';
 
 interface ProfileAchievementsProps {
   achievements: Achievement[];

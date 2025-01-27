@@ -2,9 +2,17 @@
   "name": "@H1V3M1ND/types",
   "version": "0.0.0",
   "private": true,
-  "main": "index.ts",
-  "types": "index.ts",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "scripts": {
+    "clean": "rm -rf .turbo node_modules",
+    "lint": "eslint .",
+    "type-check": "tsc --noEmit"
+  },
   "devDependencies": {
+    "@H1V3M1ND/eslint-config": "*",
+    "@H1V3M1ND/typescript-config": "*",
+    "eslint": "^8.54.0",
     "typescript": "^5.3.3"
   }
 } 

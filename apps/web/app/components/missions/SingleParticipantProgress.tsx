@@ -1,7 +1,7 @@
 'use client';
 
 import { Shield, Brain, Star } from 'lucide-react';
-import { SingleParticipantMission } from '@/lib/types';
+import { SingleParticipantMission } from '@H1V3M1ND/types';
 import { MissionProgress } from './MissionProgress';
 
 interface SingleParticipantProgressProps {

@@ -17,7 +17,7 @@ import {
 } from '@H1V3M1ND/ui';
 import { User } from 'lucide-react';
 import { useState } from 'react';
-import { SkillLevel, SpecializationType } from '@/lib/types/profile';
+import { SkillLevel, SpecializationType } from '@H1V3M1ND/types';
 
 export default function ProfileSettingsPage() {
   const { profile, updateProfile, isLoading } = useProfileStore();

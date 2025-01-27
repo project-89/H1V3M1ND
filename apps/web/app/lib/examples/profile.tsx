@@ -1,10 +1,17 @@
-import { AchievementType } from '@/lib/types/achievements';
-import { AchievementRarity } from '@/lib/types/achievements';
-import { Achievement } from '@/lib/types/achievements';
-import { MissionStatus, MissionType, ParticipantType, ROLE } from '@/lib/types/missions';
-import { ExtendedMission } from '@/lib/types/missions';
-import { UserSkill } from '../types/profile';
-import { VerificationType, MissionObjective, FailureRecord } from '@/lib/types/missions';
+import {
+  Achievement,
+  AchievementRarity,
+  AchievementType,
+  ExtendedMission,
+  MissionStatus,
+  MissionType,
+  ParticipantType,
+  ROLE,
+  VerificationType,
+  FailureConditionCategory,
+  FailureConditionType,
+  UserSkill,
+} from '@H1V3M1ND/types';
 
 // Sample data - replace with actual data fetching
 export const profileData = {
@@ -169,23 +176,23 @@ export const profileData = {
         {
           id: 'fc-nn-1',
           description: 'Model accuracy drops below 95% on validation set',
-          type: 'Critical',
-          category: 'Performance',
-          severity: 'High',
+          type: FailureConditionType.Critical,
+          category: FailureConditionCategory.Performance,
+          severity: FailureConditionType.Critical,
         },
         {
           id: 'fc-nn-2',
           description: 'Training time exceeds 20 hours',
-          type: 'Critical',
-          category: 'Performance',
-          severity: 'Medium',
+          type: FailureConditionType.Critical,
+          category: FailureConditionCategory.Performance,
+          severity: FailureConditionType.Standard,
         },
         {
           id: 'fc-nn-3',
           description: 'Memory usage exceeds allocated resources',
-          type: 'Critical',
-          category: 'Resource',
-          severity: 'High',
+          type: FailureConditionType.Critical,
+          category: FailureConditionCategory.Technical,
+          severity: FailureConditionType.Critical,
         },
       ],
       requirements: {
@@ -280,23 +287,23 @@ export const profileData = {
         {
           id: 'fc-sc-1',
           description: 'Critical vulnerability found in production',
-          type: 'Critical',
-          category: 'Security',
-          severity: 'High',
+          type: FailureConditionType.Critical,
+          category: FailureConditionCategory.Security,
+          severity: FailureConditionType.Critical,
         },
         {
           id: 'fc-sc-2',
           description: 'Gas optimization reduces below target threshold',
-          type: 'Standard',
-          category: 'Performance',
-          severity: 'Medium',
+          type: FailureConditionType.Standard,
+          category: FailureConditionCategory.Performance,
+          severity: FailureConditionType.Standard,
         },
         {
           id: 'fc-sc-3',
           description: 'Contract fails integration tests',
-          type: 'Critical',
-          category: 'Technical',
-          severity: 'High',
+          type: FailureConditionType.Critical,
+          category: FailureConditionCategory.Technical,
+          severity: FailureConditionType.Critical,
         },
       ],
       requirements: {
@@ -380,23 +387,23 @@ export const profileData = {
         {
           id: 'fc-vfx-1',
           description: 'Frame rate drops below 60fps on target platform',
-          type: 'Critical',
-          category: 'Performance',
-          severity: 'High',
+          type: FailureConditionType.Critical,
+          category: FailureConditionCategory.Performance,
+          severity: FailureConditionType.Critical,
         },
         {
           id: 'fc-vfx-2',
           description: 'Particle effects exceed memory budget',
-          type: 'Standard',
-          category: 'Resource',
-          severity: 'Medium',
+          type: FailureConditionType.Standard,
+          category: FailureConditionCategory.Technical,
+          severity: FailureConditionType.Standard,
         },
         {
           id: 'fc-vfx-3',
           description: 'Visual artifacts present in final render',
-          type: 'Critical',
-          category: 'Quality',
-          severity: 'High',
+          type: FailureConditionType.Critical,
+          category: FailureConditionCategory.Technical,
+          severity: FailureConditionType.Critical,
         },
       ],
       requirements: {
@@ -491,23 +498,23 @@ export const profileData = {
         {
           id: 'fc-qa-1',
           description: 'Quantum error rate exceeds acceptable threshold',
-          type: 'Critical',
-          category: 'Performance',
-          severity: 'High',
+          type: FailureConditionType.Critical,
+          category: FailureConditionCategory.Performance,
+          severity: FailureConditionType.Critical,
         },
         {
           id: 'fc-qa-2',
           description: 'Decoherence time below minimum requirement',
-          type: 'Critical',
-          category: 'Technical',
-          severity: 'High',
+          type: FailureConditionType.Critical,
+          category: FailureConditionCategory.Technical,
+          severity: FailureConditionType.Critical,
         },
         {
           id: 'fc-qa-3',
           description: 'Algorithm fails to demonstrate quantum advantage',
-          type: 'Standard',
-          category: 'Performance',
-          severity: 'Medium',
+          type: FailureConditionType.Standard,
+          category: FailureConditionCategory.Performance,
+          severity: FailureConditionType.Standard,
         },
       ],
       requirements: {
@@ -540,16 +547,16 @@ export const profileData = {
         {
           id: 'fc1',
           description: 'Model topology does not meet optimization requirements',
-          type: 'Critical',
-          category: 'Technical',
-          severity: 'High',
+          type: FailureConditionType.Critical,
+          category: FailureConditionCategory.Technical,
+          severity: FailureConditionType.Critical,
         },
         {
           id: 'fc2',
           description: 'Assets not compatible with target engine',
-          type: 'Critical',
-          category: 'Technical',
-          severity: 'High',
+          type: FailureConditionType.Critical,
+          category: FailureConditionCategory.Technical,
+          severity: FailureConditionType.Critical,
         },
       ],
       requirements: {
@@ -611,9 +618,9 @@ export const profileData = {
         {
           id: 'fc1',
           description: 'Circuit optimization did not meet efficiency targets',
-          type: 'Critical',
-          category: 'Performance',
-          severity: 'High',
+          type: FailureConditionType.Critical,
+          category: FailureConditionCategory.Performance,
+          severity: FailureConditionType.Critical,
         },
       ],
       requirements: {
@@ -689,9 +696,9 @@ export const profileData = {
         {
           id: 'fc1',
           description: 'Integration tests failed to meet performance benchmarks',
-          type: 'Critical',
-          category: 'Technical',
-          severity: 'High',
+          type: FailureConditionType.Critical,
+          category: FailureConditionCategory.Technical,
+          severity: FailureConditionType.Critical,
         },
       ],
       requirements: {
@@ -759,16 +766,16 @@ export const profileData = {
         {
           id: 'fc1',
           description: 'Failed to identify all critical attack vectors',
-          type: 'Critical',
-          category: 'Security',
-          severity: 'High',
+          type: FailureConditionType.Critical,
+          category: FailureConditionCategory.Security,
+          severity: FailureConditionType.Critical,
         },
         {
           id: 'fc2',
           description: 'Patch implementation introduced new vulnerabilities',
-          type: 'Critical',
-          category: 'Security',
-          severity: 'High',
+          type: FailureConditionType.Critical,
+          category: FailureConditionCategory.Security,
+          severity: FailureConditionType.Critical,
         },
       ],
       requirements: {

@@ -1,7 +1,7 @@
 'use client';
 
 import { Users, Brain, Puzzle } from 'lucide-react';
-import { MultiParticipantMission } from '@/lib/types';
+import { MultiParticipantMission } from '@H1V3M1ND/types';
 import { MissionProgress } from './MissionProgress';
 
 interface MultiParticipantProgressProps {

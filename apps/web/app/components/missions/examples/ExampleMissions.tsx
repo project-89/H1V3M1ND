@@ -7,10 +7,11 @@ import {
   ParticipantType,
   SingleParticipantMission,
   MultiParticipantMission,
-  FailureConditionSeverity,
+  FailureConditionType,
   FailureConditionCategory,
   ROLE,
-} from '@/lib/types';
+  Mission,
+} from '@H1V3M1ND/types';
 
 // Example single-participant mission
 const singleMission: SingleParticipantMission = {
@@ -41,18 +42,34 @@ const singleMission: SingleParticipantMission = {
       'Performance Optimization': ROLE.AGENT_SENIOR,
       'Resource Management': ROLE.AGENT_FIELD,
     },
+    objectives: [
+      {
+        task: 'Deploy Neural Network Model',
+        details:
+          'Upload the trained model to endpoint: api.hivemind.ai/models/blockchain-pattern-v1',
+      },
+      {
+        task: 'Configure Pattern Detection',
+        details: 'Set detection threshold to 0.85 and enable quantum acceleration in settings.json',
+      },
+      {
+        task: 'Implement Security Measures',
+        details:
+          'Add rate limiting of 1000 req/s and encrypt all transaction data using Protocol X',
+      },
+    ],
   },
   failureConditions: [
     {
       id: 'fc-1',
       description: 'Model performance degrades by more than 10%',
-      severity: FailureConditionSeverity.High,
+      type: FailureConditionType.Critical,
       category: FailureConditionCategory.Performance,
     },
     {
       id: 'fc-2',
       description: 'Resource usage exceeds specified limits',
-      severity: FailureConditionSeverity.Medium,
+      type: FailureConditionType.Standard,
       category: FailureConditionCategory.Technical,
     },
   ],
@@ -86,24 +103,42 @@ const multiMission: MultiParticipantMission = {
       roleDistribution:
         'Lead Architect (Human), System Designer (Human), Implementation Specialists (AI Agents)',
     },
+    objectives: [
+      {
+        task: 'Initialize Swarm Network',
+        details: 'Deploy nodes to coordinates (127.89, -42.56) and establish mesh topology',
+      },
+      {
+        task: 'Configure Protocol Parameters',
+        details: 'Set consensus timeout to 500ms and enable Byzantine fault tolerance',
+      },
+      {
+        task: 'Implement Failover System',
+        details: 'Deploy backup nodes with < 50ms activation time on network partition',
+      },
+      {
+        task: 'Monitor Network Health',
+        details: 'Set up monitoring at monitor.hivemind.ai with 99.99% uptime requirement',
+      },
+    ],
   },
   failureConditions: [
     {
       id: 'fc-3',
       description: 'System latency exceeds 100ms',
-      severity: FailureConditionSeverity.High,
+      type: FailureConditionType.Critical,
       category: FailureConditionCategory.Performance,
     },
     {
       id: 'fc-4',
       description: 'Node communication failure rate above 0.1%',
-      severity: FailureConditionSeverity.Medium,
+      type: FailureConditionType.Standard,
       category: FailureConditionCategory.Technical,
     },
     {
       id: 'fc-5',
       description: 'Team coordination breakdown',
-      severity: FailureConditionSeverity.High,
+      type: FailureConditionType.Critical,
       category: FailureConditionCategory.Communication,
     },
   ],
@@ -124,3 +159,139 @@ export function ExampleMissions() {
     </div>
   );
 }
+
+export const sampleMissions: Mission[] = [
+  {
+    id: '1',
+    type: MissionType.Single,
+    title: 'Neural Network Training',
+    description:
+      'Train a specialized neural network for pattern recognition in blockchain transactions.',
+    participantType: ParticipantType.Agent,
+    status: MissionStatus.Available,
+    createdBy: 'system',
+    baseRequirements: {
+      timeLimit: 24,
+      stakeAmount: 100,
+    },
+    escrowAddress: '0x...',
+    createdAt: Date.now(),
+    expiryDate: Date.now() + 86400000,
+    requirements: {
+      objectives: [
+        {
+          task: 'Deploy Neural Network Model',
+          details:
+            'Upload the trained model to endpoint: api.hivemind.ai/models/blockchain-pattern-v1',
+        },
+        {
+          task: 'Configure Pattern Detection',
+          details:
+            'Set detection threshold to 0.85 and enable quantum acceleration in settings.json',
+        },
+        {
+          task: 'Implement Security Measures',
+          details:
+            'Add rate limiting of 1000 req/s and encrypt all transaction data using Protocol X',
+        },
+      ],
+      minimumRank: ROLE.AGENT_MASTER,
+      capabilities: ['neural-networks', 'blockchain', 'security'],
+    },
+    failureConditions: [
+      {
+        id: '1-1',
+        description: 'Model accuracy falls below 85% on validation dataset',
+        type: FailureConditionType.Critical,
+        category: FailureConditionCategory.Performance,
+      },
+      {
+        id: '1-2',
+        description: 'Training time exceeds the specified time limit',
+        type: FailureConditionType.Standard,
+        category: FailureConditionCategory.Performance,
+      },
+      {
+        id: '1-3',
+        description: 'Insufficient documentation of model architecture',
+        type: FailureConditionType.Warning,
+        category: FailureConditionCategory.Communication,
+      },
+      {
+        id: '1-4',
+        description: 'Model exhibits biased behavior in edge cases',
+        type: FailureConditionType.Critical,
+        category: FailureConditionCategory.Security,
+      },
+    ],
+  },
+  {
+    id: '2',
+    type: MissionType.Multi,
+    title: 'Swarm Intelligence Protocol',
+    description:
+      'Develop and test a new swarm intelligence protocol for coordinated agent operations.',
+    status: MissionStatus.PendingStake,
+    createdBy: 'system',
+    baseRequirements: {
+      timeLimit: 72,
+      stakeAmount: 500,
+    },
+    escrowAddress: '0x...',
+    createdAt: Date.now(),
+    expiryDate: Date.now() + 259200000,
+    requirements: {
+      minParticipants: 5,
+      maxParticipants: 10,
+      composition: {
+        humans: 2,
+        agents: 8,
+      },
+      objectives: [
+        {
+          task: 'Initialize Swarm Network',
+          details: 'Deploy nodes to coordinates (127.89, -42.56) and establish mesh topology',
+        },
+        {
+          task: 'Configure Protocol Parameters',
+          details: 'Set consensus timeout to 500ms and enable Byzantine fault tolerance',
+        },
+        {
+          task: 'Implement Failover System',
+          details: 'Deploy backup nodes with < 50ms activation time on network partition',
+        },
+        {
+          task: 'Monitor Network Health',
+          details: 'Set up monitoring at monitor.hivemind.ai with 99.99% uptime requirement',
+        },
+      ],
+      capabilities: ['swarm-intelligence', 'networking', 'consensus-protocols'],
+    },
+    failureConditions: [
+      {
+        id: '2-1',
+        description: 'Protocol fails to achieve consensus in test environment',
+        type: FailureConditionType.Critical,
+        category: FailureConditionCategory.Performance,
+      },
+      {
+        id: '2-2',
+        description: 'Network latency exceeds acceptable thresholds',
+        type: FailureConditionType.Standard,
+        category: FailureConditionCategory.Performance,
+      },
+      {
+        id: '2-3',
+        description: 'Inadequate peer review participation',
+        type: FailureConditionType.Warning,
+        category: FailureConditionCategory.Communication,
+      },
+      {
+        id: '2-4',
+        description: 'Critical security vulnerabilities identified in code review',
+        type: FailureConditionType.Critical,
+        category: FailureConditionCategory.Security,
+      },
+    ],
+  },
+];
