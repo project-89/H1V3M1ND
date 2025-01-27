@@ -1,7 +1,15 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Dialog, DialogContent, DialogHeader, DialogTitle, Button, Badge } from '@H1V3M1ND/ui';
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  Button,
+  Badge,
+  DialogDescription,
+} from '@H1V3M1ND/ui';
 import {
   Clock,
   Coins,
@@ -17,12 +25,14 @@ import {
   Video,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { getMissionTimeColor, calculateTimeRemaining } from '@/lib/utils/mission';
 import {
   ExtendedMission,
   MissionStatus,
   VerificationType,
   MissionObjective,
   FailureRecord,
+  VerificationRequirement,
 } from '@/lib/types/missions';
 
 interface MissionHistoryDialogProps {
@@ -55,7 +65,7 @@ const getMissionStatusStyle = (status: MissionStatus) => {
 export function MissionHistoryDialog({ mission, isOpen, onClose }: MissionHistoryDialogProps) {
   const statusStyle = getMissionStatusStyle(mission.status);
   const [timeRemaining, setTimeRemaining] = useState<string>('');
-  const [statusColor, setStatusColor] = useState<string>('text-emerald-400');
+  const [statusColor, setStatusColor] = useState<string>('');
 
   const formatDate = (timestamp: number) => {
     return new Date(timestamp).toLocaleDateString('en-US', {
@@ -67,159 +77,183 @@ export function MissionHistoryDialog({ mission, isOpen, onClose }: MissionHistor
     });
   };
 
-  const getStatusColor = (expiryDate: number) => {
-    const now = Date.now();
-    const remaining = expiryDate - now;
-    const duration = mission.duration * 60 * 60 * 1000;
-    const percentageRemaining = (remaining / duration) * 100;
-
-    if (remaining <= 0) return 'text-red-400';
-    if (percentageRemaining <= 10) {
-      return 'text-red-400';
-    } else if (percentageRemaining <= 40) {
-      return 'text-cyber-yellow';
-    } else {
-      return 'text-emerald-400';
-    }
-  };
-
-  const calculateTimeRemaining = (expiryDate: number) => {
-    const now = Date.now();
-    const remaining = expiryDate - now;
-    if (remaining <= 0) return 'Expired';
-
-    const hours = Math.floor(remaining / (1000 * 60 * 60));
-    const minutes = Math.floor((remaining % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((remaining % (1000 * 60)) / 1000);
-
-    if (hours > 0) {
-      return `${hours}h remaining`;
-    } else if (minutes > 0) {
-      return `${minutes}m remaining`;
-    } else {
-      return `${seconds}s remaining`;
-    }
-  };
-
   useEffect(() => {
-    if (mission.status === MissionStatus.Active) {
-      // Initial calculation
-      const initialTime = calculateTimeRemaining(mission.expiryDate);
-      setTimeRemaining(initialTime);
-      setStatusColor(getStatusColor(mission.expiryDate));
+    if (mission?.status === MissionStatus.Active) {
+      let timer: NodeJS.Timeout;
 
-      // Update interval based on remaining time
       const updateTimer = () => {
         const now = Date.now();
-        const msRemaining = mission.expiryDate - now;
+        const remaining = mission.expiryDate - now;
+        const duration = mission.duration * 60 * 60 * 1000;
+        const percentageRemaining = (remaining / duration) * 100;
 
-        // Set update frequency based on remaining time
-        let interval = 1000; // default to 1 second
-        if (msRemaining > 3600000) {
-          // > 1 hour
-          interval = 60000; // update every minute
-        } else if (msRemaining > 60000) {
-          // > 1 minute
-          interval = 1000; // update every second
-        }
-
-        const timeString = calculateTimeRemaining(mission.expiryDate);
+        const timeString = calculateTimeRemaining(remaining);
         setTimeRemaining(timeString);
-        setStatusColor(getStatusColor(mission.expiryDate));
+        setStatusColor(getMissionTimeColor(percentageRemaining));
 
         if (timeString === 'Expired') {
           clearInterval(timer);
+          return 0;
         }
 
-        return interval;
+        return remaining > 3600000 ? 60000 : 1000; // Update every minute if > 1h, else every second
       };
 
-      // Initial interval
-      let interval = updateTimer();
-      const timer = setInterval(updateTimer, interval);
+      // Initial update
+      updateTimer();
 
-      return () => clearInterval(timer);
+      // Set up interval with dynamic update frequency
+      const runTimer = () => {
+        const interval = updateTimer();
+        if (interval > 0) {
+          timer = setInterval(updateTimer, interval);
+        }
+      };
+
+      runTimer();
+
+      return () => {
+        if (timer) {
+          clearInterval(timer);
+        }
+      };
     }
-  }, [mission.expiryDate, mission.status, mission.duration]);
+  }, [mission]);
 
-  const getVerificationButton = (type: VerificationType) => {
-    switch (type) {
+  const getVerificationButton = (verification: VerificationRequirement) => {
+    switch (verification.type) {
       case VerificationType.Photo:
       case VerificationType.MultiPhoto:
         return (
-          <Button
-            variant="outline"
-            size="sm"
-            className="text-neon-cyan hover:text-neon-cyan/80 hover:bg-neon-cyan/10"
-          >
-            <Camera className="w-4 h-4 mr-2" />
-            Upload Photo
-          </Button>
+          <div className="space-y-2">
+            <Button
+              variant="outline"
+              size="sm"
+              className="text-neon-cyan hover:text-neon-cyan/80 hover:bg-neon-cyan/10"
+            >
+              <Camera className="w-4 h-4 mr-2" />
+              Upload Photo{' '}
+              {verification.type === VerificationType.MultiPhoto &&
+                verification.metadata?.minPhotos &&
+                `(1/${verification.metadata.minPhotos})`}
+            </Button>
+            {verification.type === VerificationType.MultiPhoto &&
+              verification.metadata?.minPhotos && (
+                <p className="text-xs text-cyber-gray">
+                  {'>'} Minimum {verification.metadata.minPhotos} photos required
+                </p>
+              )}
+          </div>
         );
       case VerificationType.Video:
         return (
-          <Button
-            variant="outline"
-            size="sm"
-            className="text-neon-cyan hover:text-neon-cyan/80 hover:bg-neon-cyan/10"
-          >
-            <Video className="w-4 h-4 mr-2" />
-            Upload Video
-          </Button>
+          <div className="space-y-2">
+            <Button
+              variant="outline"
+              size="sm"
+              className="text-neon-cyan hover:text-neon-cyan/80 hover:bg-neon-cyan/10"
+            >
+              <Video className="w-4 h-4 mr-2" />
+              Upload Video
+            </Button>
+            {verification.metadata?.maxVideoLength && (
+              <p className="text-xs text-cyber-gray">
+                {'>'} Maximum length: {verification.metadata.maxVideoLength} seconds
+              </p>
+            )}
+          </div>
         );
       case VerificationType.AutoGPS:
-        return (
-          <Button
-            variant="outline"
-            size="sm"
-            className="text-matrix-green hover:text-matrix-green/80 hover:bg-matrix-green/10"
-          >
-            <MapPin className="w-4 h-4 mr-2" />
-            Verify Location
-          </Button>
-        );
       case VerificationType.ManualGPS:
         return (
-          <Button
-            variant="outline"
-            size="sm"
-            className="text-neon-cyan hover:text-neon-cyan/80 hover:bg-neon-cyan/10"
-          >
-            <MapPin className="w-4 h-4 mr-2" />
-            Submit Location
-          </Button>
+          <div className="space-y-2">
+            <Button
+              variant="outline"
+              size="sm"
+              className="text-neon-cyan hover:text-neon-cyan/80 hover:bg-neon-cyan/10"
+            >
+              <MapPin className="w-4 h-4 mr-2" />
+              Verify Location
+            </Button>
+            {verification.metadata?.gpsCoordinates && (
+              <p className="text-xs text-cyber-gray">
+                {'>'} Required coordinates: {verification.metadata.gpsCoordinates.latitude},{' '}
+                {verification.metadata.gpsCoordinates.longitude}
+              </p>
+            )}
+          </div>
+        );
+      case VerificationType.Document:
+        return (
+          <div className="space-y-2">
+            <Button
+              variant="outline"
+              size="sm"
+              className="text-neon-cyan hover:text-neon-cyan/80 hover:bg-neon-cyan/10"
+            >
+              <Upload className="w-4 h-4 mr-2" />
+              Upload Document
+            </Button>
+            {verification.metadata?.allowedFileTypes && (
+              <p className="text-xs text-cyber-gray">
+                {'>'} Allowed types: {verification.metadata.allowedFileTypes.join(', ')}
+              </p>
+            )}
+          </div>
+        );
+      case VerificationType.Code:
+        return (
+          <div className="space-y-2">
+            <Button
+              variant="outline"
+              size="sm"
+              className="text-neon-cyan hover:text-neon-cyan/80 hover:bg-neon-cyan/10"
+            >
+              <Upload className="w-4 h-4 mr-2" />
+              Upload Code
+            </Button>
+            {verification.metadata?.allowedFileTypes && (
+              <p className="text-xs text-cyber-gray">
+                {'>'} Allowed types: {verification.metadata.allowedFileTypes.join(', ')}
+              </p>
+            )}
+          </div>
         );
       default:
-        return (
-          <Button
-            variant="outline"
-            size="sm"
-            className="text-neon-cyan hover:text-neon-cyan/80 hover:bg-neon-cyan/10"
-          >
-            <Upload className="w-4 h-4 mr-2" />
-            Upload Verification
-          </Button>
-        );
+        return null;
     }
   };
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="bg-cyber-dark border-2 border-cyber-purple-light h-[80vh] sm:max-w-[800px] w-[90vw] z-50 flex flex-col px-0">
-        <DialogHeader className="space-y-4 relative px-10 pt-2">
-          {/* Status and Timer */}
-          <div className="flex items-center gap-2">
-            <div className={`w-1 h-8 ${statusColor.replace('text-', 'bg-')}`} />
-            {mission.status === MissionStatus.Active && timeRemaining && (
-              <div className="flex items-center gap-2 text-lg">
-                <Clock className={cn('w-5 h-5', statusColor)} />
-                <span className={cn('font-medium', statusColor)}>{timeRemaining}</span>
-              </div>
-            )}
+        <DialogHeader className="space-y-4 relative px-10 pt-6">
+          {/* Title section with status line and timer */}
+          <div className="flex items-start gap-3">
+            <div className={`w-1 h-8 rounded-full ${statusColor}`} />
+            <div className="flex-1 flex items-center justify-between">
+              <DialogTitle className="text-2xl font-semibold text-neon-cyan">
+                {mission.title}
+              </DialogTitle>
+              {mission.status === MissionStatus.Active && timeRemaining && (
+                <div className="flex items-center gap-1.5">
+                  <Clock
+                    className="w-4 h-4"
+                    style={{ color: statusColor.replace('bg-', 'text-') }}
+                  />
+                  <span style={{ color: statusColor.replace('bg-', 'text-') }}>
+                    {timeRemaining}
+                  </span>
+                </div>
+              )}
+            </div>
           </div>
 
-          {/* Mission Metadata Badges */}
-          <div className="flex flex-wrap items-center gap-3">
+          {/* Description */}
+          <p className="text-base text-cyber-gray leading-relaxed">{mission.description}</p>
+
+          {/* Mission Stats */}
+          <div className="flex items-center gap-4 pt-2">
             <Badge
               variant="outline"
               className="border-cyber-yellow text-cyber-yellow font-medium flex items-center gap-1.5"
@@ -244,12 +278,6 @@ export function MissionHistoryDialog({ mission, isOpen, onClose }: MissionHistor
               {mission.reward} Project89
             </Badge>
           </div>
-
-          {/* Title and Description */}
-          <DialogTitle className="text-3xl font-bold text-neon-cyan tracking-tight">
-            {mission.title}
-          </DialogTitle>
-          <p className="text-base text-white leading-relaxed font-medium">{mission.description}</p>
         </DialogHeader>
 
         {/* Scrollable Content */}
@@ -258,28 +286,33 @@ export function MissionHistoryDialog({ mission, isOpen, onClose }: MissionHistor
             {/* Mission Objectives */}
             <div className="space-y-4">
               <h4 className="text-xl font-bold text-neon-pink tracking-wide">Mission Objectives</h4>
-              <div className="bg-cyber-black rounded-lg p-6 border-2 border-cyber-purple-light h-[200px] overflow-y-auto hover:pr-4 [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:bg-cyber-dark [&::-webkit-scrollbar-thumb]:bg-cyber-purple-light [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:border-2 [&::-webkit-scrollbar-thumb]:border-cyber-purple/30">
+              <div className="bg-cyber-black rounded-lg p-6 border-2 border-cyber-purple-light h-[200px] overflow-y-auto hover:pr-4 [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:bg-cyber-dark [&::-webkit-scrollbar-thumb]:bg-cyber-purple-light [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:border-2 [&::-webkit-scrollbar-thumb]:border-cyber-purple-light">
                 {mission.objectives.map((objective, index) => (
                   <div key={index} className="flex gap-3 mb-4 last:mb-0">
-                    <div
-                      className={cn(
-                        'w-5 h-5 border rounded flex items-center justify-center mt-1',
-                        objective.completed
-                          ? 'bg-neon-cyan border-neon-cyan'
-                          : 'border-neon-cyan hover:bg-neon-cyan/10'
-                      )}
-                    >
-                      {objective.completed && <Check className="w-4 h-4 text-black" />}
+                    <div className="font-mono text-lg text-neon-cyan/80 mt-1">
+                      {objective.completed ? '[✓]' : '[_]'}
                     </div>
                     <div className="flex-1">
-                      <p className="font-medium text-base text-cyber-purple-light mb-1">
-                        {objective.task}
-                      </p>
-                      <p className="text-cyber-gray text-sm">{objective.details}</p>
-                      {objective.completed && objective.verifiedAt && (
-                        <p className="text-xs text-cyber-gray mt-1">
-                          Verified {formatDate(objective.verifiedAt)}
+                      <div className="flex items-center gap-2 mb-1">
+                        <p className="font-medium text-base text-cyber-purple-light">
+                          {objective.task}
                         </p>
+                        {objective.completed && objective.verifiedAt && (
+                          <p className="text-xs text-neon-pink font-mono">
+                            {formatDate(objective.verifiedAt)}
+                          </p>
+                        )}
+                      </div>
+                      <p className="text-cyber-gray text-sm">{objective.details}</p>
+                      {mission.status === MissionStatus.Active && !objective.completed && (
+                        <div className="mt-2">
+                          <Badge
+                            variant="outline"
+                            className="text-xs border-neon-cyan text-neon-cyan"
+                          >
+                            {objective.verification?.type.replace('_', ' ')} verification required
+                          </Badge>
+                        </div>
                       )}
                     </div>
                   </div>
@@ -374,6 +407,19 @@ export function MissionHistoryDialog({ mission, isOpen, onClose }: MissionHistor
                     </Button>
                   </div>
                 </div>
+              </div>
+            )}
+
+            {/* Add a link to the full mission page for active missions */}
+            {mission.status === MissionStatus.Active && (
+              <div className="px-10 pb-6">
+                <Button
+                  variant="outline"
+                  className="w-full text-neon-cyan border-neon-cyan hover:bg-neon-cyan/10"
+                  onClick={() => (window.location.href = `/missions/${mission.id}`)}
+                >
+                  Open Mission Control
+                </Button>
               </div>
             )}
           </div>

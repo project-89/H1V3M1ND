@@ -12,8 +12,10 @@ export enum ParticipantType {
 }
 
 export enum MissionStatus {
+  Available = 'available',
+  PendingStake = 'pending_stake',
   Active = 'active',
-  InProgress = 'in-progress',
+  InProgress = 'in_progress',
   PendingValidation = 'pending_validation',
   InValidation = 'in_validation',
   Completed = 'completed',
@@ -142,7 +144,9 @@ export interface MissionHistoryDetails {
   reward: number;
   xpGained: number;
   teamSize: number;
+  startedAt: number;
   completedAt: number;
+  failedAt?: number;
   objectives: MissionObjective[];
   failureRecords?: FailureRecord[];
   tokenPayout?: {

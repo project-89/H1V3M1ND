@@ -19,6 +19,7 @@ import {
   MissionScale,
   SingleParticipantMission,
   MultiParticipantMission,
+  MissionStatus,
 } from '@/lib/types';
 
 function filterMissions(missions: Mission[], filters: FilterState): Mission[] {
@@ -102,7 +103,11 @@ export interface MissionDetailsDialogProps {
 export default function MissionsPage() {
   const { missions, fetchMissions, isLoading, createMission } = useMissionStore();
   const { isConnected: isWalletConnected } = useWalletStore();
-  const [filteredMissions, setFilteredMissions] = useState<Mission[]>(sampleMissions);
+  const [filteredMissions, setFilteredMissions] = useState<Mission[]>(
+    sampleMissions.filter(
+      (m) => m.status === MissionStatus.Active || m.status === MissionStatus.PendingValidation
+    )
+  );
   const [selectedMission, setSelectedMission] = useState<Mission | null>(null);
   const [isCreateDialogOpen, setIsCreateDialogOpen] = useState(false);
 
@@ -113,7 +118,11 @@ export default function MissionsPage() {
   useEffect(() => {
     // Only update if we get valid missions from the backend
     if (missions && Array.isArray(missions) && missions.length > 0) {
-      setFilteredMissions(missions);
+      setFilteredMissions(
+        missions.filter(
+          (m) => m.status === MissionStatus.Active || m.status === MissionStatus.PendingValidation
+        )
+      );
     }
   }, [missions]);
 
@@ -175,7 +184,7 @@ export default function MissionsPage() {
           <div className="container mx-auto px-4">
             <div className="flex items-center justify-between my-6">
               <div className="ml-4 my-2">
-                <h1 className="text-3xl font-bold mb-1 text-cyber-orange">Available Missions</h1>
+                <h1 className="text-3xl font-bold mb-1 text-cyber-orange">Mission Board</h1>
                 <p className="text-cyber-gray">
                   Find and accept missions that match your capabilities
                 </p>

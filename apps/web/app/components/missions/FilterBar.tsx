@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import {
   Button,
   Input,
@@ -40,7 +40,12 @@ const STAKE_RANGE_LABELS: Record<StakeRange, string> = {
 export function FilterBar({ onFilterChange }: FilterBarProps) {
   const [filters, setFilters] = useState<FilterState>({
     search: '',
+    status: MissionStatus.Active,
   });
+
+  useEffect(() => {
+    onFilterChange(filters);
+  }, []);
 
   const updateFilters = (newFilters: Partial<FilterState>) => {
     const updated = { ...filters, ...newFilters };
