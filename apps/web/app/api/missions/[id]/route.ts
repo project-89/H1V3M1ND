@@ -1,14 +1,14 @@
-import { NextResponse } from 'next/server';
-import { sampleMissions } from '@/lib/examples/missions';
-import { Mission } from '@H1V3M1ND/types';
+import { profileData } from '@/lib/examples/profile';
+import { ExtendedMission } from '@/lib/types/missions';
 
 export async function GET(request: Request, { params }: { params: { id: string } }) {
-  // Find the mission in sample missions
-  const mission = sampleMissions.find((m: Mission) => m.id === params.id);
+  const mission = [...profileData.activeMissions, ...profileData.completedMissions].find(
+    (m) => m.id === params.id
+  );
 
   if (!mission) {
-    return new NextResponse('Mission not found', { status: 404 });
+    return new Response('Mission not found', { status: 404 });
   }
 
-  return NextResponse.json(mission);
+  return Response.json(mission);
 }

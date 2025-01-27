@@ -41,7 +41,7 @@ export default function MissionPage() {
 
         const now = Date.now();
         const remaining = mission.expiryDate - now;
-        const duration = mission.duration * 60 * 60 * 1000;
+        const duration = mission.baseRequirements.timeLimit * 60 * 60 * 1000;
         const percentageRemaining = (remaining / duration) * 100;
         setStatusColor(getMissionTimeColor(percentageRemaining));
 
@@ -112,17 +112,19 @@ export default function MissionPage() {
         </div>
 
         <div className="flex gap-4">
-          <Badge variant="outline" className="border-cyber-purple text-cyber-purple">
-            <Users className="mr-2 h-4 w-4" />
-            Team Size: {mission.teamSize}
-          </Badge>
+          {'teamSize' in mission && (
+            <Badge variant="outline" className="border-cyber-purple text-cyber-purple">
+              <Users className="mr-2 h-4 w-4" />
+              Team Size: {mission.teamSize}
+            </Badge>
+          )}
           <Badge variant="outline" className="border-cyber-yellow text-cyber-yellow">
             <Clock className="mr-2 h-4 w-4" />
-            Duration: {mission.duration}h
+            Duration: {mission.baseRequirements.timeLimit}h
           </Badge>
           <Badge variant="outline" className="border-neon-cyan text-neon-cyan">
             <Coins className="mr-2 h-4 w-4" />
-            Reward: {mission.reward}
+            Reward: {mission.baseRequirements.stakeAmount}
           </Badge>
         </div>
       </div>
@@ -186,16 +188,22 @@ export default function MissionPage() {
                   </p>
                 </div>
               )}
-              <div>
-                <h3 className="text-cyber-purple">Required Capabilities</h3>
-                <div className="flex flex-wrap gap-2 mt-2">
-                  {mission.requirements.capabilities.map((capability) => (
-                    <Badge key={capability} variant="outline" className="border-cyber-purple-light">
-                      {capability}
-                    </Badge>
-                  ))}
+              {'capabilities' in mission.requirements && mission.requirements.capabilities && (
+                <div>
+                  <h3 className="text-cyber-purple">Required Capabilities</h3>
+                  <div className="flex flex-wrap gap-2 mt-2">
+                    {mission.requirements.capabilities.map((capability) => (
+                      <Badge
+                        key={capability}
+                        variant="outline"
+                        className="border-cyber-purple-light"
+                      >
+                        {capability}
+                      </Badge>
+                    ))}
+                  </div>
                 </div>
-              </div>
+              )}
             </div>
           </div>
 
@@ -214,9 +222,6 @@ export default function MissionPage() {
                       </Badge>
                       <Badge variant="outline" className="border-neon-pink/50">
                         {condition.category}
-                      </Badge>
-                      <Badge variant="outline" className="border-neon-pink/50">
-                        {condition.severity}
                       </Badge>
                     </div>
                   </div>

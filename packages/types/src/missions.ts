@@ -196,4 +196,19 @@ export interface MissionHistoryDetails {
 }
 
 export type Mission = SingleParticipantMission | MultiParticipantMission;
-export type ExtendedMission = Mission & MissionHistoryDetails;
+export type ExtendedMission = Mission & {
+  duration: number;
+  reward: number;
+  xpGained: number;
+  teamSize: number;
+  startedAt: number;
+  completedAt: number;
+  failedAt?: number;
+  objectives: MissionObjective[];
+  failureRecords?: FailureRecord[];
+  tokenPayout?: {
+    amount: number;
+    txHash: string;
+    timestamp: number;
+  };
+};
