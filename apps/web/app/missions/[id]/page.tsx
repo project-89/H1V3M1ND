@@ -5,7 +5,7 @@ import { useParams } from 'next/navigation';
 import { Button } from '@H1V3M1ND/ui';
 import { ArrowLeft, Clock, Users, Timer, Coins, Award, Check } from 'lucide-react';
 import {
-  ExtendedMission,
+  MissionWithHistory,
   MissionStatus,
   MultiParticipantRequirements,
   SingleParticipantRequirements,
@@ -15,7 +15,7 @@ import { getMissionTimeColor } from '@/lib/utils/mission';
 
 export default function MissionPage() {
   const params = useParams();
-  const [mission, setMission] = useState<ExtendedMission | null>(null);
+  const [mission, setMission] = useState<MissionWithHistory | null>(null);
   const [timeRemaining, setTimeRemaining] = useState<string>('');
   const [statusColor, setStatusColor] = useState<string>('');
 

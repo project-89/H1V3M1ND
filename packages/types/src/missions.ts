@@ -196,7 +196,7 @@ export interface MissionHistoryDetails {
 }
 
 export type Mission = SingleParticipantMission | MultiParticipantMission;
-export type ExtendedMission = Mission & {
+export type MissionWithHistory = Mission & {
   duration: number;
   reward: number;
   xpGained: number;

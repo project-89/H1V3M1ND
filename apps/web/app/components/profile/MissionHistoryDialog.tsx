@@ -27,7 +27,7 @@ import {
 import { cn } from '@/lib/utils';
 import { getMissionTimeColor, calculateTimeRemaining } from '@/lib/utils/mission';
 import {
-  ExtendedMission,
+  MissionWithHistory,
   MissionStatus,
   VerificationType,
   MissionObjective,
@@ -36,7 +36,7 @@ import {
 } from '@H1V3M1ND/types';
 
 interface MissionHistoryDialogProps {
-  mission: ExtendedMission;
+  mission: MissionWithHistory;
   isOpen: boolean;
   onClose: () => void;
 }

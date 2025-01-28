@@ -1,5 +1,5 @@
 import { profileData } from '@/lib/examples/profile';
-import { ExtendedMission } from '@/lib/types/missions';
+import { MissionWithHistory } from '@/lib/types/missions';
 
 export async function GET(request: Request, { params }: { params: { id: string } }) {
   const mission = [...profileData.activeMissions, ...profileData.completedMissions].find(

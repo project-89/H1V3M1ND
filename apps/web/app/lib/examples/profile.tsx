@@ -2,7 +2,7 @@ import {
   Achievement,
   AchievementRarity,
   AchievementType,
-  ExtendedMission,
+  MissionWithHistory,
   MissionStatus,
   MissionType,
   ParticipantType,
@@ -534,7 +534,7 @@ export const profileData = {
       createdBy: '0xdefg...hijk',
       completedAt: 0,
     },
-  ] as ExtendedMission[],
+  ] as MissionWithHistory[],
   completedMissions: [
     {
       id: '2',
@@ -852,6 +852,6 @@ export const profileData = {
       xpGained: 0,
       teamSize: 1,
     },
-  ] as ExtendedMission[],
+  ] as MissionWithHistory[],
   totalEarned: 15000,
 };

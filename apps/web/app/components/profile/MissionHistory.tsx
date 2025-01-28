@@ -19,11 +19,11 @@ import {
 import { cn } from '@/lib/utils';
 import { useRouter } from 'next/navigation';
 
-import { MissionStatus, ExtendedMission, Mission, Objective } from '@H1V3M1ND/types';
+import { MissionStatus, MissionWithHistory, Mission, Objective } from '@H1V3M1ND/types';
 
 interface MissionHistoryProps {
-  activeMissions: ExtendedMission[];
-  completedMissions: ExtendedMission[];
+  activeMissions: MissionWithHistory[];
+  completedMissions: MissionWithHistory[];
   totalEarned: number;
 }
 
@@ -99,7 +99,7 @@ export function MissionHistory({
     }
   };
 
-  const getMissionTimeColor = (mission: ExtendedMission) => {
+  const getMissionTimeColor = (mission: MissionWithHistory) => {
     const now = Date.now();
     const remaining = mission.expiryDate - now;
     const duration = mission.duration * 60 * 60 * 1000;
@@ -116,7 +116,7 @@ export function MissionHistory({
 
   const router = useRouter();
 
-  const MissionCard = ({ mission }: { mission: ExtendedMission }) => {
+  const MissionCard = ({ mission }: { mission: MissionWithHistory }) => {
     const [timeLeft, setTimeLeft] = useState<string>('');
     const router = useRouter();
 

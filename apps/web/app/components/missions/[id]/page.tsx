@@ -7,12 +7,12 @@ import { Clock, Coins, Users, ArrowLeft } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { formatDate } from '@/lib/utils/date';
 import { getMissionTimeColor, calculateTimeRemaining } from '@/lib/utils/mission';
-import { ExtendedMission, MissionStatus } from '@/lib/types/missions';
+import { MissionWithHistory, MissionStatus } from '@/lib/types/missions';
 import { VerificationUpload } from '@/components/missions/verification/VerificationUpload';
 
 export default function MissionPage() {
   const params = useParams();
-  const [mission, setMission] = useState<ExtendedMission | null>(null);
+  const [mission, setMission] = useState<MissionWithHistory | null>(null);
   const [timeRemaining, setTimeRemaining] = useState<string>('');
   const [statusColor, setStatusColor] = useState<string>('');
 

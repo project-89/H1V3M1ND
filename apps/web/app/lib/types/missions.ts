@@ -157,4 +157,4 @@ export interface MissionHistoryDetails {
 }
 
 export type Mission = SingleParticipantMission | MultiParticipantMission;
-export type ExtendedMission = Mission & MissionHistoryDetails;
+export type MissionWithHistory = Mission & MissionHistoryDetails;
