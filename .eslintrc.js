@@ -1,6 +1,6 @@
 module.exports = {
   root: true,
-  extends: ['eslint-config/index.js'],
+  extends: ['@H1V3M1ND/eslint-config'],
   parser: '@typescript-eslint/parser',
   plugins: ['@typescript-eslint'],
   parserOptions: {

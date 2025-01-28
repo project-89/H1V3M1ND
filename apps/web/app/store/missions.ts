@@ -125,6 +125,7 @@ const createMissionStore: StateCreator<MissionStore, [], [], MissionStore> = (se
             maxParticipants: multiMissionData.requirements.maxParticipants,
             composition: multiMissionData.requirements.composition,
             capabilities: multiMissionData.requirements.capabilities,
+            objectives: multiMissionData.requirements.objectives || [],
           },
         } as MultiParticipantMission;
       }
