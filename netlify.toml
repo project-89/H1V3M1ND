@@ -1,4 +1,5 @@
 [build]
+  base = "/"
   command = "yarn build"
   publish = "apps/web/.next"
 
