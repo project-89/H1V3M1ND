@@ -1,40 +1,27 @@
 [build]
   base = "/"
-  command = "yarn build"
+  command = "npx turbo build"
   publish = "apps/web/.next"
 
 [build.environment]
   NEXT_TELEMETRY_DISABLED = "1"
-  NODE_VERSION = "18"
+  NODE_VERSION = "20"
   YARN_VERSION = "1.22.22"
 
 # Production context
 [context.production]
-  command = "yarn build"
+  command = "yarn global add turbo && yarn install && yarn build"
   environment = { NODE_ENV = "production" }
 
 # Deploy Preview context
 [context.deploy-preview]
-  command = "yarn build"
+  command = "yarn global add turbo && yarn install && yarn build"
   environment = { NODE_ENV = "development" }
 
 # Branch Deploy context
 [context.branch-deploy]
-  command = "yarn build"
+  command = "yarn global add turbo && yarn install && yarn build"
   environment = { NODE_ENV = "staging" }
-
-# Redirects and rewrites
-[[redirects]]
-  from = "/*"
-  to = "/_next/static/:splat"
-  status = 200
-  force = true
-  conditions = { Path = "/_next/static/*" }
-
-[[redirects]]
-  from = "/*"
-  to = "/404"
-  status = 404
 
 [[plugins]]
   package = "@netlify/plugin-nextjs" 

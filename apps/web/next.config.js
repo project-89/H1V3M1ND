@@ -7,6 +7,9 @@ const nextConfig = {
   },
   experimental: {
     optimizeCss: true,
+    serverActions: {
+      allowedOrigins: ['localhost:3000'],
+    },
   },
   compiler: {
     removeConsole: process.env.NODE_ENV === 'production',
