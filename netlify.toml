@@ -1,6 +1,6 @@
 [build]
   base = "/"
-  command = "npx turbo build"
+  command = "yarn install && yarn build"
   publish = "apps/web/.next"
 
 [build.environment]
@@ -10,17 +10,17 @@
 
 # Production context
 [context.production]
-  command = "yarn global add turbo && yarn install && yarn build"
+  command = "yarn install && yarn build"
   environment = { NODE_ENV = "production" }
 
 # Deploy Preview context
 [context.deploy-preview]
-  command = "yarn global add turbo && yarn install && yarn build"
+  command = "yarn install && yarn build"
   environment = { NODE_ENV = "development" }
 
 # Branch Deploy context
 [context.branch-deploy]
-  command = "yarn global add turbo && yarn install && yarn build"
+  command = "yarn install && yarn build"
   environment = { NODE_ENV = "staging" }
 
 [[plugins]]
